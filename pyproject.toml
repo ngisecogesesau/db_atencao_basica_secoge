@@ -2,7 +2,7 @@
 name = "db-atbasica"
 version = "0.1.0"
 description = ""
-authors = ["plz09 <r.pellizzi09@gmail.com>"]
+authors = ["gleyce-alves <gleyceaps.alves@gmail.com>", "plz09 <r.pellizzi09@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
