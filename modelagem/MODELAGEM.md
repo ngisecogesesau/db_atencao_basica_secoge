@@ -6,6 +6,9 @@
 
 ### Schema Unidades
 
+![Diagrama do Schema Unidades](https://raw.githubusercontent.com/ngisecogesesau/db_atencao_basica_secoge/main/modelagem/schema_unidades.drawio.png)
+
+
 #### Descrição Geral:
 
 Armazena as informações principais das unidades de saúde, identificadas por um código único (cnes_padrao). Inclui dados como nome, distrito, unidade, coordenadas geográficas, e chaves estrangeiras que referenciam outras tabelas.
@@ -55,7 +58,6 @@ Armazena as informações principais das unidades de saúde, identificadas por u
 **recepcionista:** Indicador booleano de presença de recepcionista.
 **fk_cnes_padrao:** Chave estrangeira para a tabela Unidades.
 
-![Diagrama de Exemplo](https://github.com/ngisecogesesau/db_atencao_basica_secoge/tree/main/modelagem/schema_unidades.drawio.png)
 
 
 ## TABELAS ALTERADAS
