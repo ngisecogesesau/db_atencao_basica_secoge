@@ -1,7 +1,7 @@
-from .distritos import read_distritos
+from .profissionais_equipes import read_profissionais_equipes
 
 
 def get_data_processing_functions():
     return {
-        'distritos': read_distritos
+        'profissionais_equipes': read_profissionais_equipes
     }
