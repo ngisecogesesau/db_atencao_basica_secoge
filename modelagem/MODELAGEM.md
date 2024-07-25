@@ -57,7 +57,7 @@ Tabela **info_unidades:** Contém características específicas das unidades, co
 - **fk_cnes_padrao:** Chave estrangeira para a tabela Unidades.
 
 
-![Clique aqui para acessar o diagrama do Schema Unidades](https://raw.githubusercontent.com/ngisecogesesau/db_atencao_basica_secoge/main/modelagem/schema_unidades.drawio.png)
+![Clique aqui para acessar o diagrama do Schema Unidades](https://raw.githubusercontent.com/ngisecogesesau/db_atencao_basica_secoge/blob/main/modelagem/schema_unidades.drawio.png)
 
 ### Schema funcionarios_equipes
 
@@ -128,4 +128,4 @@ Tabela gerente:
 - fk_id_unidades referencia unidade no schema unidades.
 - fk_id_distritos referencia tab_distritos no schema unidades.
 
-![Clique aqui para acessar o diagrama do Schema funcionarios_equipes](https://raw.githubusercontent.com/ngisecogesesau/db_atencao_basica_secoge/main/modelagem/schema_funcionarios_equipes.drawio.png)
+![Clique aqui para acessar o diagrama do Schema funcionarios_equipes](https://raw.githubusercontent.com/ngisecogesesau/db_atencao_basica_secoge/blob/main/modelagem/schema_funcionarios_equipes.drawio)
