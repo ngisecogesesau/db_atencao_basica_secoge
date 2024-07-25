@@ -1,5 +1,4 @@
 from sqlalchemy import create_engine, Table, Column, Integer, BigInteger, Float, String, MetaData, Date
-import pandas as pd
 import psycopg2
 
 def create_engine_to_db(db_name, user, password, host='localhost', port=5432):

@@ -1,4 +1,4 @@
-from .profissionais_equipes import process_data_in_duckdb
+
 import importlib
 import os
 
