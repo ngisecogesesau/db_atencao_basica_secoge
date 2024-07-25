@@ -1,0 +1,91 @@
+<mxfile host="Electron" modified="2024-07-25T13:12:20.141Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.6.4 Chrome/124.0.6367.207 Electron/30.0.6 Safari/537.36" etag="-Q1FdTQNMYiCd2L9Alw5" version="24.6.4" type="device">
+  <diagram name="Página-1" id="J0vRUelUGUvv4VLrvrKp">
+    <mxGraphModel dx="2501" dy="844" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="jkdSOHjaiL1za2gb9_ui-1" value="Tabelas usadas" style="text;strokeColor=none;fillColor=none;html=1;fontSize=24;fontStyle=1;verticalAlign=middle;align=center;" vertex="1" parent="1">
+          <mxGeometry x="170" y="39" width="160" height="41" as="geometry" />
+        </mxCell>
+        <mxCell id="jkdSOHjaiL1za2gb9_ui-2" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-340" y="600" as="sourcePoint" />
+            <mxPoint x="-340" y="30" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jkdSOHjaiL1za2gb9_ui-3" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="830" y="600" as="sourcePoint" />
+            <mxPoint x="830" y="30" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="829" y="330" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jkdSOHjaiL1za2gb9_ui-4" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="830" y="600" as="sourcePoint" />
+            <mxPoint x="-338" y="600" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jkdSOHjaiL1za2gb9_ui-5" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="830" y="30" as="sourcePoint" />
+            <mxPoint x="-339" y="30" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jkdSOHjaiL1za2gb9_ui-6" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="830" y="80" as="sourcePoint" />
+            <mxPoint x="-339" y="80" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jkdSOHjaiL1za2gb9_ui-7" value="&lt;div style=&quot;box-sizing:border-box;width:100%;background:#e4e4e4;padding:2px;&quot;&gt;&lt;b&gt;ouvidoria&lt;/b&gt;&lt;/div&gt;protocolo&lt;div&gt;data_demanda&lt;/div&gt;&lt;div&gt;demanda_ativa (S/N)&lt;/div&gt;&lt;div&gt;status (arquivado, concluido, em analise, em analise interno, encaminhado, fechado, reencaminhado)&lt;/div&gt;&lt;div&gt;prazo_vencido (s/n)&lt;/div&gt;&lt;div&gt;classificacao (denuncia, elogio, informacao, reclamacao, solicitacao, sugestao)&lt;/div&gt;&lt;div&gt;n_us (3 digitos do nome unidade)&lt;/div&gt;&lt;div&gt;estab_comercial (nome do estabelecimento)&lt;/div&gt;&lt;div&gt;ano&lt;/div&gt;&lt;div&gt;respostas_dentro_prazo&lt;/div&gt;&lt;div&gt;DS (distrito)&lt;/div&gt;&lt;div&gt;repostas_dentro_prazo (0 ou 1, sim ou não)&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;table style=&quot;width:100%;font-size:1em;&quot; cellpadding=&quot;2&quot; cellspacing=&quot;0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12" vertex="1" parent="1">
+          <mxGeometry x="-325" y="100" width="675" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="jkdSOHjaiL1za2gb9_ui-11" value="&lt;div style=&quot;box-sizing:border-box;width:100%;background:#e4e4e4;padding:2px;&quot;&gt;&lt;b&gt;ouvidoria_DS&lt;/b&gt;&lt;/div&gt;protocolo&lt;div&gt;data_demanda&lt;/div&gt;&lt;div&gt;demanda_ativa (S/N)&lt;/div&gt;&lt;div&gt;status (arquivado, concluido, em analise, em analise interno, encaminhado, fechado, reencaminhado)&lt;/div&gt;&lt;div&gt;prazo_vencido (s/n)&lt;/div&gt;&lt;div&gt;classificacao (denuncia, elogio, informacao, reclamacao, solicitacao, sugestao)&lt;/div&gt;&lt;div&gt;n_us&lt;/div&gt;&lt;div&gt;estab_comercial (nome do estabelecimento)&lt;/div&gt;&lt;div&gt;ano&lt;/div&gt;&lt;div&gt;respostas_dentro_prazo&lt;/div&gt;&lt;div&gt;DS (distrito)&lt;/div&gt;&lt;div&gt;repostas_dentro_prazo (0 ou 1, sim ou não)&lt;/div&gt;&lt;div&gt;mes_abreviado&lt;/div&gt;&lt;table style=&quot;width:100%;font-size:1em;&quot; cellpadding=&quot;2&quot; cellspacing=&quot;0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12" vertex="1" parent="1">
+          <mxGeometry x="100" y="330" width="625" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="jkdSOHjaiL1za2gb9_ui-12" value="Modelo Final" style="text;strokeColor=none;fillColor=none;html=1;fontSize=24;fontStyle=1;verticalAlign=middle;align=center;" vertex="1" parent="1">
+          <mxGeometry x="240" y="649" width="160" height="41" as="geometry" />
+        </mxCell>
+        <mxCell id="jkdSOHjaiL1za2gb9_ui-13" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-270" y="1210" as="sourcePoint" />
+            <mxPoint x="-270" y="640" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jkdSOHjaiL1za2gb9_ui-14" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="900" y="1210" as="sourcePoint" />
+            <mxPoint x="900" y="640" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="899" y="940" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jkdSOHjaiL1za2gb9_ui-15" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="900" y="1210" as="sourcePoint" />
+            <mxPoint x="-268" y="1210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jkdSOHjaiL1za2gb9_ui-16" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="900" y="640" as="sourcePoint" />
+            <mxPoint x="-269" y="640" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jkdSOHjaiL1za2gb9_ui-17" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="900" y="690" as="sourcePoint" />
+            <mxPoint x="-269" y="690" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jkdSOHjaiL1za2gb9_ui-18" value="&lt;div style=&quot;box-sizing:border-box;width:100%;background:#e4e4e4;padding:2px;&quot;&gt;&lt;b&gt;ouvidoria&lt;/b&gt;&lt;/div&gt;&lt;b&gt;PK &lt;/b&gt;id_ouvidoria&lt;div&gt;descricao&lt;/div&gt;&lt;div&gt;data_registro&lt;/div&gt;&lt;div&gt;status&lt;/div&gt;&lt;div&gt;observacoes&lt;/div&gt;&lt;div&gt;protocolo&lt;div&gt;data_demanda&lt;/div&gt;&lt;div&gt;demanda_ativa (S/N)&lt;/div&gt;&lt;div&gt;status (arquivado, concluido, em analise, em analise interno, encaminhado, fechado, reencaminhado)&lt;/div&gt;&lt;div&gt;prazo_vencido (s/n)&lt;/div&gt;&lt;div&gt;classificacao (denuncia, elogio, informacao, reclamacao, solicitacao, sugestao)&lt;/div&gt;&lt;div&gt;n_us&lt;/div&gt;&lt;div&gt;estab_comercial (nome do estabelecimento)&lt;/div&gt;&lt;div&gt;ano&lt;/div&gt;&lt;div&gt;respostas_dentro_prazo&lt;/div&gt;&lt;div&gt;repostas_dentro_prazo (0 ou 1, sim ou não)&lt;/div&gt;&lt;div&gt;mes_abreviado&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;&lt;b&gt;FK&amp;nbsp;&lt;/b&gt;fk_id_unidade&lt;/div&gt;&lt;div&gt;&lt;b style=&quot;background-color: initial;&quot;&gt;FK&amp;nbsp;&lt;/b&gt;fk_id_periodo&lt;/div&gt;&lt;div&gt;&lt;b style=&quot;background-color: initial;&quot;&gt;FK&amp;nbsp;&lt;/b&gt;fk_id_distrito&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;table style=&quot;width:100%;font-size:1em;&quot; cellpadding=&quot;2&quot; cellspacing=&quot;0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;/div&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12" vertex="1" parent="1">
+          <mxGeometry y="730" width="675" height="350" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
