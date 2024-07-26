@@ -6,6 +6,6 @@ def read_profissionais_equipes():
     df_equipes = remove_espacos_e_acentos('dado_bruto/profissionais_equipes/equipes.xlsx', 'equipes')
     
     return {
-        'servidores': df_servidores,
-        'equipes': df_equipes
+        'servidores_temp': df_servidores,
+        'equipes_temp': df_equipes
     }
