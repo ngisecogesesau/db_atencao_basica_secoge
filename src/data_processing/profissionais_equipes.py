@@ -1,4 +1,3 @@
-import duckdb
 from ..utils.excel_operations import remove_espacos_e_acentos
 
 def read_profissionais_equipes():

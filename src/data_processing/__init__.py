@@ -1,4 +1,3 @@
-
 import importlib
 import os
 
@@ -13,5 +12,3 @@ def get_data_processing_functions():
             data_processing_functions[module_name] = getattr(module, read_func_name)
 
     return data_processing_functions
-
-

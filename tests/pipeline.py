@@ -29,26 +29,16 @@ def process_data(engine, schemas):
     
     # Passo 2: Executar transformações diretamente no DuckDB
     con.execute("""
-        CREATE TABLE servidores AS 
+        CREATE TABLE profissionais_equipes.servidores AS 
         SELECT 
-            *
+            nome_servidor,
+            situacao_funcional
         FROM 
             servidores_temp
     """)
     
-    con.execute("""
-        CREATE TABLE equipes AS 
-        SELECT 
-            *
-        FROM 
-            equipes_temp
-    """)
-    
-    # Verificar tabelas criadas no DuckDB
-    transformed_tables = con.execute("SHOW TABLES").fetchall()
-    print("Tabelas no DuckDB após transformação:", transformed_tables)
-    
     # Passo 3: Carregar tabelas transformadas no PostgreSQL
+    transformed_tables = con.execute("SHOW TABLES").fetchall()
     for table in transformed_tables:
         table_name = table[0]
         if table_name not in ['servidores_temp', 'equipes_temp']:
