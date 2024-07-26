@@ -1,6 +1,6 @@
 import duckdb
 
-def execute_duckdb_scripts(con):
+def trata_df_profissionais_equipes(con):
     con.execute("""
         CREATE TABLE servidores AS 
         SELECT 
