@@ -1,7 +1,6 @@
 import pandas as pd
 
-def remove_espacos_e_acentos(file_path, aba_selecionada):
-    df = pd.read_excel(file_path, sheet_name=aba_selecionada)
+def remove_espacos_e_acentos(df):
     df.columns = (
         df.columns
         .str.normalize('NFKD')  # Normaliza os caracteres unicode
