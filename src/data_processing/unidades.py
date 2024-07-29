@@ -1,6 +1,7 @@
 import os
 import logging
 from extract_sharepoint_df import get_file_as_dataframes, log_dataframes_info, create_dataframe_variables
+from ..utils.extract_sharepoint_df import get_file_as_dataframes, log_dataframes_info
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
