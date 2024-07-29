@@ -61,11 +61,11 @@ def get_file_as_dataframes(relative_url):
     ctx = authenticate_to_sharepoint(site_url, username, password)
     if not ctx:
         return None
-    
+
     file_content = get_file_content(ctx, relative_url)
     if not file_content:
         return None
-    
+
     try:
         dataframes = pd.read_excel(file_content, sheet_name=None)
         logger.info(f"Sheets available: {list(dataframes.keys())}")
@@ -88,12 +88,29 @@ def log_dataframes_info(dataframes):
         logger.info("DataFrames criados com sucesso!")
         for sheet_name, df in dataframes.items():
             num_rows = df.shape[0]
+            num_columns = df.shape[1]
             logger.info(f"\nDataFrame da aba '{sheet_name}':")
             logger.info(f"Número de linhas: {num_rows}")
-            logger.info(f"\nPrimeiras linhas do DataFrame:\n{df.head()}")
+            logger.info(f"Número de colunas: {num_columns}")
+            logger.info(f"Primeiras linhas do DataFrame:\n{df.head()}")
     else:
         logger.error("Falha ao criar os DataFrames.")
     
     return dataframes
 
+def create_dataframe_variables(dataframes, prefix):
+    """
+    Create dynamic variables for each DataFrame based on sheet names.
 
+    Parameters:
+    dataframes (dict): A dictionary where the keys are sheet names and the values are DataFrames.
+    prefix (str): Prefix for the variable names.
+
+    Returns:
+    None
+    """
+    if dataframes:
+        for sheet_name, df in dataframes.items():
+            sanitized_sheet_name = sheet_name.replace(' ', '_').replace('-', '_')
+            globals()[f'{prefix}_{sanitized_sheet_name}'] = df
+            logger.info(f"Variável criada: {prefix}_{sanitized_sheet_name}")
