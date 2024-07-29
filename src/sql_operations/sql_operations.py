@@ -1,59 +1,27 @@
 import os
-import psycopg2
+import duckdb
 
-def execute_sql_script(db_name, user, password, host, port, script_path):
+def execute_sql_scripts(con, directory):
     """
-    Executa scripts SQL a partir dos arquivos.
+    Executa todos os scripts SQL em um diretório usando a conexão DuckDB.
     
-    :param db_name: Nome do banco de dados
-    :param user: Nome do usuário
-    :param password: Senha do usuário
-    :param host: Host do banco de dados
-    :param port: Porta do banco de dados
-    :param script_path: Caminho para o arquivo SQL
+    :param con: Conexão DuckDB
+    :param directory: Caminho para o diretório contendo os scripts SQL
     """
-    script_path = os.path.abspath(script_path)  # Converte para caminho absoluto
+    for filename in os.listdir(directory):
+        if filename.endswith('.sql'):
+            script_path = os.path.join(directory, filename)
+            with open(script_path, 'r') as file:
+                sql_script = file.read()
+                con.execute(sql_script)
+                print(f"Script {script_path} executado com sucesso.")
 
-    try:
-        # Conectar ao banco de dados PostgreSQL
-        conn = psycopg2.connect(
-            dbname=db_name,
-            user=user,
-            password=password,
-            host=host,
-            port=port,
-            options="-c client_encoding=UTF8"
-        )
-        conn.set_client_encoding('UTF8')
-        cur = conn.cursor()
-
-        # Ler o script SQL
-        with open(script_path, 'r') as file:
-            script = file.read()
-
-        # Executar o script SQL
-        cur.execute(script)
-
-        # Fechar a comunicação com o banco de dados PostgreSQL
-        cur.close()
-        conn.commit()
-        conn.close()
-        print(f"Script {script_path} executado com sucesso.")
-    except (Exception, psycopg2.DatabaseError) as error:
-        print(f"Erro ao executar o script {script_path}: {error}")
-        raise
-
-def get_script_path(script_names):
+def get_script_paths(script_names, base_directory='scripts_sql'):
     """
-    Constrói os caminhos absolutos para uma lista de scripts SQL na pasta scripts_sql.
+    Constrói os caminhos absolutos para uma lista de scripts SQL na pasta base especificada.
     
     :param script_names: Lista com os nomes dos arquivos de scripts SQL
+    :param base_directory: Diretório base onde os scripts SQL estão localizados
     :return: Lista com os caminhos absolutos para os arquivos de scripts SQL
     """
-    # Lista para armazenar os caminhos absolutos
-    script_paths = []
-    for script_name in script_names:
-        # Caminho absoluto para cada arquivo de script SQL.
-        script_paths.append(os.path.join('scripts_sql', script_name))
-    return script_paths
-
+    return [os.path.join(base_directory, script_name) for script_name in script_names]
