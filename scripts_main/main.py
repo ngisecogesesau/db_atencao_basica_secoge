@@ -8,7 +8,7 @@ import duckdb
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from src.database import create_engine_to_db, create_schemas
-from scripts_sql.transformacoes.unidades_duckdb import create_unidades_table
+from scripts_sql.transformacoes.unidades_duckdb import create_unidades_table, create_tipo_unidade_table
 from src.data_processing import get_data_processing_functions
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -33,11 +33,11 @@ def process_data(engine, schemas):
             full_table_name = f"{table_name}_temp"
             print(f"\nDataFrame for {full_table_name}:")
             print(df.head())
-            # Registrar DataFrames no DuckDB
+          
             con.register(full_table_name, df)
             logger.info(f"Registered {full_table_name} in DuckDB")
 
-    # List the tables in DuckDB to verify registration
+
     registered_tables = con.execute("SHOW TABLES").fetchall()
     logger.info("Tabelas registradas no DuckDB: %s", registered_tables)
     
@@ -45,12 +45,18 @@ def process_data(engine, schemas):
     # Crie a tabela 'unidades' no DuckDB
     df_unidades = create_unidades_table(con, dfs)
     
-    # Passo 3: Carregar a tabela 'unidades' no PostgreSQL
+
+    df_tipo_unidade = create_tipo_unidade_table(con)
+    
     try:
         df_unidades.to_sql('unidades', engine, schema='unidades', if_exists='replace', index=False)
         logger.info("Tabela 'unidades' salva no esquema 'unidades' do banco de dados PostgreSQL com sucesso.")
+        
+        df_tipo_unidade.to_sql('tipoUnidade', engine, schema='unidades', if_exists='replace', index=False)
+        logger.info("Tabela 'tipoUnidade' salva no esquema 'unidades' do banco de dados PostgreSQL com sucesso.")
+        
     except Exception as e:
-        logger.error(f"Erro ao processar tabela 'unidades': {e}")
+        logger.error(f"Erro ao processar tabelas: {e}")
 
 def main():
     config = {
@@ -61,7 +67,6 @@ def main():
         'port': 5432
     }
 
-    # Criar esquema no PostgreSQL
     create_schemas(**config)
     schemas = get_data_processing_functions()
 
