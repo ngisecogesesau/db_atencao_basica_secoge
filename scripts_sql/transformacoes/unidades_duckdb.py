@@ -1,65 +1,65 @@
-import sys
-import os
 import duckdb
 import pandas as pd
-import logging
+import os
+import sys
 
-# Adicionar o caminho do diretório src ao sys.path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../src')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
-# Importar DataFrames do módulo unidades
-from data_processing.unidades import globals
+from src.data_processing.unidades import read_unidades
 
-# Configuração do logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
+def create_unidades_table(con, data):
+    """
+    Create the 'unidades' table in DuckDB and return it as a DataFrame.
+    """
+    if 'planilha1' not in data:
+        raise ValueError("'planilha1' not found in data")
+    
+    df_planilha1 = data['planilha1']
+    print("Columns in 'planilha1':", df_planilha1.columns)
+    
+    required_columns = ['cnes_padrao', 'codigo_unidade', 'nome', 'distrito', 'unidade', 'x_long', 'y_lat']
+    missing_columns = [col for col in required_columns if col not in df_planilha1.columns]
+    if missing_columns:
+        raise KeyError(f"Missing columns in 'planilha1': {missing_columns}")
 
-# Conectar ao banco DuckDB
-conn = duckdb.connect('data/transformed_data.duckdb')  # Certifique-se de que o caminho esteja correto para o seu banco de dados
+    df_unidades = df_planilha1[required_columns].rename(columns={
+        'cnes_padrao': 'cnes_padrao',
+        'codigo_unidade': 'cod_unidade',
+        'nome': 'nome',
+        'unidade': 'unidade',
+        'x_long': 'x_long',
+        'y_lat': 'y_lat'
+    })
 
-# Criar a tabela 'unidades' com uma coluna 'id_unidades' SERIAL
-create_table_sql = """
-CREATE TABLE IF NOT EXISTS unidades (
-    id_unidades INTEGER PRIMARY KEY,
-    CNES INTEGER,
-    CNES_PADRAO INTEGER
-    -- Adicione outras colunas necessárias aqui
-);
-"""
+    con.execute("""
+        CREATE TABLE IF NOT EXISTS unidades_temp (
+            cnes_padrao VARCHAR,
+            nome VARCHAR,
+            unidade VARCHAR,
+            cod_unidade VARCHAR,
+            x_long DECIMAL(10, 6),
+            y_lat DECIMAL(10, 6)
+        )
+    """)
 
-conn.execute(create_table_sql)
+    con.execute("""
+        INSERT INTO unidades_temp (cnes_padrao, nome, unidade, cod_unidade, x_long, y_lat)
+        SELECT cnes_padrao, nome, unidade, cod_unidade, x_long, y_lat
+        FROM df_unidades
+    """)
+    
+    con.execute("""
+        CREATE TABLE IF NOT EXISTS unidades AS
+        SELECT ROW_NUMBER() OVER () AS id_unidades, *
+        FROM unidades_temp
+    """)
 
-# Função para carregar e transformar os DataFrames
-def load_and_transform_dataframes():
-    # Obter DataFrames com prefixos 'df_usf_' e 'df_unidades_'
-    df_usf_vars = [globals()[var_name] for var_name in globals() if var_name.startswith('df_usf_')]
-    df_unidades_vars = [globals()[var_name] for var_name in globals() if var_name.startswith('df_unidades_')]
+    df_result = con.execute("SELECT * FROM unidades").fetchdf()
+    return df_result
 
-    # Exemplo: Unir e transformar dados conforme necessário
-    # Ajuste a lógica conforme seus requisitos
-    if df_usf_vars:
-        usf_df = pd.concat(df_usf_vars, ignore_index=True)
-        # Suponha que a coluna 'CNES' exista nos DataFrames e é usada para o 'id_unidades'
-        usf_df['id_unidades'] = usf_df['CNES'].astype(int)
-
-    if df_unidades_vars:
-        unidades_df = pd.concat(df_unidades_vars, ignore_index=True)
-        # Suponha que a coluna 'CNES' exista nos DataFrames e é usada para o 'id_unidades'
-        unidades_df['id_unidades'] = unidades_df['CNES'].astype(int)
-
-    return usf_df, unidades_df
-
-# Carregar e transformar dados
-usf_df, unidades_df = load_and_transform_dataframes()
-
-# Inserir dados na tabela 'unidades'
-if not usf_df.empty:
-    usf_df.to_sql('unidades', conn, if_exists='replace', index=False)
-
-if not unidades_df.empty:
-    unidades_df.to_sql('unidades', conn, if_exists='replace', index=False)
-
-logger.info("Dados inseridos na tabela 'unidades' com sucesso.")
-
-# Fechar a conexão
-conn.close()
+if __name__ == '__main__':
+    con = duckdb.connect(database=':memory:')
+    data = read_unidades()
+    df_unidades = create_unidades_table(con, data)
+    print("Table 'unidades' created successfully.")
+    print(df_unidades)

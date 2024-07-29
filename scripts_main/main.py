@@ -8,7 +8,7 @@ import duckdb
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from src.database import create_engine_to_db, create_schemas
-from scripts_sql.transformacoes.profissionais_equipes_duckdb import trata_df_profissionais_equipes
+from scripts_sql.transformacoes.unidades_duckdb import create_unidades_table
 from src.data_processing import get_data_processing_functions
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -42,19 +42,15 @@ def process_data(engine, schemas):
     logger.info("Tabelas registradas no DuckDB: %s", registered_tables)
     
     # Passo 2: Executar transformações diretamente no DuckDB
-    trata_df_profissionais_equipes(con)
+    # Crie a tabela 'unidades' no DuckDB
+    df_unidades = create_unidades_table(con, dfs)
     
-    # Verificar tabelas criadas no DuckDB
-    transformed_tables = con.execute("SHOW TABLES").fetchall()
-    logger.info("Tabelas no DuckDB após transformação: %s", transformed_tables)
-    
-    # Passo 3: Carregar tabelas transformadas no PostgreSQL
-    for table in transformed_tables:
-        table_name = table[0]
-        df_transformed = con.execute(f"SELECT * FROM {table_name}").fetchdf()
-        df_transformed.to_sql(table_name, engine, schema='profissionais_equipes', if_exists='replace', index=False)
-        logger.info("Tabela %s salva no banco de dados PostgreSQL com sucesso.", table_name)
-
+    # Passo 3: Carregar a tabela 'unidades' no PostgreSQL
+    try:
+        df_unidades.to_sql('unidades', engine, schema='unidades', if_exists='replace', index=False)
+        logger.info("Tabela 'unidades' salva no esquema 'unidades' do banco de dados PostgreSQL com sucesso.")
+    except Exception as e:
+        logger.error(f"Erro ao processar tabela 'unidades': {e}")
 
 def main():
     config = {
