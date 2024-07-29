@@ -1,7 +1,9 @@
+
 import importlib
 import os
 
 def get_data_processing_functions():
+<<<<<<< HEAD
     data_processing_functions = {}
     modules = [f[:-3] for f in os.listdir(os.path.dirname(__file__)) if f.endswith('.py') and f != '__init__.py']
 
@@ -12,3 +14,5 @@ def get_data_processing_functions():
             data_processing_functions[module_name] = getattr(module, read_func_name)
 
     return data_processing_functions
+
+
