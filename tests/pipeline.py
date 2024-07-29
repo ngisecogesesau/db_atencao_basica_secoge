@@ -8,8 +8,6 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from src.database import create_engine_to_db, create_schemas
 from src.data_processing import get_data_processing_functions
-from src.sql_operations import execute_sql_scripts
-from scripts_sql.transformacoes.profissionais_equipes_duckdb import trata_df_profissionais_equipes
 
 @contextmanager
 def db_connection(config):
@@ -30,13 +28,17 @@ def process_data(engine, schemas):
             con.register(table_name, df)
     
     # Passo 2: Executar transformações diretamente no DuckDB
-    trata_df_profissionais_equipes(con)
-    
-    # Verificar tabelas criadas no DuckDB
-    transformed_tables = con.execute("SHOW TABLES").fetchall()
-    print("Tabelas no DuckDB após transformação:", transformed_tables)
+    con.execute("""
+        CREATE TABLE profissionais_equipes.servidores AS 
+        SELECT 
+            nome_servidor,
+            situacao_funcional
+        FROM 
+            servidores_temp
+    """)
     
     # Passo 3: Carregar tabelas transformadas no PostgreSQL
+    transformed_tables = con.execute("SHOW TABLES").fetchall()
     for table in transformed_tables:
         table_name = table[0]
         if table_name not in ['servidores_temp', 'equipes_temp']:

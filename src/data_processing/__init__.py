@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-from .profissionais_equipes import read_profissionais_equipes
->>>>>>> c1bef11470ee07a7bc5742af625043655212edb0
 
 import importlib
 import os
@@ -20,8 +16,3 @@ def get_data_processing_functions():
     return data_processing_functions
 
 
-=======
-    return {
-        'profissionais_equipes': read_profissionais_equipes
-    }
->>>>>>> c1bef11470ee07a7bc5742af625043655212edb0

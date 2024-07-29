@@ -2,6 +2,5 @@
 
 
 from .sql_operations import (
-    execute_sql_scripts,
-    get_script_paths
+    execute_sql_scripts
 )
