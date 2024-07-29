@@ -31,6 +31,10 @@ def create_equipes_table(con):
         FROM
             equipes_temp
 """)
+    
+    df_equipes = con.execute("SELECT * FROM equipes").fetchdf()
+
+    return df_equipes
 
 
 if __name__ == '__main__':

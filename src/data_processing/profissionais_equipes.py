@@ -28,7 +28,7 @@ def read_profissionais_equipes():
 
     # Definir colunas a serem mantidas
     usf_columns = ['NOME DO SERVIDOR(A)','VINCULO PCR']  
-    equipes_cnes_columns = ['SEQ_EQUIPE', 'DS_EQUIPE']  
+    equipes_cnes_columns = ['SEQ_EQUIPE', 'NM_REFERENCIA']  
 
     # Filtrar colunas desejadas antes de processar
     if 'USF' in dataframes_usf:
