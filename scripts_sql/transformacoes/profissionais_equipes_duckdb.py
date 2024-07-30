@@ -1,6 +1,7 @@
 
 import duckdb
 from src.data_processing.profissionais_equipes import read_profissionais_equipes
+from src.data_processing.unidades import read_unidades
 
 def create_servidores_table(con):
     """
@@ -36,6 +37,21 @@ def create_equipes_table(con):
 
     return df_equipes
 
+def update_equipes_table(con):
+   
+    con.execute("""
+                
+        ALTER TABLE equipes ADD COLUMN fk_id_unidades INTEGER;
+                
+        UPDATE memory.equipes 
+        SET fk_id_unidades = memory.unidades.id_unidades
+        FROM memory.unidades
+        WHERE memory.equipes.cnes = memory.unidades.cnes_padrao
+    """)
+
+    df_update_equipes = con.execute("SELECT * FROM equipes").fetchdf()
+    return df_update_equipes
+
 def create_tipo_equipe_table(con):
     """
     Create the 'tipo_equipe' table in duckdb and return it as a dataframe.
@@ -68,8 +84,10 @@ def create_tipo_equipe_table(con):
 if __name__ == '__main__':
     con = duckdb.connect(database=':memory:')
     data = read_profissionais_equipes()
+    data_unidades = read_unidades()
     df_servidores = create_servidores_table(con, data)
     df_equipes = create_equipes_table(con, data)
+    df_update_equipes = update_equipes_table(con, data_unidades)
     df_tipo_equipe = create_tipo_equipe_table(con, data)
     print("Table 'unidades' created successfully.")
     print(df_servidores)
