@@ -5,12 +5,19 @@ import sys
 import re
 import logging
 
-# Configuração do logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
 from src.data_processing.unidades import read_unidades
+
+def remove_decimal_zero(df, columns):
+    """
+    Remove trailing .0 from specified columns in the DataFrame.
+    """
+    for col in columns:
+        df[col] = df[col].apply(lambda x: str(int(x)) if pd.notna(x) else x)
+    return df
 
 def create_unidades_table(con, data):
     """
@@ -26,6 +33,8 @@ def create_unidades_table(con, data):
     missing_columns = [col for col in required_columns if col not in df_planilha1.columns]
     if missing_columns:
         raise KeyError(f"Missing columns in 'planilha1': {missing_columns}")
+
+    df_planilha1 = remove_decimal_zero(df_planilha1, ['cnes_padrao', 'codigo_unidade'])
 
     df_unidades = df_planilha1[required_columns].rename(columns={
         'cnes_padrao': 'cnes_padrao',
@@ -44,29 +53,14 @@ def create_unidades_table(con, data):
             nome VARCHAR NOT NULL,
             unidade VARCHAR NOT NULL,
             cod_unidade VARCHAR NOT NULL,
-            x_long DECIMAL(10, 6),
-            y_lat DECIMAL(10, 6)
+            x_long DECIMAL,
+            y_lat DECIMAL
         )
     """)
-
-    df_unidades = df_unidades.reset_index()
-    df_unidades.rename(columns={'index': 'id_unidades'}, inplace=True)
-    df_unidades.to_csv('temp_unidades.csv', index=False) 
-
-    con.execute("""
-        CREATE OR REPLACE TABLE unidades_temp AS 
-        SELECT * FROM read_csv_auto('temp_unidades.csv')
-    """)
     
-    con.execute("""
-        INSERT INTO unidades (id_unidades, cnes_padrao, nome, unidade, cod_unidade, x_long, y_lat)
-        SELECT id_unidades, cnes_padrao, nome, unidade, cod_unidade, x_long, y_lat
-        FROM unidades_temp
-    """)
-
-    df_unidades_result = con.execute("SELECT * FROM unidades").fetchdf()
+    con.execute("INSERT INTO unidades SELECT * FROM df_unidades")
     logging.info("Tabela 'unidades' criada com sucesso.")
-    return df_unidades_result
+    return df_unidades
 
 def create_tipo_unidade_table(con, data):
     """
@@ -96,7 +90,7 @@ def create_tipo_unidade_table(con, data):
         tipo_unidade_data.append({'tipo_unidade': unit, 'descricao': descricao})
 
     df_tipo_unidade = pd.DataFrame(tipo_unidade_data)
-    
+
     con.execute("""
         CREATE TABLE IF NOT EXISTS tipoUnidade_temp (
             tipo_unidade VARCHAR,
@@ -181,13 +175,12 @@ def create_horarios_table(con, data):
 
     df_horarios = df_horarios.reset_index()
     df_horarios.rename(columns={'index': 'id_horario'}, inplace=True)
-    df_horarios.to_csv('temp_horarios.csv', index=False) 
-    
+
     con.execute("""
         CREATE OR REPLACE TABLE horarios_temp AS 
-        SELECT * FROM read_csv_auto('temp_horarios.csv')
+        SELECT * FROM df_horarios
     """)
-    
+
     con.execute("""
         INSERT INTO horarios (id_horario, turno, horario, horario_inicio, horario_fim, id_unidades)
         SELECT id_horario, turno, horario, horario_inicio, horario_fim, NULL AS id_unidades

@@ -45,7 +45,7 @@ def process_data(engine, schemas):
     # Passo 2: Executar transformações diretamente no DuckDB
     # Crie a tabela 'unidades' no DuckDB
     df_unidades = create_unidades_table(con, dfs)
-    df_tipo_unidade = create_tipo_unidade_table(con)
+    df_tipo_unidade = create_tipo_unidade_table(con,dfs)
 
     # Cria tabela servidores no DuckDB
     df_servidores = create_servidores_table(con)

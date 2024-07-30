@@ -1,7 +1,10 @@
 import os
 import sys
+import logging
 
-# Ensure the root directory is in the sys.path
+# Configuração do logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
 current_dir = os.path.dirname(os.path.abspath(__file__))
 root_dir = os.path.dirname(os.path.dirname(current_dir))
 sys.path.append(root_dir)
@@ -21,7 +24,6 @@ def read_unidades():
     dataframes_usf = get_file_as_dataframes(url_usf)
     dataframes_unidades = get_file_as_dataframes(url_unidades)
 
-    # Process the DataFrames for the specific sheets
     df_usf_geral = remove_espacos_e_acentos(dataframes_usf['USF GERAL'])
     df_usf_plus = remove_espacos_e_acentos(dataframes_usf['USF+'])
     df_usf_geral_2 = remove_espacos_e_acentos(dataframes_usf['USF GERAL 2'])
@@ -42,5 +44,6 @@ def read_unidades():
 if __name__ == '__main__':
     data = read_unidades()
     for key, df in data.items():
-        print(f"DataFrame {key}:")
-        print(df.head())
+        logging.info("DataFrame '%s':", key)
+        logging.info("Columns: %s", list(df.columns))
+        logging.info("Head:\n%s", df.head())
