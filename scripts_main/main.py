@@ -9,6 +9,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from src.database import create_engine_to_db, create_schemas
 from scripts_sql.transformacoes.unidades_duckdb import create_unidades_table, create_tipo_unidade_table
+from scripts_sql.transformacoes.profissionais_equipes_duckdb import create_servidores_table, create_equipes_table, create_tipo_equipe_table
 from src.data_processing import get_data_processing_functions
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -44,9 +45,17 @@ def process_data(engine, schemas):
     # Passo 2: Executar transformações diretamente no DuckDB
     # Crie a tabela 'unidades' no DuckDB
     df_unidades = create_unidades_table(con, dfs)
-    
-
     df_tipo_unidade = create_tipo_unidade_table(con)
+
+    # Cria tabela servidores no DuckDB
+    df_servidores = create_servidores_table(con)
+
+    #Cria tabela servidores no DuckDB
+    df_equipes = create_equipes_table(con)
+
+    # Cria tabela tipo_equipe no DuckDb
+
+    df_tipo_equipe = create_tipo_equipe_table(con)
     
     try:
         df_unidades.to_sql('unidades', engine, schema='unidades', if_exists='replace', index=False)
@@ -54,7 +63,16 @@ def process_data(engine, schemas):
         
         df_tipo_unidade.to_sql('tipoUnidade', engine, schema='unidades', if_exists='replace', index=False)
         logger.info("Tabela 'tipoUnidade' salva no esquema 'unidades' do banco de dados PostgreSQL com sucesso.")
-        
+
+        df_servidores.to_sql('servidores', engine, schema='profissionais_equipes', if_exists='replace', index=False)
+        logger.info("Tabela 'serviodres' salva no esquema 'profissionais_equipes' do banco de dados PostgreSQL com sucesso.")
+
+        df_equipes.to_sql('equipes', engine, schema='profissionais_equipes', if_exists='replace', index=False)
+        logger.info("Tabela 'equipes' salva no esquema 'profissionais_equipes' do banco de dados PostgreSQL com sucesso.")
+
+        df_tipo_equipe.to_sql('tipo_equipe', engine, schema='profissionais_equipes', if_exists='replace', index=False)
+        logger.info("Tabela 'tipo_equipe' salva no esquema 'profissionais_equipes' do banco de dados PostgreSQL com sucesso.")
+
     except Exception as e:
         logger.error(f"Erro ao processar tabelas: {e}")
 
