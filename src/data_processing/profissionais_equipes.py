@@ -33,7 +33,10 @@ def read_profissionais_equipes():
     df_servidores = dataframes_usf.get('USF')[usf_columns] if dataframes_usf.get('USF') is not None else None
     df_equipes = dataframes_equipes_cnes.get('in')[equipes_cnes_columns] if dataframes_equipes_cnes.get('in') is not None else None
 
-
+    df_servidores[['NOME DO SERVIDOR(A)', 'SITUAÇAO FUNCIONAL', 'PERFIL DO CARGO', 'PERFIL UNIDADE DE LOTACAO', 
+                   'DISTRITO', 'EQUIPE',  'SETOR', 'TURNO DE TRABALHO']].astype('category')
+    
+    df_equipes[['DS_EQUIPE', 'NM_REFERENCIA', 'TURNO_ATEND', 'CRIACAO_EQUIPE', 'ID_TP_EQUIPE', 'SG_EQUIPE']].astype('category')
 
     df_servidores = remove_espacos_e_acentos(df_servidores)
     df_equipes = remove_espacos_e_acentos(df_equipes)

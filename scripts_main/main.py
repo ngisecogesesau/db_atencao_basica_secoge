@@ -9,7 +9,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from src.database import create_engine_to_db, create_schemas
 from scripts_sql.transformacoes.unidades_duckdb import create_unidades_table, create_tipo_unidade_table
-from scripts_sql.transformacoes.profissionais_equipes_duckdb import create_servidores_table, create_equipes_table, create_tipo_equipe_table, update_equipes_table
+from scripts_sql.transformacoes.profissionais_equipes_duckdb import create_servidores_table, create_equipes_table, create_tipo_equipe_table, update_equipes_table, update_servidores_table
 from src.data_processing import get_data_processing_functions
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -50,6 +50,8 @@ def process_data(engine, schemas):
     # Cria tabela servidores no DuckDB
     df_servidores = create_servidores_table(con)
 
+    df_update_servidores = update_servidores_table(con)
+
     #Cria tabela equipes no DuckDB
     df_equipes = create_equipes_table(con)
 
@@ -69,6 +71,9 @@ def process_data(engine, schemas):
 
         df_servidores.to_sql('servidores', engine, schema='profissionais_equipes', if_exists='replace', index=False)
         logger.info("Tabela 'serviodres' salva no esquema 'profissionais_equipes' do banco de dados PostgreSQL com sucesso.")
+
+        df_update_servidores.to_sql('servidores', engine, schema='profissionais_equipes', if_exists='replace', index=False)
+        logger.info("Tabela 'serviodres' atualizada no esquema 'profissionais_equipes' do banco de dados PostgreSQL com sucesso.")
 
         df_equipes.to_sql('equipes', engine, schema='profissionais_equipes', if_exists='replace', index=False)
         logger.info("Tabela 'equipes' salva no esquema 'profissionais_equipes' do banco de dados PostgreSQL com sucesso.")

@@ -20,6 +20,18 @@ def create_servidores_table(con):
 
     return df_servidores
 
+def update_servidores_table(con):
+    con.execute(""" 
+        ALTER TABLE servidores ADD COLUMN fk_id_unidades INTEGER;
+        UPDATE servidores
+        SET fk_id_unidades = unidades.id_unidades
+        FROM unidades
+        WHERE servidores.cnes_unidade_de_lotacao = unidades.cnes_padrao;
+""")
+    
+    df_update_servidores = con.execute("SELECT * FROM servidores").fetchdf()
+    return df_update_servidores
+
 def create_equipes_table(con):
     """
     Create the 'equipes' table in duckdb and return it as a dataframe.
@@ -43,10 +55,10 @@ def update_equipes_table(con):
                 
         ALTER TABLE equipes ADD COLUMN fk_id_unidades INTEGER;
                 
-        UPDATE memory.equipes 
-        SET fk_id_unidades = memory.unidades.id_unidades
-        FROM memory.unidades
-        WHERE memory.equipes.cnes = memory.unidades.cnes_padrao
+        UPDATE equipes 
+        SET fk_id_unidades = unidades.id_unidades
+        FROM unidades
+        WHERE equipes.cnes = unidades.cnes_padrao;
     """)
 
     df_update_equipes = con.execute("SELECT * FROM equipes").fetchdf()
@@ -61,7 +73,7 @@ def create_tipo_equipe_table(con):
         CREATE TABLE IF NOT EXISTS tipo_equipe (
                 tipo_equipe INTEGER,
                 fk_id_tipo_equipe INTEGER
-                )
+                );
 """)
     
     con.execute(""" 
@@ -74,7 +86,7 @@ def create_tipo_equipe_table(con):
         SELECT 
             tp_equipe,
             id_equipes 
-        FROM equipes_temp
+        FROM equipes_temp;
 """)
 
     df_tipo_equipe = con.execute("SELECT * FROM tipo_equipe").fetchdf()
@@ -86,6 +98,7 @@ if __name__ == '__main__':
     data = read_profissionais_equipes()
     data_unidades = read_unidades()
     df_servidores = create_servidores_table(con, data)
+    df_update_servidores = update_servidores_table(con, data_unidades)
     df_equipes = create_equipes_table(con, data)
     df_update_equipes = update_equipes_table(con, data_unidades)
     df_tipo_equipe = create_tipo_equipe_table(con, data)
