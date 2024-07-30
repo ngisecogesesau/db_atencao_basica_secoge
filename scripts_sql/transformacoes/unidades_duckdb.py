@@ -59,6 +59,16 @@ def create_unidades_table(con, data):
     """)
     
     con.execute("INSERT INTO unidades SELECT * FROM df_unidades")
+
+    con.execute("""
+        ALTER TABLE unidades ADD COLUMN fk_id_tipounidade INTEGER;  
+        UPDATE unidades 
+        SET fk_id_tipounidade = tipoUnidade.id_tipounidade
+        FROM tipoUnidade
+        WHERE unidades.cod_unidade = tipoUnidade.cod_unidade
+    """)
+    
+
     logging.info("Tabela 'unidades' criada com sucesso.")
     return df_unidades
 
@@ -92,30 +102,28 @@ def create_tipo_unidade_table(con, data):
     df_tipo_unidade = pd.DataFrame(tipo_unidade_data)
 
     con.execute("""
-        CREATE TABLE IF NOT EXISTS tipoUnidade_temp (
+        CREATE TABLE IF NOT EXISTS tipoUnidade (
             tipo_unidade VARCHAR,
-            descricao VARCHAR(255)
+            descricao VARCHAR(255),
+            cod_unidade INTEGER
         )
     """)
 
     con.execute("""
-        INSERT INTO tipoUnidade_temp (tipo_unidade, descricao)
-        SELECT tipo_unidade, descricao
+        CREATE SEQUENCE id_sequence_tipounidade START 1;
+        ALTER TABLE tipoUnidade ADD COLUMN id_tipounidade INTEGER DEFAULT nextval('id_sequence_tipounidade');
+""")
+
+    con.execute("""
+        INSERT INTO tipoUnidade (tipo_unidade, descricao, cod_unidade)
+        SELECT tipo_unidade, descricao, cod_unidade
         FROM df_tipo_unidade
     """)
 
-    con.execute("""
-        CREATE TABLE IF NOT EXISTS tipoUnidade AS
-        SELECT ROW_NUMBER() OVER (ORDER BY tipo_unidade) AS id_tipo_unidade,
-               tipo_unidade,
-               descricao
-        FROM tipoUnidade_temp
-    """)
-
-    df_tipo_unidade_result = con.execute("SELECT * FROM tipoUnidade").fetchdf()
+    df_tipo_unidade = con.execute("SELECT * FROM tipoUnidade").fetchdf()
 
     logging.info("Tabela 'tipoUnidade' criada com sucesso.")
-    return df_tipo_unidade_result
+    return df_tipo_unidade
 
 def extract_hours(horario_str):
     """
@@ -194,9 +202,9 @@ def create_horarios_table(con, data):
 if __name__ == '__main__':
     con = duckdb.connect(database=':memory:')
     data = read_unidades()
-    df_unidades = create_unidades_table(con, data)
     df_tipo_unidade = create_tipo_unidade_table(con, data)
     df_horarios = create_horarios_table(con, data)
+    df_unidades = create_unidades_table(con, data)
     logging.info("Table 'unidades' created successfully.")
     logging.info("Table 'tipoUnidade' created successfully.")
     logging.info("Table 'horarios' created successfully.")

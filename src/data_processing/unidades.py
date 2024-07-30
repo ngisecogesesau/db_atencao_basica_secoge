@@ -11,7 +11,6 @@ sys.path.append(root_dir)
 
 from src.utils.extract_sharepoint_df import get_file_as_dataframes
 from src.utils.excel_operations import remove_espacos_e_acentos
-
 def read_unidades():
     """
     Read and process data from USF and Unidades files.

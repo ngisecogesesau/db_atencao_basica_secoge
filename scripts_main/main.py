@@ -44,9 +44,8 @@ def process_data(engine, schemas):
     
     # Passo 2: Executar transformações diretamente no DuckDB
     # Crie a tabela 'unidades' no DuckDB
-    df_unidades = create_unidades_table(con, dfs)
     df_tipo_unidade = create_tipo_unidade_table(con,dfs)
-
+    df_unidades = create_unidades_table(con, dfs)
     # Cria tabela servidores no DuckDB
     df_servidores = create_servidores_table(con)
 
@@ -60,12 +59,12 @@ def process_data(engine, schemas):
     df_tipo_equipe = create_tipo_equipe_table(con)
 
 
-    try:
-        df_unidades.to_sql('unidades', engine, schema='unidades', if_exists='replace', index=False)
-        logger.info("Tabela 'unidades' salva no esquema 'unidades' do banco de dados PostgreSQL com sucesso.")
-        
+    try:        
         df_tipo_unidade.to_sql('tipoUnidade', engine, schema='unidades', if_exists='replace', index=False)
         logger.info("Tabela 'tipoUnidade' salva no esquema 'unidades' do banco de dados PostgreSQL com sucesso.")
+
+        df_unidades.to_sql('unidades', engine, schema='unidades', if_exists='replace', index=False)
+        logger.info("Tabela 'unidades' salva no esquema 'unidades' do banco de dados PostgreSQL com sucesso.")
 
         df_servidores.to_sql('servidores', engine, schema='profissionais_equipes', if_exists='replace', index=False)
         logger.info("Tabela 'serviodres' salva no esquema 'profissionais_equipes' do banco de dados PostgreSQL com sucesso.")
