@@ -33,6 +33,8 @@ def read_profissionais_equipes():
     df_servidores = dataframes_usf.get('USF')[usf_columns] if dataframes_usf.get('USF') is not None else None
     df_equipes = dataframes_equipes_cnes.get('in')[equipes_cnes_columns] if dataframes_equipes_cnes.get('in') is not None else None
 
+
+
     df_servidores = remove_espacos_e_acentos(df_servidores)
     df_equipes = remove_espacos_e_acentos(df_equipes)
 
