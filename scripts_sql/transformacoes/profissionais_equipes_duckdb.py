@@ -43,13 +43,21 @@ def create_tipo_equipe_table(con):
 
     con.execute("""
         CREATE TABLE IF NOT EXISTS tipo_equipe (
-                tipo_equipe INTEGER
+                tipo_equipe INTEGER,
+                fk_id_tipo_equipe INTEGER
                 )
 """)
     
+    con.execute(""" 
+        CREATE SEQUENCE id_sequence START 1;
+        ALTER TABLE tipo_equipe ADD COLUMN id_tipo_equipe INTEGER DEFAULT nextval('id_sequence');
+""")
+    
     con.execute("""
-        INSERT INTO tipo_equipe (tipo_equipe)
-        SELECT tp_equipe 
+        INSERT INTO tipo_equipe (tipo_equipe, fk_id_tipo_equipe)
+        SELECT 
+            tp_equipe,
+            id_equipes 
         FROM equipes_temp
 """)
 

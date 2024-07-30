@@ -9,6 +9,7 @@ sys.path.append(root_dir)
 
 from src.utils.extract_sharepoint_df import get_file_as_dataframes
 from src.utils.excel_operations import remove_espacos_e_acentos
+from src.utils.add_primary_key import add_pk
 
 def read_profissionais_equipes():
     """
@@ -34,6 +35,9 @@ def read_profissionais_equipes():
 
     df_servidores = remove_espacos_e_acentos(df_servidores)
     df_equipes = remove_espacos_e_acentos(df_equipes)
+
+    df_servidores = add_pk(df_servidores, 'servidores')
+    df_equipes = add_pk(df_equipes, 'equipes')
 
     return {
         'servidores': df_servidores,
