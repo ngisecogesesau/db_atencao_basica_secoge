@@ -9,6 +9,7 @@ sys.path.append(root_dir)
 
 from src.utils.extract_sharepoint_df import get_file_as_dataframes
 from src.utils.excel_operations import remove_espacos_e_acentos
+from src.utils.add_primary_key import add_pk
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
@@ -69,12 +70,26 @@ def read_unidades():
     df_tipo_unidade = create_df_tipo_unidade(data)
     df_horarios = create_df_horarios(data)
     df_info_unidades = create_df_info_unidades(data)
+    df_distritos = create_df_distritos(data)
+
+    df_unidades = remove_espacos_e_acentos(df_unidades)
+    df_tipo_unidade = remove_espacos_e_acentos(df_tipo_unidade)
+    df_horarios = remove_espacos_e_acentos(df_horarios)
+    df_info_unidades = remove_espacos_e_acentos(df_info_unidades)
+    df_distritos = remove_espacos_e_acentos(df_distritos)
+
+    df_unidades = add_pk(df_unidades, 'unidades')
+    df_tipo_unidade = add_pk(df_tipo_unidade, 'tipo_unidade')
+    df_horarios = add_pk(df_horarios, 'horarios')
+    df_info_unidades = add_pk(df_info_unidades, 'info_unidades')
+    df_distritos = add_pk(df_distritos, 'distritos')
 
     return {
         'unidades': df_unidades,
         'tipo_unidade': df_tipo_unidade,
         'horarios': df_horarios,
-        'info_unidades': df_info_unidades
+        'info_unidades': df_info_unidades,
+        'distritos': df_distritos
     }
 
 def create_df_unidades(data):
@@ -84,7 +99,7 @@ def create_df_unidades(data):
     df_planilha1 = data['planilha1']
     logging.info("Columns in 'planilha1': %s", df_planilha1.columns)
     
-    required_columns = ['cnes_padrao', 'codigo_unidade', 'nome', 'distrito', 'unidade', 'x_long', 'y_lat']
+    required_columns = ['cnes_padrao', 'codigo_unidade', 'nome', 'distrito', 'unidade', 'x_long', 'y_lat','horario']
     missing_columns = [col for col in required_columns if col not in df_planilha1.columns]
     if missing_columns:
         raise KeyError(f"Missing columns in 'planilha1': {missing_columns}")
@@ -92,11 +107,12 @@ def create_df_unidades(data):
     df_planilha1 = remove_decimal_zero(df_planilha1, ['cnes_padrao', 'codigo_unidade'])
 
     df_unidades = df_planilha1[required_columns].rename(columns={
-        'cnes_padrao': 'cnes_padrao',
+        'cnes_padrao': 'cnes',
         'codigo_unidade': 'cod_unidade',
         'nome': 'nome',
         'distrito': 'distrito',
-        'unidade': 'unidade',
+        'unidade': 'tipo_unidade',
+        'horario':'horario',
         'x_long': 'x_long',
         'y_lat': 'y_lat'
     })
@@ -104,14 +120,18 @@ def create_df_unidades(data):
     return df_unidades
 
 def create_df_tipo_unidade(data):
-    if 'planilha1' not in data or 'planilha2' not in data:
-        raise ValueError("'planilha1' or 'planilha2' not found in data")
+    if 'planilha1' not in data:
+        raise ValueError("'planilha1' not found in data")
     
     df_planilha1 = data['planilha1']
-    df_planilha2 = data['planilha2']
+    logging.info("Columns in 'planilha1': %s", df_planilha1.columns)
+    
+    required_columns = ['cnes_padrao', 'unidade']
+    missing_columns = [col for col in required_columns if col not in df_planilha1.columns]
+    if missing_columns:
+        raise KeyError(f"Missing columns in 'planilha1': {missing_columns}")
 
-    unique_units_planilha1 = df_planilha1['unidade'].unique()
-    unique_units_planilha2 = df_planilha2['unidade_'].unique()
+    unique_units = df_planilha1[['cnes_padrao', 'unidade']].drop_duplicates()
 
     unit_mapping = {
         'USF': 'Unidade de Saúde da Família',
@@ -120,12 +140,11 @@ def create_df_tipo_unidade(data):
         'CS': 'Centro de Saúde'
     }
 
-    unique_units = set(unique_units_planilha1) | set(unique_units_planilha2)
     tipo_unidade_data = []
 
-    for unit in unique_units:
-        descricao = unit_mapping.get(unit, 'Descrição desconhecida')
-        tipo_unidade_data.append({'tipo_unidade': unit, 'descricao': descricao})
+    for _, row in unique_units.iterrows():
+        descricao = unit_mapping.get(row['unidade'], 'Descrição desconhecida')
+        tipo_unidade_data.append({'cnes_padrao': row['cnes_padrao'], 'tipo_unidade': row['unidade'], 'descricao': descricao})
 
     df_tipo_unidade = pd.DataFrame(tipo_unidade_data)
     
@@ -185,7 +204,7 @@ def create_df_info_unidades(data):
         raise KeyError(f"Missing columns in 'usf_plus': {missing_columns}")
 
     df_info_unidades = df_usf_plus[required_columns].rename(columns={
-        'cnes': 'cnes_padrao',
+        'cnes': 'cnes',
         'no_da_esf': 'n_esf',
         'turno_da_esf': 'turno_da_esf',
         'horario_da_esf': 'horario_da_esf',
@@ -210,6 +229,28 @@ def create_df_info_unidades(data):
     })
 
     return df_info_unidades
+
+def create_df_distritos(data):
+    if 'planilha1' not in data:
+        raise ValueError("'planilha1' not found in data")
+    
+    df_planilha1 = data['planilha1']
+    logging.info("Columns in 'planilha1': %s", df_planilha1.columns)
+    
+    required_columns = ['cnes_padrao', 'distrito']
+    missing_columns = [col for col in required_columns if col not in df_planilha1.columns]
+    if missing_columns:
+        raise KeyError(f"Missing columns in 'planilha1': {missing_columns}")
+
+    df_planilha1 = remove_decimal_zero(df_planilha1, ['cnes_padrao'])
+
+    df_distritos = df_planilha1[['cnes_padrao', 'distrito']].drop_duplicates().rename(columns={'distrito': 'sigla_distrito','cnes_padrao':'cnes'})
+
+    df_distritos['nome_distrito'] = df_distritos['sigla_distrito'].apply(lambda x: f"Distrito {x}")
+
+    df_distritos = df_distritos[['nome_distrito', 'sigla_distrito', 'cnes']]
+
+    return df_distritos
 
 def main():
     """
