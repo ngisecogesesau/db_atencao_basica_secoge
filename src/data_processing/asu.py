@@ -18,8 +18,8 @@ def read_asu():
     asu_monitora_columns = ['mes', 'ine', 'resposta', 'tipo_resposta', 'total_respostas']
     df_asu_monitora = df_asu_monitora.get('in')[asu_monitora_columns] if df_asu_monitora.get('in') is not None else None
     df_asu_monitora = remove_espacos_e_acentos(df_asu_monitora)
+    df_asu_monitora = add_pk(df_asu_monitora, 'asu_monitora')
 
-    print(df_asu_monitora)
-
-    
-read_asu()
+    return {
+        'asu_monitora': df_asu_monitora
+    }
