@@ -8,7 +8,7 @@ import duckdb
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from src.database import create_engine_to_db, create_schemas
-from scripts_sql.transformacoes.unidades_duckdb import create_unidades_table, create_tipo_unidade_table
+from scripts_sql.transformacoes.unidades_duckdb import create_unidades_table, create_tipo_unidade_table, create_horarios_table, create_info_unidades_table
 from scripts_sql.transformacoes.profissionais_equipes_duckdb import create_servidores_table, create_equipes_table, create_tipo_equipe_table, update_equipes_table
 from src.data_processing import get_data_processing_functions
 
@@ -43,9 +43,11 @@ def process_data(engine, schemas):
     logger.info("Tabelas registradas no DuckDB: %s", registered_tables)
     
     # Passo 2: Executar transformações diretamente no DuckDB
-    # Crie a tabela 'unidades' no DuckDB
+    # Tabelas do schema unidades
     df_unidades = create_unidades_table(con, dfs)
     df_tipo_unidade = create_tipo_unidade_table(con,dfs)
+    df_horarios = create_horarios_table(con,dfs)
+    df_info_unidades = create_horarios_table(con,dfs)
 
     # Cria tabela servidores no DuckDB
     df_servidores = create_servidores_table(con)
@@ -59,7 +61,6 @@ def process_data(engine, schemas):
     # Cria tabela tipo_equipe no DuckDb
     df_tipo_equipe = create_tipo_equipe_table(con)
 
-
     try:
         df_unidades.to_sql('unidades', engine, schema='unidades', if_exists='replace', index=False)
         logger.info("Tabela 'unidades' salva no esquema 'unidades' do banco de dados PostgreSQL com sucesso.")
@@ -67,8 +68,14 @@ def process_data(engine, schemas):
         df_tipo_unidade.to_sql('tipoUnidade', engine, schema='unidades', if_exists='replace', index=False)
         logger.info("Tabela 'tipoUnidade' salva no esquema 'unidades' do banco de dados PostgreSQL com sucesso.")
 
+        df_horarios.to_sql('horarios', engine, schema='unidades', if_exists='replace', index=False)
+        logger.info("Tabela 'horarios' salva no esquema 'unidades' do banco de dados PostgreSQL com sucesso.")
+        
+        df_info_unidades.to_sql('info_unidades', engine, schema='unidades', if_exists='replace', index=False)
+        logger.info("Tabela 'inf_unidades' salva no esquema 'unidades' do banco de dados PostgreSQL com sucesso.")
+        
         df_servidores.to_sql('servidores', engine, schema='profissionais_equipes', if_exists='replace', index=False)
-        logger.info("Tabela 'serviodres' salva no esquema 'profissionais_equipes' do banco de dados PostgreSQL com sucesso.")
+        logger.info("Tabela 'servidores' salva no esquema 'profissionais_equipes' do banco de dados PostgreSQL com sucesso.")
 
         df_equipes.to_sql('equipes', engine, schema='profissionais_equipes', if_exists='replace', index=False)
         logger.info("Tabela 'equipes' salva no esquema 'profissionais_equipes' do banco de dados PostgreSQL com sucesso.")
