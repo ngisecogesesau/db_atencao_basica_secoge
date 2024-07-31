@@ -44,10 +44,10 @@ def process_data(engine, schemas):
     
     # Passo 2: Executar transformações diretamente no DuckDB
     # Tabelas do schema unidades
-    df_unidades = create_unidades_table(con, dfs)
-    df_tipo_unidade = create_tipo_unidade_table(con,dfs)
-    df_horarios = create_horarios_table(con,dfs)
-    df_info_unidades = create_horarios_table(con,dfs)
+    df_unidades = create_unidades_table(con)
+    df_tipo_unidade = create_tipo_unidade_table(con)
+    df_horarios = create_horarios_table(con)
+    df_info_unidades = create_info_unidades_table(con)
 
     # Cria tabela servidores no DuckDB
     df_servidores = create_servidores_table(con)
