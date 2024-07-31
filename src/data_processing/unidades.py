@@ -9,7 +9,6 @@ sys.path.append(root_dir)
 
 from src.utils.extract_sharepoint_df import get_file_as_dataframes
 from src.utils.excel_operations import remove_espacos_e_acentos
-<<<<<<< HEAD
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
@@ -49,8 +48,6 @@ def process_unidades_data(dataframes):
         'planilha3': df_planilha3
     }
 
-=======
->>>>>>> e92205de5f445775905139abc66831d86cb1a6d5
 def read_unidades():
     """
     Read, process, and model data from USF and Unidades files.

@@ -20,6 +20,18 @@ def create_servidores_table(con):
 
     return df_servidores
 
+def update_servidores_table(con):
+    con.execute(""" 
+        ALTER TABLE servidores ADD COLUMN fk_id_unidades INTEGER;
+        UPDATE servidores
+        SET fk_id_unidades = unidades.id_unidades
+        FROM unidades
+        WHERE servidores.cnes_unidade_de_lotacao = unidades.cnes_padrao;
+""")
+    
+    df_update_servidores = con.execute("SELECT * FROM servidores").fetchdf()
+    return df_update_servidores
+
 def create_equipes_table(con):
     """
     Create the 'equipes' table in duckdb and return it as a dataframe.
@@ -86,6 +98,7 @@ if __name__ == '__main__':
     data = read_profissionais_equipes()
     data_unidades = read_unidades()
     df_servidores = create_servidores_table(con, data)
+    df_update_servidores = update_servidores_table(con, data_unidades)
     df_equipes = create_equipes_table(con, data)
     df_update_equipes = update_equipes_table(con, data_unidades)
     df_tipo_equipe = create_tipo_equipe_table(con, data)
