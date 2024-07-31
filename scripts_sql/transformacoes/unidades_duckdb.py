@@ -29,33 +29,84 @@ def create_unidades_table(conn, dfs):
             y_lat DOUBLE
         )
     """)
+    
+    con.execute("INSERT INTO unidades SELECT * FROM df_unidades")
+    logging.info("Tabela 'unidades' criada com sucesso.")
+    return df_unidades
 
-    conn.execute("""
-        INSERT INTO unidades.unidades (cnes_padrao, codigo_unidade, nome, distrito, unidade, x_long, y_lat)
-        SELECT cnes_padrao, codigo_unidade, nome, distrito, unidade, x_long, y_lat FROM df_unidades
-    """)
-
-def create_tipo_unidade_table(conn, dfs):
+def create_tipo_unidade_table(con, data):
     """
-    Create 'tipo_unidade' table in DuckDB using the processed DataFrame.
+    Create the 'tipoUnidade' table in DuckDB and return it as a DataFrame.
     """
-    df_tipo_unidade = dfs['tipo_unidade']
+    if 'planilha1' not in data or 'planilha2' not in data:
+        raise ValueError("'planilha1' or 'planilha2' not found in data")
+    
+    df_planilha1 = data['planilha1']
+    df_planilha2 = data['planilha2']
 
-    conn.execute("CREATE SCHEMA IF NOT EXISTS unidades")
+    unique_units_planilha1 = df_planilha1['unidade'].unique()
+    unique_units_planilha2 = df_planilha2['unidade_'].unique()
 
-    conn.execute("""
-        CREATE TABLE IF NOT EXISTS unidades.tipo_unidade (
+    unit_mapping = {
+        'USF': 'Unidade de Saúde da Família',
+        'USF +': 'Unidade de Saúde da Família mais',
+        'UBT': 'Unidade Básica Tradicional',
+        'CS': 'Centro de Saúde'
+    }
+
+    unique_units = set(unique_units_planilha1) | set(unique_units_planilha2)
+    tipo_unidade_data = []
+
+    for unit in unique_units:
+        descricao = unit_mapping.get(unit, 'Descrição desconhecida')
+        tipo_unidade_data.append({'tipo_unidade': unit, 'descricao': descricao})
+
+    df_tipo_unidade = pd.DataFrame(tipo_unidade_data)
+
+    con.execute("""
+        CREATE TABLE IF NOT EXISTS tipoUnidade_temp (
             tipo_unidade VARCHAR,
-            descricao VARCHAR
+            descricao VARCHAR(255)
         )
     """)
 
-    conn.execute("""
-        INSERT INTO unidades.tipo_unidade (tipo_unidade, descricao)
-        SELECT tipo_unidade, descricao FROM df_tipo_unidade
+    con.execute("""
+        INSERT INTO tipoUnidade_temp (tipo_unidade, descricao)
+        SELECT tipo_unidade, descricao
+        FROM df_tipo_unidade
     """)
 
-def create_horarios_table(conn, dfs):
+    con.execute("""
+        CREATE TABLE IF NOT EXISTS tipoUnidade AS
+        SELECT ROW_NUMBER() OVER (ORDER BY tipo_unidade) AS id_tipo_unidade,
+               tipo_unidade,
+               descricao
+        FROM tipoUnidade_temp
+    """)
+
+    df_tipo_unidade_result = con.execute("SELECT * FROM tipoUnidade").fetchdf()
+
+    logging.info("Tabela 'tipoUnidade' criada com sucesso.")
+    return df_tipo_unidade_result
+
+def extract_hours(horario_str):
+    """
+    Extract start and end hours from a string with format '08h às 17h'.
+    
+    :param horario_str: String containing hours in format '08h às 17h'
+    :return: Tuple of (start_hour, end_hour) or (None, None) if format is invalid
+    """
+    if pd.isna(horario_str):
+        return None, None
+    
+    match = re.match(r'(\d{1,2})h\s+às\s+(\d{1,2})h', horario_str)
+    if match:
+        start_hour = match.group(1)
+        end_hour = match.group(2)
+        return start_hour + 'h', end_hour + 'h'
+    return None, None
+
+def create_horarios_table(con, data):
     """
     Create 'horarios' table in DuckDB using the processed DataFrame.
     """
@@ -133,5 +184,12 @@ def main():
     conn.close()
 
 if __name__ == '__main__':
-    main()
-
+    con = duckdb.connect(database=':memory:')
+    data = read_unidades()
+    df_unidades = create_unidades_table(con, data)
+    df_tipo_unidade = create_tipo_unidade_table(con, data)
+    df_horarios = create_horarios_table(con, data)
+    logging.info("Table 'unidades' created successfully.")
+    logging.info("Table 'tipoUnidade' created successfully.")
+    logging.info("Table 'horarios' created successfully.")
+    logging.info("DataFrame 'horarios':\n%s", df_horarios)
