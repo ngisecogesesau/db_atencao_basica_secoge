@@ -14,6 +14,18 @@ def create_asu_monitora_table(con):
     df_asu_monitora = con.execute("SELECT * FROM asu_monitora")
     return df_asu_monitora
 
+def create_asu_classificacao_table(con):
+
+    con.execute("""
+        CREATE TABLE asu_classificacao AS
+        SELECT 
+            *
+        FROM 
+            asu_classificacao_temp;
+""")
+    
+    
+
 if __name__ == '__main__':
     con = duckdb.connect(database=':memory:')
     data_asu_monitora = read_asu()

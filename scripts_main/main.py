@@ -10,7 +10,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from src.database import create_engine_to_db, create_schemas
 from scripts_sql.transformacoes.unidades_duckdb import create_unidades_table, create_tipo_unidade_table, create_horarios_table, create_info_unidades_table
 from scripts_sql.transformacoes.profissionais_equipes_duckdb import create_servidores_table, create_equipes_table, create_tipo_equipe_table, update_equipes_table, update_servidores_table
-from scripts_sql.transformacoes.asu import create_asu_monitora_table
+from scripts_sql.transformacoes.asu_duckdb import create_asu_monitora_table
 from src.data_processing import get_data_processing_functions
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
