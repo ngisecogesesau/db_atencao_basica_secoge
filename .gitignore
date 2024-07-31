@@ -1,2 +1,6 @@
+# Ignore env files
 .venv/
 .env
+
+# Ignore CSV files
+*.csv
