@@ -8,8 +8,8 @@ import duckdb
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from src.database import create_engine_to_db, create_schemas
-from scripts_sql.transformacoes.unidades_duckdb import create_unidades_table, create_tipo_unidade_table, create_horarios_table, create_info_unidades_table
 from scripts_sql.transformacoes.profissionais_equipes_duckdb import create_servidores_table, create_equipes_table, create_tipo_equipe_table, update_equipes_table, update_servidores_table
+from scripts_sql.transformacoes.unidades_duckdb import create_unidades_table, create_tipo_unidade_table, create_horarios_table, create_info_unidades_table, create_distritos_table, update_unidades_table
 from src.data_processing import get_data_processing_functions
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -48,6 +48,8 @@ def process_data(engine, schemas):
     df_tipo_unidade = create_tipo_unidade_table(con)
     df_horarios = create_horarios_table(con)
     df_info_unidades = create_info_unidades_table(con)
+    df_distritos = create_distritos_table(con)
+    df_update_unidades = update_unidades_table(con)
 
     # Cria tabela servidores no DuckDB
     df_servidores = create_servidores_table(con)
@@ -77,6 +79,9 @@ def process_data(engine, schemas):
         
         df_info_unidades.to_sql('info_unidades', engine, schema='unidades', if_exists='replace', index=False)
         logger.info("Tabela 'inf_unidades' salva no esquema 'unidades' do banco de dados PostgreSQL com sucesso.")
+
+        df_distritos.to_sql('distritos', engine, schema='unidades', if_exists='replace', index=False)
+        logger.info("Tabela 'distritos' salva no esquema 'unidades' do banco de dados PostgreSQL com sucesso.")
         
         df_servidores.to_sql('servidores', engine, schema='profissionais_equipes', if_exists='replace', index=False)
         logger.info("Tabela 'servidores' salva no esquema 'profissionais_equipes' do banco de dados PostgreSQL com sucesso.")
@@ -92,7 +97,9 @@ def process_data(engine, schemas):
 
         df_tipo_equipe.to_sql('tipo_equipe', engine, schema='profissionais_equipes', if_exists='replace', index=False)
         logger.info("Tabela 'tipo_equipe' salva no esquema 'profissionais_equipes' do banco de dados PostgreSQL com sucesso.")
-
+        
+        df_update_unidades.to_sql('unidades', engine, schema='unidades', if_exists='replace', index=False)
+        logger.info("Tabela 'unidades' atualizada no esquema 'unidades' do banco de dados PostgreSQL com sucesso.")
     except Exception as e:
         logger.error(f"Erro ao processar tabelas: {e}")
 
