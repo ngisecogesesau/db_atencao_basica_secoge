@@ -2,6 +2,7 @@ import os
 import sys
 import pandas as pd
 import logging
+import re
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 root_dir = os.path.dirname(os.path.dirname(current_dir))
@@ -130,7 +131,7 @@ def create_df_tipo_unidade(data):
     missing_columns = [col for col in required_columns if col not in df_planilha1.columns]
     if missing_columns:
         raise KeyError(f"Missing columns in 'planilha1': {missing_columns}")
-
+    
     unique_units = df_planilha1[['cnes_padrao', 'unidade']].drop_duplicates()
 
     unit_mapping = {
@@ -144,41 +145,64 @@ def create_df_tipo_unidade(data):
 
     for _, row in unique_units.iterrows():
         descricao = unit_mapping.get(row['unidade'], 'Descrição desconhecida')
-        tipo_unidade_data.append({'cnes_padrao': row['cnes_padrao'], 'tipo_unidade': row['unidade'], 'descricao': descricao})
+        tipo_unidade_data.append({'cnes': row['cnes_padrao'], 'tipo_unidade': row['unidade'], 'descricao': descricao})
 
     df_tipo_unidade = pd.DataFrame(tipo_unidade_data)
     
     return df_tipo_unidade
 
 def create_df_horarios(data):
-    if 'usf_geral_2' not in data:
-        raise ValueError("'usf_geral_2' not found in data")
+    if 'planilha1' not in data:
+        raise ValueError("'planilha1' not found in data")
     
-    df_usf_geral_2 = data['usf_geral_2']
+    df_planilha1 = data['planilha1']
     
-    required_columns = ['turno', 'horario']
-    missing_columns = [col for col in required_columns if col not in df_usf_geral_2.columns]
+    required_columns = ['cnes_padrao', 'horario']
+    missing_columns = [col for col in required_columns if col not in df_planilha1.columns]
     if missing_columns:
-        raise KeyError(f"Missing columns in 'usf_geral_2': {missing_columns}")
+        raise KeyError(f"Missing columns in 'planilha1': {missing_columns}")
 
     def extract_hours(horario):
         if pd.isna(horario):
             return [None, None]
-        try:
-            horario_inicio, horario_fim = horario.split(' - ')
+
+        match = re.match(r'(\d{2})h\s*às\s*(\d{2})h', horario)
+        if match:
+            horario_inicio, horario_fim = match.groups()
             return [horario_inicio, horario_fim]
-        except ValueError:
+        else:
             return [None, None]
-        
-    df_usf_geral_2[['horario_inicio', 'horario_fim']] = df_usf_geral_2['horario'].apply(lambda x: pd.Series(extract_hours(x)))
 
-    df_horarios = df_usf_geral_2[required_columns + ['horario_inicio', 'horario_fim']]
+    def determine_turno(horario_inicio, horario_fim):
+        if not horario_inicio or not horario_fim:
+            return 'Desconhecido'
+        try:
+            inicio = int(horario_inicio.replace('h', ''))
+            fim = int(horario_fim.replace('h', ''))
+        except ValueError:
+            return 'Desconhecido'
 
+        if inicio < 12 and fim <= 12:
+            return 'Diurno'
+        elif inicio < 12 and fim > 12:
+            return 'Integral'
+        elif inicio >= 18:
+            return 'Noturno'
+        elif inicio < 12 and fim > 18:
+            return 'Integral'
+        else:
+            return 'Desconhecido'
+
+    df_planilha1[['horario_inicio', 'horario_fim']] = df_planilha1['horario'].apply(lambda x: pd.Series(extract_hours(x)))
+    df_planilha1['turno'] = df_planilha1.apply(lambda row: determine_turno(row['horario_inicio'], row['horario_fim']), axis=1)
+
+    df_horarios = df_planilha1[['cnes_padrao', 'horario', 'horario_inicio', 'horario_fim', 'turno']]
     df_horarios = df_horarios.rename(columns={
-        'turno': 'turno',
+        'cnes_padrao': 'cnes',
         'horario': 'horario',
         'horario_inicio': 'horario_inicio',
-        'horario_fim': 'horario_fim'
+        'horario_fim': 'horario_fim',
+        'turno': 'turno'
     }).drop_duplicates()
 
     return df_horarios
