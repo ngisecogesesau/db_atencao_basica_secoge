@@ -55,10 +55,10 @@ def update_equipes_table(con):
                 
         ALTER TABLE equipes ADD COLUMN fk_id_unidades INTEGER;
                 
-        UPDATE memory.equipes 
-        SET fk_id_unidades = memory.unidades.id_unidades
-        FROM memory.unidades
-        WHERE memory.equipes.cnes = memory.unidades.cnes_padrao
+        UPDATE equipes 
+        SET fk_id_unidades = unidades.id_unidades
+        FROM unidades
+        WHERE equipes.cnes = unidades.cnes_padrao
     """)
 
     df_update_equipes = con.execute("SELECT * FROM equipes").fetchdf()
