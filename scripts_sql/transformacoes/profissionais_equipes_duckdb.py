@@ -26,7 +26,7 @@ def update_servidores_table(con):
         UPDATE servidores
         SET fk_id_unidades = unidades.id_unidades
         FROM unidades
-        WHERE servidores.cnes_unidade_de_lotacao = unidades.cnes_padrao;
+        WHERE servidores.cnes_unidade_de_lotacao = unidades.cnes;
 """)
     
     df_update_servidores = con.execute("SELECT * FROM servidores").fetchdf()
@@ -58,7 +58,7 @@ def update_equipes_table(con):
         UPDATE equipes 
         SET fk_id_unidades = unidades.id_unidades
         FROM unidades
-        WHERE equipes.cnes = unidades.cnes_padrao
+        WHERE equipes.cnes = unidades.cnes
     """)
 
     df_update_equipes = con.execute("SELECT * FROM equipes").fetchdf()
