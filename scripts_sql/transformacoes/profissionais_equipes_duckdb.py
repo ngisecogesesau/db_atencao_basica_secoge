@@ -74,12 +74,12 @@ def create_tipo_equipe_table(con):
                 tipo_equipe INTEGER,
                 fk_id_tipo_equipe INTEGER
                 )
-""")
+    """)
     
     con.execute(""" 
         CREATE SEQUENCE id_sequence START 1;
         ALTER TABLE tipo_equipe ADD COLUMN id_tipo_equipe INTEGER DEFAULT nextval('id_sequence');
-""")
+    """)
     
     con.execute("""
         INSERT INTO tipo_equipe (tipo_equipe, fk_id_tipo_equipe)
@@ -87,11 +87,27 @@ def create_tipo_equipe_table(con):
             tp_equipe,
             id_equipes 
         FROM equipes_temp
-""")
+    """)
 
     df_tipo_equipe = con.execute("SELECT * FROM tipo_equipe").fetchdf()
     return df_tipo_equipe
 
+def create_usf_mais_table(con):
+    """
+    Create the 'equipes_usf_mais' table in duckdb and return it as a dataframe.
+    """
+
+    con.execute("""
+        CREATE TABLE equipes_usf_mais AS
+        SELECT
+            *
+        FROM
+            equipes_usf_mais_temp
+            
+    """)
+
+    df_equipes_usf_mais = con.execute("SELECT * FROM usf_mais_temp").fetchdf()
+    return df_equipes_usf_mais
 
 if __name__ == '__main__':
     con = duckdb.connect(database=':memory:')
@@ -102,9 +118,6 @@ if __name__ == '__main__':
     df_equipes = create_equipes_table(con, data)
     df_update_equipes = update_equipes_table(con, data_unidades)
     df_tipo_equipe = create_tipo_equipe_table(con, data)
-    print("Table 'unidades' created successfully.")
-    print(df_servidores)
-    print("Table 'tipoUnidade' created successfully.")
-    print(df_equipes)
-    print("Table 'tipo_equipe' created successfully.")
-    print(df_tipo_equipe)
+    df_equipes_usf_mais = create_usf_mais_table(con, data)
+    print("Tables created successfully.")
+    
