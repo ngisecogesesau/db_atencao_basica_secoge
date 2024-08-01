@@ -22,7 +22,7 @@ def read_asu():
     df_asu_monitora = add_pk(df_asu_monitora, 'asu_monitora')
 
     # asu_classificacao
-    relative_url_asu_classificacao = '/Shared Documents/SESAU/BI_Indicadores_Estrategicos/Conversão da Classificação final da ASU.xlsx'
+    relative_url_asu_classificacao = '/Shared Documents/SESAU/BI_Indicadores_Estrategicos/tooltip_classificacao_asu.xlsx'
     df_asu_classificacao = get_file_as_dataframes(relative_url_asu_classificacao)
 
     asu_classificacao_columns = ['Atributo', 'valor', 'numero']
