@@ -10,6 +10,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from src.database import create_engine_to_db, create_schemas
 from scripts_sql.transformacoes.profissionais_equipes_duckdb import create_servidores_table, create_equipes_table, create_tipo_equipe_table, update_equipes_table, update_servidores_table
 from scripts_sql.transformacoes.unidades_duckdb import create_unidades_table, create_tipo_unidade_table, create_horarios_table, create_info_unidades_table, create_distritos_table, update_unidades_table
+from scripts_sql.transformacoes.asu_duckdb import create_asu_classificacao_table, create_asu_monitora_table
 from src.data_processing import get_data_processing_functions
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -51,21 +52,23 @@ def process_data(engine, schemas):
     df_distritos = create_distritos_table(con)
     df_update_unidades = update_unidades_table(con)
 
+    # Tabelas schema profissionais_equipes
     # Cria tabela servidores no DuckDB
     df_servidores = create_servidores_table(con)
-
     # Atualiza tabela servidores do DuckDB
     df_update_servidores = update_servidores_table(con)
-
-
-    #Cria tabela equipes no DuckDB
+    # Cria tabela equipes no DuckDB
     df_equipes = create_equipes_table(con)
-
-    #Atualiza tabela equipes
+    # Atualiza tabela equipes
     df_update_equipes = update_equipes_table(con)
-
     # Cria tabela tipo_equipe no DuckDb
     df_tipo_equipe = create_tipo_equipe_table(con)
+
+    # Tabelas schemas asu
+    # Cria tabela asu_monitora
+    df_asu_monitora = create_asu_monitora_table(con)
+    # Cria tabela asu_classificacao
+    df_asu_classificacao = create_asu_classificacao_table(con)
 
     try:
         df_unidades.to_sql('unidades', engine, schema='unidades', if_exists='replace', index=False)
@@ -100,6 +103,13 @@ def process_data(engine, schemas):
         
         df_update_unidades.to_sql('unidades', engine, schema='unidades', if_exists='replace', index=False)
         logger.info("Tabela 'unidades' atualizada no esquema 'unidades' do banco de dados PostgreSQL com sucesso.")
+
+        df_asu_monitora.to_sql('asu_monitora', engine, schema='asu', if_exists='replace', index=False)
+        logger.info("Tabela 'asu_monitora' criada no esquema 'asu' do banco de dados PostgreSQL com sucesso.")
+
+        df_asu_classificacao.to_sql('asu_classificacao', engine, schema='asu', if_exists='replace', index=False)
+        logger.info("Tabela 'asu_classificacao' criada no esquema 'asu' do banco de dados PostgreSQL com sucesso.")
+
     except Exception as e:
         logger.error(f"Erro ao processar tabelas: {e}")
 
