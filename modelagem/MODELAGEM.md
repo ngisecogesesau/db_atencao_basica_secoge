@@ -14,7 +14,7 @@ Armazena as informações principais das unidades de saúde, identificadas por u
 
 Tabela **unidades:** Armazena as informações principais das unidades de saúde, identificadas por um código único (cnes_padrao). Inclui dados como nome, distrito, unidade, coordenadas geográficas, e chaves estrangeiras que referenciam outras tabelas.
 
-- **cnes_padrao:** Identificador único da unidade de saúde.
+- **cnes:** Identificador único da unidade de saúde.
 - **nome:** Nome da unidade.
 - **distrito:** Distrito onde a unidade está localizada.
 - **unidade:** Nome da unidade específica.
@@ -24,7 +24,7 @@ Tabela **unidades:** Armazena as informações principais das unidades de saúde
 - **fk_id_tipo_unidade:** Chave estrangeira para a tabela tipoUnidade.
 - **fk_id_horarios:** Chave estrangeira para a tabela Horarios.
 - **fk_id_info_unidades:** Chave estrangeira para a tabela info_unidades.
-- **fk_id_distritos:** Chave estrangeira para a tabela tab_distritos.
+- **fk_id_distritos:** Chave estrangeira para a tabela distritos.
 
 
 Tabela **tipoUnidade:** Descreve os diferentes tipos de unidades, proporcionando uma camada de descrição adicional.
@@ -37,10 +37,10 @@ Tabela **tipoUnidade:** Descreve os diferentes tipos de unidades, proporcionando
 Tabela **horarios:** Armazena os horários de funcionamento das unidades, especificando o tipo de horário.
 
 - **id_horarios:** Identificador único do horário.
-- **tipo_horario:** Tipo do horário (e.g., ATENDIMENTO, RECEPCAO).
-- **horario_inicio:** Hora de início do horário.
-- **horario_fim:** Hora de término do horário.
-- **fk_cnes_padrao:** Chave estrangeira para a tabela Unidades.
+- **turno:** Turno (Matutino, Vespertino, Noturno ou Integral).
+- **horario_inicio:** Hora de início do expediente.
+- **horario_fim:** Hora de término do expediente.
+- **fk_id_unidade:** Chave estrangeira para a tabela unidades.
 
 Tabela **info_unidades:** Contém características específicas das unidades, como quantidades de profissionais e indicadores booleanos.
 
