@@ -4,3 +4,7 @@
 
 # Ignore CSV files
 *.csv
+
+#Ignore pyache
+
+ **/__pycache__/
