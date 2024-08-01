@@ -214,7 +214,7 @@ def create_df_info_unidades(data):
     df_usf_plus = data['usf_plus']
     
     required_columns = [
-        'cnes', 'cnes_padrao', 'nome', 'perfil', 'distrito', 'complexidade',
+        'cnes', 'nome', 'perfil', 'distrito', 'complexidade',
         'no_da_esf', 'turno_da_esf', 'horario_da_esf', 'medico_da_esf', 
         'enfermeiro_esf', 'tecnico_esf', 'acs', 'no_esb', 'turno_esb', 
         'horario_esb', 'cir._dentista', 'asb', 'recepcionista', 
