@@ -30,7 +30,9 @@ def read_agendamentos():
         print("Aba 'Planilha1' não encontrada no arquivo Excel.")
         df_agendamentos = pd.DataFrame()
 
-    return df_agendamentos
+    return {
+        'agendamentos': df_agendamentos,
+    }
 
 if __name__ == "__main__":
     df = read_agendamentos()
