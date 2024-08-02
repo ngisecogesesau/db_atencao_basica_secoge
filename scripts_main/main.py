@@ -8,7 +8,7 @@ import duckdb
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from src.database import create_engine_to_db, create_schemas
-from scripts_sql.transformacoes.profissionais_equipes_duckdb import create_servidores_table, create_equipes_table, create_tipo_equipe_table, update_equipes_table, update_servidores_table, create_usf_mais_table
+from scripts_sql.transformacoes.profissionais_equipes_duckdb import create_servidores_table, create_equipes_table, create_tipo_equipe_table, update_equipes_table, update_servidores_table, create_usf_mais_table, create_gerentes_table
 from scripts_sql.transformacoes.unidades_duckdb import create_unidades_table, create_tipo_unidade_table, create_horarios_table, create_info_unidades_table, create_distritos_table, update_unidades_table
 from scripts_sql.transformacoes.asu_duckdb import create_asu_classificacao_table, create_asu_monitora_table
 from src.data_processing import get_data_processing_functions
@@ -65,6 +65,8 @@ def process_data(engine, schemas):
     df_tipo_equipe = create_tipo_equipe_table(con)
     # Atualiza tabela equipes com tabela provisoria para teste
     df_equipes_usf_mais = create_usf_mais_table(con)
+    # Cria a tabela gerente no duckdb
+    df_gerentes = create_gerentes_table(con)
 
     # Tabelas schemas asu
     # Cria tabela asu_monitora
@@ -106,6 +108,9 @@ def process_data(engine, schemas):
         df_tipo_equipe.to_sql('tipo_equipe', engine, schema='profissionais_equipes', if_exists='replace', index=False)
         logger.info("Tabela 'tipo_equipe' salva no esquema 'profissionais_equipes' do banco de dados PostgreSQL com sucesso.")
         
+        df_gerentes.to_sql('gerentes', engine, schema='profissionais_equipes', if_exists='replace', index=False)
+        logger.info("Tabela 'gerentes' salva no esquema 'profissionais_equipes' do banco de dados PostgreSQL com sucesso.")
+        
         df_update_unidades.to_sql('unidades', engine, schema='unidades', if_exists='replace', index=False)
         logger.info("Tabela 'unidades' atualizada no esquema 'unidades' do banco de dados PostgreSQL com sucesso.")
 
@@ -113,9 +118,7 @@ def process_data(engine, schemas):
         logger.info("Tabela 'asu_monitora' criada no esquema 'asu' do banco de dados PostgreSQL com sucesso.")
 
         df_asu_classificacao.to_sql('asu_classificacao', engine, schema='asu', if_exists='replace', index=False)
-        logger.info("Tabela 'asu_classificacao' criada no esquema 'asu' do banco de dados PostgreSQL com sucesso.")
-
-        
+        logger.info("Tabela 'asu_classificacao' criada no esquema 'asu' do banco de dados PostgreSQL com sucesso.")   
 
     except Exception as e:
         logger.error(f"Erro ao processar tabelas: {e}")
