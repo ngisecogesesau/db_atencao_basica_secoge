@@ -11,6 +11,7 @@ from src.database import create_engine_to_db, create_schemas
 from scripts_sql.transformacoes.profissionais_equipes_duckdb import create_servidores_table, create_equipes_table, create_tipo_equipe_table, update_equipes_table, update_servidores_table
 from scripts_sql.transformacoes.unidades_duckdb import create_unidades_table, create_tipo_unidade_table, create_horarios_table, create_info_unidades_table, create_distritos_table, update_unidades_table
 from scripts_sql.transformacoes.asu_duckdb import create_asu_classificacao_table, create_asu_monitora_table
+from scripts_sql.transformacoes.agendamentos_duckdb import create_agendamentos_table, update_agendamentos_table
 from src.data_processing import get_data_processing_functions
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -27,11 +28,21 @@ def db_connection(config):
 def process_data(engine, schemas):
     con = duckdb.connect(database=':memory:')
     
-    # Passo 1: Ler dados usando pandas
     for schema_name, read_data_func in schemas.items():
         dfs = read_data_func()
-        # Verificação: Imprimir as primeiras linhas de cada DataFrame
+        
+        if dfs is None:
+            logger.error(f"A função {read_data_func} retornou None.")
+            continue
+        
+        # Verificar se dfs é um dicionário
+        if not isinstance(dfs, dict):
+            logger.error(f"A função {read_data_func} retornou um objeto não esperado: {type(dfs)}")
+            continue
+        
         for table_name, df in dfs.items():
+            if isinstance(df, pd.Series):
+                df = df.to_frame()
             full_table_name = f"{table_name}_temp"
             print(f"\nDataFrame for {full_table_name}:")
             print(df.head())
@@ -39,11 +50,11 @@ def process_data(engine, schemas):
             con.register(full_table_name, df)
             logger.info(f"Registered {full_table_name} in DuckDB")
 
-
     registered_tables = con.execute("SHOW TABLES").fetchall()
     logger.info("Tabelas registradas no DuckDB: %s", registered_tables)
-    
+
     # Passo 2: Executar transformações diretamente no DuckDB
+
     # Tabelas do schema unidades
     df_unidades = create_unidades_table(con)
     df_tipo_unidade = create_tipo_unidade_table(con)
@@ -69,6 +80,10 @@ def process_data(engine, schemas):
     df_asu_monitora = create_asu_monitora_table(con)
     # Cria tabela asu_classificacao
     df_asu_classificacao = create_asu_classificacao_table(con)
+
+    # Tabelas do schema agendamentos
+    df_agendamentos = create_agendamentos_table(con)
+    df_update_agendamentos = update_agendamentos_table(con)
 
     try:
         df_unidades.to_sql('unidades', engine, schema='unidades', if_exists='replace', index=False)
@@ -110,6 +125,12 @@ def process_data(engine, schemas):
         df_asu_classificacao.to_sql('asu_classificacao', engine, schema='asu', if_exists='replace', index=False)
         logger.info("Tabela 'asu_classificacao' criada no esquema 'asu' do banco de dados PostgreSQL com sucesso.")
 
+        df_agendamentos.to_sql('agendamentos', engine, schema='agendamentos', if_exists='replace', index=False)
+        logger.info("Tabela 'agendamentos' criada no esquema 'agendamentos' do banco de dados PostgreSQL com sucesso.")
+      
+        df_update_agendamentos.to_sql('agendamentos', engine, schema='agendamentos', if_exists='replace', index=False)
+        logger.info("Tabela 'agendamentos' atualizada no esquema 'agendamentos' do banco de dados PostgreSQL com sucesso.")
+    
     except Exception as e:
         logger.error(f"Erro ao processar tabelas: {e}")
 

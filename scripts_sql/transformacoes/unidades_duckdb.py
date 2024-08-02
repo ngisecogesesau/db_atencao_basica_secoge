@@ -137,7 +137,6 @@ def create_distritos_table(con):
     
     return df_distritos
 
-
 def update_unidades_table(con):
     if 'tipoUnidade' in con.execute("SHOW TABLES").fetchall():
         con.execute("""
