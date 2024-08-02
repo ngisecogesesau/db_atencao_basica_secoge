@@ -106,7 +106,7 @@ def create_usf_mais_table(con):
             
     """)
 
-    df_equipes_usf_mais = con.execute("SELECT * FROM usf_mais_temp").fetchdf()
+    df_equipes_usf_mais = con.execute("SELECT * FROM equipes_usf_mais_temp").fetchdf()
     return df_equipes_usf_mais
 
 if __name__ == '__main__':

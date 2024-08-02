@@ -17,7 +17,8 @@ def read_asu():
     df_asu_monitora = get_file_as_dataframes(relative_url_asu_monitora)
 
     asu_monitora_columns = ['mes', 'ine', 'resposta', 'tipo_resposta', 'total_respostas']
-    df_asu_monitora = df_asu_monitora.get('in')[asu_monitora_columns] if df_asu_monitora.get('in') is not None else None
+    df_asu_monitora = df_asu_monitora['in']    
+    df_asu_monitora = df_asu_monitora[asu_monitora_columns]
     df_asu_monitora = remove_espacos_e_acentos(df_asu_monitora)
     df_asu_monitora = add_pk(df_asu_monitora, 'asu_monitora')
 
@@ -26,7 +27,8 @@ def read_asu():
     df_asu_classificacao = get_file_as_dataframes(relative_url_asu_classificacao)
 
     asu_classificacao_columns = ['Atributo', 'valor', 'numero']
-    df_asu_classificacao = df_asu_classificacao.get('Planilha1')[asu_classificacao_columns] if df_asu_classificacao.get('Planilha1') is not None else None
+    df_asu_classificacao = df_asu_classificacao['Planilha1']
+    df_asu_classificacao = df_asu_classificacao[asu_classificacao_columns]
     df_asu_classificacao = remove_espacos_e_acentos(df_asu_classificacao)
     df_asu_classificacao = add_pk(df_asu_classificacao, 'asu_classificacao')
 
