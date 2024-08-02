@@ -61,7 +61,8 @@ def read_profissionais_equipes():
 
     # df_gerentes 
     url_gerentes = '/Shared Documents/SESAU/BI_Indicadores_Estrategicos/CONTATOS_GERENTES_DE_UNIDADES_GGGD.xlsx'
-    df_gerentes = get_file_as_dataframes(url_gerentes)
+    df_gerentes = get_file_as_dataframes(url_gerentes, skiprows= 1)
+
 
     gerentes_columns = ['DS', 'CNES', 'UNIDADE', 'GERENTE','CARGO', 'CPF', 'MATRÍCULA', 'CONTATO', 'E-MAIL']
 
