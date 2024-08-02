@@ -53,10 +53,6 @@ def process_data(engine, schemas):
     registered_tables = con.execute("SHOW TABLES").fetchall()
     logger.info("Tabelas registradas no DuckDB: %s", registered_tables)
 
-    # Continue com o restante do processamento...
-
-
-    
     # Passo 2: Executar transformações diretamente no DuckDB
 
     # Tabelas do schema unidades
