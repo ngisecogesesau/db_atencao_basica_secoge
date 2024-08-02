@@ -12,6 +12,7 @@ from scripts_sql.transformacoes.profissionais_equipes_duckdb import create_servi
 from scripts_sql.transformacoes.unidades_duckdb import create_unidades_table, create_tipo_unidade_table, create_horarios_table, create_info_unidades_table, create_distritos_table, update_unidades_table
 from scripts_sql.transformacoes.asu_duckdb import create_asu_classificacao_table, create_asu_monitora_table
 from scripts_sql.transformacoes.agendamentos_duckdb import create_agendamentos_table, update_agendamentos_table
+from scripts_sql.transformacoes.atendimentos_duckdb import create_atendimentos_table, update_atendimentos_table
 from src.data_processing import get_data_processing_functions
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -85,6 +86,10 @@ def process_data(engine, schemas):
     df_agendamentos = create_agendamentos_table(con)
     df_update_agendamentos = update_agendamentos_table(con)
 
+    # Tabelas do schema atendimentos
+    df_atendimentos = create_atendimentos_table(con)
+    df_update_atendimentos = update_atendimentos_table(con)
+
     try:
         df_unidades.to_sql('unidades', engine, schema='unidades', if_exists='replace', index=False)
         logger.info("Tabela 'unidades' salva no esquema 'unidades' do banco de dados PostgreSQL com sucesso.")
@@ -130,6 +135,12 @@ def process_data(engine, schemas):
       
         df_update_agendamentos.to_sql('agendamentos', engine, schema='agendamentos', if_exists='replace', index=False)
         logger.info("Tabela 'agendamentos' atualizada no esquema 'agendamentos' do banco de dados PostgreSQL com sucesso.")
+
+        df_atendimentos.to_sql('atendimentos', engine, schema='atendimentos', if_exists='replace', index=False)
+        logger.info("Tabela 'atendimentos' criada no esquema 'atendimentos' do banco de dados PostgreSQL com sucesso.")
+      
+        df_update_atendimentos.to_sql('atendimentos', engine, schema='atendimentos', if_exists='replace', index=False)
+        logger.info("Tabela 'atendimentos' atualizada no esquema 'atendimentos' do banco de dados PostgreSQL com sucesso.")
     
     except Exception as e:
         logger.error(f"Erro ao processar tabelas: {e}")

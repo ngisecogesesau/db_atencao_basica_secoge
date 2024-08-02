@@ -67,7 +67,7 @@ def get_file_as_dataframes(relative_url):
         return None
 
     try:
-        dataframes = pd.read_excel(file_content, sheet_name=None)
+        dataframes = pd.read_excel(file_content, sheet_name=None, skiprows=0)
         logger.info(f"Sheets available: {list(dataframes.keys())}")
         return dataframes
     except Exception as e:
