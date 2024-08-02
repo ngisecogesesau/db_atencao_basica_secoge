@@ -102,22 +102,39 @@ def create_usf_mais_table(con):
         SELECT
             *
         FROM
-            equipes_usf_mais_temp
-            
+            equipes_usf_mais_temp           
     """)
 
-    df_equipes_usf_mais = con.execute("SELECT * FROM equipes_usf_mais_temp").fetchdf()
+    df_equipes_usf_mais = con.execute("SELECT * FROM equipes_usf_mais").fetchdf()
     return df_equipes_usf_mais
+
+def create_gerentes_table(con):
+    """
+    Cria tabela gerentes no duckdb e retorna um dataframe duckdb
+    """
+
+    con.execute("""
+        CREATE TABLE gerentes AS
+        SELECT 
+            *
+        FROM
+            gerentes_temp
+""")
+    
+    df_gerentes = con.execute("SELECT * FROM gerentes").fetchdf()
+    return df_gerentes
+
 
 if __name__ == '__main__':
     con = duckdb.connect(database=':memory:')
-    data = read_profissionais_equipes()
+    data_profissionais = read_profissionais_equipes()
     data_unidades = read_unidades()
-    df_servidores = create_servidores_table(con, data)
+    df_servidores = create_servidores_table(con, data_profissionais)
     df_update_servidores = update_servidores_table(con, data_unidades)
-    df_equipes = create_equipes_table(con, data)
+    df_equipes = create_equipes_table(con, data_profissionais)
     df_update_equipes = update_equipes_table(con, data_unidades)
-    df_tipo_equipe = create_tipo_equipe_table(con, data)
-    df_equipes_usf_mais = create_usf_mais_table(con, data)
+    df_tipo_equipe = create_tipo_equipe_table(con, data_profissionais)
+    df_equipes_usf_mais = create_usf_mais_table(con, data_profissionais)
+    df_gerentes = create_gerentes_table(con, data_profissionais)
     print("Tables created successfully.")
     
