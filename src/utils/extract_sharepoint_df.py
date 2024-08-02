@@ -47,7 +47,7 @@ def get_file_content(ctx, relative_url):
         logger.error(f"Error getting file content: {e}")
         return None
 
-def get_file_as_dataframes(relative_url):
+def get_file_as_dataframes(relative_url, skiprows=0):
     """
     Get a file from SharePoint as multiple pandas DataFrames, one for each sheet.
 
@@ -67,7 +67,7 @@ def get_file_as_dataframes(relative_url):
         return None
 
     try:
-        dataframes = pd.read_excel(file_content, sheet_name=None)
+        dataframes = pd.read_excel(file_content, sheet_name=None, skiprows=skiprows)
         logger.info(f"Sheets available: {list(dataframes.keys())}")
         return dataframes
     except Exception as e:
