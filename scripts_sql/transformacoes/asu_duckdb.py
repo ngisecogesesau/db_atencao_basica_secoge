@@ -97,6 +97,21 @@ def create_unidades_equipes_asu(con):
     df_unidades_equipes_asu = con.execute("SELECT * FROM unidades_equipes_asu").fetchdf()
     return df_unidades_equipes_asu
 
+def update_unidades_quipes_asu_relacionamento_unidades(con):
+   
+    con.execute("""
+                
+        ALTER TABLE unidades_equipes_asu ADD COLUMN fk_id_unidades INTEGER;
+                
+        UPDATE unidades_equipes_asu 
+        SET fk_id_unidades = unidades.id_unidades
+        FROM unidades
+        WHERE unidades_equipes_asu.cnes = unidades.cnes;
+    """)
+
+    df_update_unidades_equipes_asu = con.execute("SELECT * FROM unidades_equipes_asu").fetchdf()
+    return df_update_unidades_equipes_asu
+
 if __name__ == '__main__':
     con = duckdb.connect(database=':memory:')
     data_asu = read_asu()
@@ -109,4 +124,5 @@ if __name__ == '__main__':
     df_update_equipes_asu = update_equipes_asu_relacionamento_equipes(con, data_prof_equipes)
     df_update_equipes_asu = update_equipes_asu_relacionamento_unidades(con, data_unidades)
     df_unidades_equipes_asu = create_unidades_equipes_asu(con, data_asu)
+    df_update_unidades_equipes_asu = update_unidades_quipes_asu_relacionamento_unidades(con, data_unidades)
     print('Tabelas asu criada com sucesso!')
