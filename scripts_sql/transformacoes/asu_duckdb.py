@@ -54,6 +54,20 @@ def create_equipes_asu_table(con):
     df_equipes_asu = con.execute("SELECT * FROM equipes_asu").fetchdf()
     return df_equipes_asu
 
+def update_equipes_asu_table(con):
+    con.execute("""
+        ALTER TABLE equipes_asu ADD COLUMN fk_id_equipes INTEGER;
+                
+        UPDATE equipes_asu 
+        SET fk_id_equipes = equipes.id_equipes 
+        FROM equipes 
+        WHERE equipes_asu.seq_equipe = equipes.seq_equipe;
+        
+    """)
+    
+    df_update_equipes_asu = con.execute("SELECT * FROM equipes_asu").fetchdf()
+    return df_update_equipes_asu
+
 def create_unidades_equipes_asu(con):
 
     con.execute("""
@@ -75,5 +89,6 @@ if __name__ == '__main__':
     df_update_asu_monitora_table = update_asu_monitora_table(con, data_prof_equipes)
     df_asu_classificacao = create_asu_classificacao_table(con, data_asu)
     df_equipes_asu = create_equipes_asu_table(con, data_asu)
+    df_update_equipes_asu = update_equipes_asu_table(con, data_prof_equipes)
     df_unidades_equipes_asu = create_unidades_equipes_asu(con, data_asu)
     print('Tabelas asu criada com sucesso!')
