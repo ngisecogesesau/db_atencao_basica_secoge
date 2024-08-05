@@ -46,9 +46,6 @@ def read_asu():
     df_unidades_equipes_asu = remove_espacos_e_acentos(df_unidades_equipes_asu)
     df_unidades_equipes_asu = add_pk(df_unidades_equipes_asu, 'unidades_equipes_asu')
 
-
-    print(df_unidades_equipes_asu)
-
     return {
         'asu_monitora': df_asu_monitora,
         'asu_classificacao': df_asu_classificacao,
@@ -56,4 +53,3 @@ def read_asu():
         'unidades_equipes_asu': df_unidades_equipes_asu
     }
 
-read_asu()
