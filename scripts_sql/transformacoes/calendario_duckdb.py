@@ -40,11 +40,17 @@ def create_calendario_table(start_date, end_date):
         'ano_quadrimestre', 'mes_completo', 'mvm'
     ])
 
+start_date = datetime(2020, 1, 1)
+end_date = datetime(2025, 12, 31)
+df_calendario = create_calendario_table(start_date, end_date)
+# Cria primary key
+df_calendario.insert(0, 'id_calendario', range(1, 1 + len(df_calendario)))
 
 def insert_data_calendario_table(con):
 
     con.execute("""
     CREATE TABLE calendario (
+        id_calendario INTEGER PRIMARY KEY,
         data_dma DATE,
         ano INTEGER,
         mes INTEGER,
@@ -59,14 +65,11 @@ def insert_data_calendario_table(con):
     )
     """)
 
-    start_date = datetime(2020, 1, 1)
-    end_date = datetime(2025, 12, 31)
-    df_calendario = create_calendario_table(start_date, end_date)
+    
     # Inserindo dados no DuckDB
     con.append('calendario', df_calendario)
     df_calendario_duckdb = con.execute("SELECT * FROM calendario").fetchdf()
     return df_calendario_duckdb
-
 
 if __name__ == '__main__':
     con = duckdb.connect(database=':memory:')
