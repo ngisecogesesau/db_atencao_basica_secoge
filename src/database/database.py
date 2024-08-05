@@ -6,7 +6,8 @@ def create_engine_to_db(db_name, user, password, host='localhost', port=5432):
 
 def create_schemas(db_name, user, password, host='localhost', port=5432):
     commands = ["CREATE SCHEMA IF NOT EXISTS profissionais_equipes",
-                "CREATE SCHEMA IF NOT EXISTS unidades"
+                "CREATE SCHEMA IF NOT EXISTS unidades",
+                "CREATE SCHEMA IF NOT EXISTS asu"
                 ]
     try:
         with psycopg2.connect(dbname=db_name, user=user, password=password, host=host, port=port) as conn:
