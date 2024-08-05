@@ -1,5 +1,6 @@
 import duckdb
 from src.data_processing.asu import read_asu
+from src.data_processing.profissionais_equipes import read_profissionais_equipes
 
 def create_asu_monitora_table(con):
 
@@ -13,6 +14,19 @@ def create_asu_monitora_table(con):
     
     df_asu_monitora = con.execute("SELECT * FROM asu_monitora").fetchdf()
     return df_asu_monitora
+
+def update_asu_monitora_table(con):
+    con.execute("""
+        ALTER TABLE asu_monitora ADD COLUMN fk_id_equipes INTEGER;
+    
+        UPDATE TABLE asu_monitora 
+        SET fk_id_equipes = equipes.id_equipes 
+        FROM profissionais_equipes
+        WHERE asu_monitora.ine = equipes.seq_equipes;
+""")
+    
+    df_update_monitora_table = con.execute("SELECT * FROM asu_monitora").fecthdf()
+    return df_update_monitora_table
 
 def create_asu_classificacao_table(con):
 
@@ -55,7 +69,9 @@ def create_unidades_equipes_asu(con):
 if __name__ == '__main__':
     con = duckdb.connect(database=':memory:')
     data_asu = read_asu()
+    data_prof_equipes = read_profissionais_equipes()
     df_asu_monitora = create_asu_monitora_table(con, data_asu)
+    df_update_asu_monitora_table = update_asu_monitora_table(con, data_prof_equipes)
     df_asu_classificacao = create_asu_classificacao_table(con, data_asu)
     df_equipes_asu = create_equipes_asu_table(con, data_asu)
     df_unidades_equipes_asu = create_unidades_equipes_asu(con, data_asu)
