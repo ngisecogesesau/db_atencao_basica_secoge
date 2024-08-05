@@ -10,7 +10,7 @@ def create_asu_monitora_table(con):
             *
         FROM 
             asu_monitora_temp;
-""")
+    """)
     
     df_asu_monitora = con.execute("SELECT * FROM asu_monitora").fetchdf()
     return df_asu_monitora
@@ -18,14 +18,15 @@ def create_asu_monitora_table(con):
 def update_asu_monitora_table(con):
     con.execute("""
         ALTER TABLE asu_monitora ADD COLUMN fk_id_equipes INTEGER;
-    
-        UPDATE TABLE asu_monitora 
+                
+        UPDATE asu_monitora 
         SET fk_id_equipes = equipes.id_equipes 
-        FROM profissionais_equipes
-        WHERE asu_monitora.ine = equipes.seq_equipes;
-""")
+        FROM equipes 
+        WHERE asu_monitora.ine = equipes.seq_equipe;
+        
+    """)
     
-    df_update_monitora_table = con.execute("SELECT * FROM asu_monitora").fecthdf()
+    df_update_monitora_table = con.execute("SELECT * FROM asu_monitora").fetchdf()
     return df_update_monitora_table
 
 def create_asu_classificacao_table(con):
@@ -36,7 +37,7 @@ def create_asu_classificacao_table(con):
             *
         FROM 
             asu_classificacao_temp;
-""")
+    """)
     
     df_asu_classificacao = con.execute("SELECT * FROM asu_classificacao").fetchdf()
     return df_asu_classificacao
@@ -48,7 +49,7 @@ def create_equipes_asu_table(con):
                 *
             FROM
                 equipes_asu_temp;
-""")
+    """)
     
     df_equipes_asu = con.execute("SELECT * FROM equipes_asu").fetchdf()
     return df_equipes_asu
@@ -61,7 +62,7 @@ def create_unidades_equipes_asu(con):
                 *
             FROM 
                 unidades_equipes_asu_temp;
-""")
+    """)
     
     df_unidades_equipes_asu = con.execute("SELECT * FROM unidades_equipes_asu").fetchdf()
     return df_unidades_equipes_asu
