@@ -139,7 +139,20 @@ def create_gerentes_table(con):
     df_gerentes = con.execute("SELECT * FROM gerentes").fetchdf()
     return df_gerentes
 
+def update_gerentes_table(con):
+   
+    con.execute("""
+                
+        ALTER TABLE gerentes ADD COLUMN fk_id_unidades INTEGER;
+                
+        UPDATE gerentes 
+        SET fk_id_unidades = unidades.id_unidades
+        FROM unidades
+        WHERE gerentes.cnes = unidades.cnes
+    """)
 
+    df_update_gerentes = con.execute("SELECT * FROM gerentes").fetchdf()
+    return df_update_gerentes
 
 if __name__ == '__main__':
     con = duckdb.connect(database=':memory:')
@@ -153,5 +166,6 @@ if __name__ == '__main__':
     df_equipes_usf_mais = create_equipes_usf_mais_table(con, data_profissionais)
     df_update_equipes_usf_mais = update_equipes_usf_mais_table(con,data_unidades)
     df_gerentes = create_gerentes_table(con, data_profissionais)
+    df_update_gerentes = update_gerentes_table(con, data_unidades)
     print("Tables created successfully.")
     
