@@ -12,7 +12,7 @@ from scripts_sql.transformacoes.profissionais_equipes_duckdb import create_servi
 from scripts_sql.transformacoes.unidades_duckdb import create_unidades_table, create_tipo_unidade_table, create_horarios_table, create_info_unidades_table, create_distritos_table, update_unidades_table
 from scripts_sql.transformacoes.asu_duckdb import create_asu_classificacao_table, create_asu_monitora_table, create_equipes_asu_table, create_unidades_equipes_asu, update_asu_monitora_table, update_equipes_asu_relacionamento_equipes, update_equipes_asu_relacionamento_unidades, update_unidades_quipes_asu_relacionamento_unidades
 from src.data_processing import get_data_processing_functions
-from scripts_sql.transformacoes.calendario_duckdb import insert_data_calendario_table
+from scripts_sql.transformacoes.calendario_duckdb import create_calendario_table
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -91,7 +91,7 @@ def process_data(engine, schemas):
     df_update_unidades_equipes_asu = update_unidades_quipes_asu_relacionamento_unidades(con)
 
     # Cria tabela calendario
-    df_calendario_duckdb = insert_data_calendario_table(con)
+    df_calendario_duckdb = create_calendario_table(con)
 
     try:
         df_unidades.to_sql('unidades', engine, schema='unidades', if_exists='replace', index=False)
