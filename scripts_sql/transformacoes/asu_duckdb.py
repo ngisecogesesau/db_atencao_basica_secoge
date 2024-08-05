@@ -49,7 +49,7 @@ def create_unidades_equipes_asu(con):
                 unidades_equipes_asu_temp;
 """)
     
-    df_unidades_equipes_asu = con.execute("SELECT * FROM unidades_equipes_asu")
+    df_unidades_equipes_asu = con.execute("SELECT * FROM unidades_equipes_asu").fetchdf()
     return df_unidades_equipes_asu
 
 if __name__ == '__main__':
