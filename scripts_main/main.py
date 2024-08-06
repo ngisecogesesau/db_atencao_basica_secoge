@@ -13,6 +13,7 @@ from scripts_sql.transformacoes.unidades_duckdb import create_unidades_table, cr
 from scripts_sql.transformacoes.asu_duckdb import create_asu_classificacao_table, create_asu_monitora_table, create_equipes_asu_table, create_unidades_equipes_asu, update_asu_monitora_table, update_equipes_asu_relacionamento_equipes, update_equipes_asu_relacionamento_unidades, update_unidades_quipes_asu_relacionamento_unidades
 from scripts_sql.transformacoes.agendamentos_duckdb import create_agendamentos_table, update_agendamentos_table
 from scripts_sql.transformacoes.atendimentos_duckdb import create_atendimentos_table, update_atendimentos_table
+from scripts_sql.transformacoes.ouvidoria_duckdb import create_ouvidoria_table
 from src.data_processing import get_data_processing_functions
 from scripts_sql.transformacoes.calendario_duckdb import create_calendario_table
 
@@ -113,6 +114,7 @@ def process_data(engine, schemas):
     # Cria tabela calendario
     df_calendario_duckdb = create_calendario_table(con)
 
+    df_ouvidoria = create_ouvidoria_table(con)
 
     try:
         df_unidades.to_sql('unidades', engine, schema='unidades', if_exists='replace', index=False)
@@ -199,6 +201,9 @@ def process_data(engine, schemas):
         df_calendario_duckdb.to_sql('calendario', engine, schema='calendario', if_exists='replace', index=False)
         logger.info("Tabela 'calendario' criada no esquema 'calendario' do banco de dados PostgreSQL com sucesso.") 
         
+        df_ouvidoria.to_sql('ouvidoria', engine, schema='ouvidoria', if_exists='replace', index=False)
+        logger.info("Tabela 'ouvidoria' criada no esquema 'ouvidoria' do banco de dados PostgreSQL com sucesso.") 
+    
     except Exception as e:
         logger.error(f"Erro ao processar tabelas: {e}")
 
