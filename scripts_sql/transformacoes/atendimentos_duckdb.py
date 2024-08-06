@@ -1,13 +1,5 @@
-import duckdb
 import logging
-import sys
-import os
-
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-
-from src.data_processing.atendimentos import read_atendimentos
 
 def create_atendimentos_table(con):
     """
@@ -53,12 +45,3 @@ def update_atendimentos_table(con):
     logging.info("Tabela 'atendimentos' atualizada com sucesso.")
     
     return df_update_unidades
-
-if __name__ == '__main__':
-    con = duckdb.connect(database=':memory:')
-    data = read_atendimentos()
-    df_atendimentos= create_atendimentos_table(con, data)
-    df_update_atendimentos = update_atendimentos_table(con,data)
-
-    logging.info("Table 'atendimentos' created successfully.")
-    logging.info("DataFrame 'atendimentos':\n%s", df_atendimentos)
