@@ -130,8 +130,7 @@ def create_distritos_table(con):
     return df_distritos
 
 def update_unidades_table(con):
-    if 'tipoUnidade' in con.execute("SHOW TABLES").fetchall():
-        con.execute("""
+    con.execute("""
             ALTER TABLE unidades ADD COLUMN fk_id_tipo_unidade INTEGER;
             
             UPDATE unidades
@@ -159,10 +158,8 @@ def update_unidades_table(con):
             UPDATE unidades
             SET fk_id_distritos = distritos.id_distritos
             FROM distritos
-            WHERE unidades.cnes = distritos.cnes;   
+            WHERE unidades.distrito = sigla_distrito;   
     """)
-    else:
-        logging.warning("Tabela tipoUnidade não encontrada!")
 
     df_update_unidades = con.execute("SELECT * FROM unidades").fetchdf()
 

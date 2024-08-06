@@ -253,7 +253,7 @@ def create_df_info_unidades(data):
     })
 
     return df_info_unidades
-
+  
 def create_df_distritos(data):
 
     def int_to_roman(input):
@@ -276,7 +276,7 @@ def create_df_distritos(data):
 
     distritos = {
         'nome_distrito': [f"Distrito {int_to_roman(i)}" for i in range(1, 9)],
-        'sigla_distrito': [f"DS {int_to_roman(i)}" for i in range(1, 9)]
+        'sigla_distrito': [f"{int_to_roman(i)}" for i in range(1, 9)]
     }
 
     df_distritos = pd.DataFrame(distritos)
