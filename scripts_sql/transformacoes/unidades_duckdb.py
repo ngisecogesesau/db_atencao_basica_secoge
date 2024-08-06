@@ -1,15 +1,6 @@
-import duckdb
-import pandas as pd
-import os
-import sys
 import logging
-import re
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-
-from src.data_processing.unidades import read_unidades
 
 def create_unidades_table(con):
     """
@@ -166,18 +157,4 @@ def update_unidades_table(con):
     logging.info("Tabela 'unidades' atualizada com sucesso.")
     
     return df_update_unidades
-
-if __name__ == '__main__':
-    con = duckdb.connect(database=':memory:')
-    data = read_unidades()
-    df_unidades = create_unidades_table(con, data)
-    df_tipo_unidade = create_tipo_unidade_table(con, data)
-    df_horarios = create_horarios_table(con, data)
-    df_tipo_unidade = create_info_unidades_table(con,data)
-    df_distritos = create_distritos_table(con,data)
-    df_update_unidades = update_unidades_table(con,data)
     
-    logging.info("Table 'unidades' created successfully.")
-    logging.info("Table 'tipoUnidade' created successfully.")
-    logging.info("Table 'horarios' created successfully.")
-    logging.info("DataFrame 'horarios':\n%s", df_horarios)
