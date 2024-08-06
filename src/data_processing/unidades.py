@@ -255,24 +255,33 @@ def create_df_info_unidades(data):
     return df_info_unidades
 
 def create_df_distritos(data):
-    if 'planilha1' not in data:
-        raise ValueError("'planilha1' not found in data")
-    
-    df_planilha1 = data['planilha1']
-    logging.info("Columns in 'planilha1': %s", df_planilha1.columns)
-    
-    required_columns = ['cnes_padrao', 'distrito']
-    missing_columns = [col for col in required_columns if col not in df_planilha1.columns]
-    if missing_columns:
-        raise KeyError(f"Missing columns in 'planilha1': {missing_columns}")
 
-    df_planilha1 = remove_decimal_zero(df_planilha1, ['cnes_padrao'])
+    def int_to_roman(input):
+        if not isinstance(input, int):
+            raise TypeError("expected integer, got %s" % type(input))
+        if not 0 < input < 4000:
+            raise ValueError("Argument must be between 1 and 3999")
+        int_to_roman_dict = [
+            (1000, "M"), (900, "CM"), (500, "D"), (400, "CD"),
+            (100, "C"), (90, "XC"), (50, "L"), (40, "XL"),
+            (10, "X"), (9, "IX"), (5, "V"), (4, "IV"),
+            (1, "I")
+        ]
+        result = []
+        for (integer, numeral) in int_to_roman_dict:
+            count = input // integer
+            result.append(numeral * count)
+            input -= integer * count
+        return "".join(result)
 
-    df_distritos = df_planilha1[['cnes_padrao', 'distrito']].drop_duplicates().rename(columns={'distrito': 'sigla_distrito','cnes_padrao':'cnes'})
+    distritos = {
+        'nome_distrito': [f"Distrito {int_to_roman(i)}" for i in range(1, 9)],
+        'sigla_distrito': [f"DS {int_to_roman(i)}" for i in range(1, 9)]
+    }
 
-    df_distritos['nome_distrito'] = df_distritos['sigla_distrito'].apply(lambda x: f"Distrito {x}")
+    df_distritos = pd.DataFrame(distritos)
 
-    df_distritos = df_distritos[['nome_distrito', 'sigla_distrito', 'cnes']]
+    logging.info("Tabela df_distritos criada manualmente: %s", df_distritos)
 
     return df_distritos
 

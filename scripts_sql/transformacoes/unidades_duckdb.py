@@ -123,14 +123,6 @@ def create_distritos_table(con):
             distritos_temp;
     """)
     
-    con.execute("""
-        ALTER TABLE distritos ADD COLUMN fk_id_unidades INTEGER;
-        
-        UPDATE distritos
-        SET fk_id_unidades = unidades.id_unidades
-        FROM unidades
-        WHERE unidades.cnes = distritos.cnes;
-                """)
     df_distritos = con.execute("SELECT * FROM distritos").fetchdf()
     
     logging.info("Tabela 'distritos' criada com sucesso.")
