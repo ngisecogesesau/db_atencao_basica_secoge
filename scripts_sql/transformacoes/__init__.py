@@ -16,6 +16,7 @@ from .asu_duckdb import (
 from .agendamentos_duckdb import create_agendamentos_table, update_agendamentos_table
 from .atendimentos_duckdb import create_atendimentos_table, update_atendimentos_table
 from .calendario_duckdb import create_calendario_table
+from .ouvidoria_duckdb import create_ouvidoria_table
 
 def execute_transformations_and_save(con, engine):
     transformations = [
@@ -52,6 +53,8 @@ def execute_transformations_and_save(con, engine):
         (update_atendimentos_table, 'atendimentos', 'atendimentos'),
 
         (create_calendario_table, 'calendario', 'calendario'),
+
+        (create_ouvidoria_table, 'ouvidoria', 'ouvidoria'),
     ]
 
     for transformation_func, table_name, schema_name in transformations:
