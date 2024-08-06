@@ -14,6 +14,7 @@ from scripts_sql.transformacoes.asu_duckdb import create_asu_classificacao_table
 from scripts_sql.transformacoes.agendamentos_duckdb import create_agendamentos_table, update_agendamentos_table
 from scripts_sql.transformacoes.atendimentos_duckdb import create_atendimentos_table, update_atendimentos_table
 from src.data_processing import get_data_processing_functions
+from scripts_sql.transformacoes.calendario_duckdb import create_calendario_table
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -109,6 +110,10 @@ def process_data(engine, schemas):
     df_atendimentos = create_atendimentos_table(con)
     df_update_atendimentos = update_atendimentos_table(con)
 
+    # Cria tabela calendario
+    df_calendario_duckdb = create_calendario_table(con)
+
+
     try:
         df_unidades.to_sql('unidades', engine, schema='unidades', if_exists='replace', index=False)
         logger.info("Tabela 'unidades' salva no esquema 'unidades' do banco de dados PostgreSQL com sucesso.")
@@ -191,6 +196,9 @@ def process_data(engine, schemas):
         df_update_atendimentos.to_sql('atendimentos', engine, schema='atendimentos', if_exists='replace', index=False)
         logger.info("Tabela 'atendimentos' atualizada no esquema 'atendimentos' do banco de dados PostgreSQL com sucesso.")   
     
+        df_calendario_duckdb.to_sql('calendario', engine, schema='calendario', if_exists='replace', index=False)
+        logger.info("Tabela 'calendario' criada no esquema 'calendario' do banco de dados PostgreSQL com sucesso.") 
+        
     except Exception as e:
         logger.error(f"Erro ao processar tabelas: {e}")
 
