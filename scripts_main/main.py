@@ -10,7 +10,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from src.database import create_engine_to_db, create_schemas
 from scripts_sql.transformacoes.profissionais_equipes_duckdb import create_servidores_table, create_equipes_table, create_tipo_equipe_table, update_equipes_table, update_servidores_table, create_equipes_usf_mais_table, create_gerentes_table, update_gerentes_table, update_equipes_usf_mais_table
 from scripts_sql.transformacoes.unidades_duckdb import create_unidades_table, create_tipo_unidade_table, create_horarios_table, create_info_unidades_table, create_distritos_table, update_unidades_table
-from scripts_sql.transformacoes.asu_duckdb import create_asu_classificacao_table, create_asu_monitora_table
+from scripts_sql.transformacoes.asu_duckdb import create_asu_classificacao_table, create_asu_monitora_table, create_equipes_asu_table, create_unidades_equipes_asu, update_asu_monitora_table, update_equipes_asu_relacionamento_equipes, update_equipes_asu_relacionamento_unidades, update_unidades_quipes_asu_relacionamento_unidades
 from scripts_sql.transformacoes.agendamentos_duckdb import create_agendamentos_table, update_agendamentos_table
 from scripts_sql.transformacoes.atendimentos_duckdb import create_atendimentos_table, update_atendimentos_table
 from src.data_processing import get_data_processing_functions
@@ -87,8 +87,19 @@ def process_data(engine, schemas):
     # Tabelas schemas asu
     # Cria tabela asu_monitora
     df_asu_monitora = create_asu_monitora_table(con)
+    # Atualiza tabela asu_monitora
+    df_update_asu_monitora_table = update_asu_monitora_table(con)
     # Cria tabela asu_classificacao
     df_asu_classificacao = create_asu_classificacao_table(con)
+    # Cria tabela equipes_asu
+    df_equipes_asu = create_equipes_asu_table(con)
+    # Atualiza tabela equipes_asu
+    df_update_equipes_asu = update_equipes_asu_relacionamento_equipes(con)
+    df_update_equipes_asu = update_equipes_asu_relacionamento_unidades(con)
+    # Cria tabelas unidades_equipes_asu
+    df_unidades_equipes_asu = create_unidades_equipes_asu(con)
+    # Atualiza tabela unidades_equipes_asu
+    df_update_unidades_equipes_asu = update_unidades_quipes_asu_relacionamento_unidades(con)
 
     # Tabelas do schema agendamentos
     df_agendamentos = create_agendamentos_table(con)
@@ -146,12 +157,27 @@ def process_data(engine, schemas):
         
         df_update_unidades.to_sql('unidades', engine, schema='unidades', if_exists='replace', index=False)
         logger.info("Tabela 'unidades' atualizada no esquema 'unidades' do banco de dados PostgreSQL com sucesso.")
-
+        
         df_asu_monitora.to_sql('asu_monitora', engine, schema='asu', if_exists='replace', index=False)
         logger.info("Tabela 'asu_monitora' criada no esquema 'asu' do banco de dados PostgreSQL com sucesso.")
+        
+        df_update_asu_monitora_table.to_sql('asu_monitora', engine, schema='asu', if_exists='replace', index=False)
+        logger.info("Tabela 'asu_monitora' atualizada no esquema 'asu' do banco de dados PostgreSQL com sucesso.")
 
         df_asu_classificacao.to_sql('asu_classificacao', engine, schema='asu', if_exists='replace', index=False)
-        logger.info("Tabela 'asu_classificacao' criada no esquema 'asu' do banco de dados PostgreSQL com sucesso.")
+        logger.info("Tabela 'asu_classificacao' criada no esquema 'asu' do banco de dados PostgreSQL com sucesso.") 
+          
+        df_equipes_asu.to_sql('equipes_asu', engine, schema='asu', if_exists='replace', index=False)
+        logger.info("Tabela 'equipes_asu' criada no esquema 'asu' do banco de dados PostgreSQL com sucesso.") 
+        
+        df_update_equipes_asu.to_sql('equipes_asu', engine, schema='asu', if_exists='replace', index=False)
+        logger.info("Tabela 'equipes_asu' atualizada no esquema 'asu' do banco de dados PostgreSQL com sucesso.") 
+        
+        df_unidades_equipes_asu.to_sql('unidades_equipes_asu', engine, schema='asu', if_exists='replace', index=False)
+        logger.info("Tabela 'unidades_equipes_asu' criada no esquema 'asu' do banco de dados PostgreSQL com sucesso.") 
+        
+        df_update_unidades_equipes_asu.to_sql('unidades_equipes_asu', engine, schema='asu', if_exists='replace', index=False)
+        logger.info("Tabela 'unidades_equipes_asu' atualizada no esquema 'asu' do banco de dados PostgreSQL com sucesso.") 
 
         df_agendamentos.to_sql('agendamentos', engine, schema='agendamentos', if_exists='replace', index=False)
         logger.info("Tabela 'agendamentos' criada no esquema 'agendamentos' do banco de dados PostgreSQL com sucesso.")
