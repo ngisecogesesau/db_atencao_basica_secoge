@@ -70,27 +70,27 @@ def read_unidades():
     df_unidades = create_df_unidades(data)
     df_tipo_unidade = create_df_tipo_unidade(data)
     df_horarios = create_df_horarios(data)
-    df_info_unidades = create_df_info_unidades(data)
     df_distritos = create_df_distritos(data)
+    df_login_senha = create_login_senha_ds(data)
 
     df_unidades = remove_espacos_e_acentos(df_unidades)
     df_tipo_unidade = remove_espacos_e_acentos(df_tipo_unidade)
     df_horarios = remove_espacos_e_acentos(df_horarios)
-    df_info_unidades = remove_espacos_e_acentos(df_info_unidades)
     df_distritos = remove_espacos_e_acentos(df_distritos)
+    df_login_senha = remove_espacos_e_acentos(df_login_senha)
 
     df_unidades = add_pk(df_unidades, 'unidades')
     df_tipo_unidade = add_pk(df_tipo_unidade, 'tipo_unidade')
     df_horarios = add_pk(df_horarios, 'horarios')
-    df_info_unidades = add_pk(df_info_unidades, 'info_unidades')
     df_distritos = add_pk(df_distritos, 'distritos')
+    df_login_senha_ds = add_pk(df_login_senha, 'login_senha')
 
     return {
         'unidades': df_unidades,
         'tipo_unidade': df_tipo_unidade,
         'horarios': df_horarios,
-        'info_unidades': df_info_unidades,
-        'distritos': df_distritos
+        'distritos': df_distritos,
+        'login_senha_ds': df_login_senha_ds
     }
 
 def create_df_unidades(data):
@@ -207,53 +207,6 @@ def create_df_horarios(data):
 
     return df_horarios
 
-def create_df_info_unidades(data):
-    if 'usf_plus' not in data:
-        raise ValueError("'usf_plus' not found in data")
-    
-    df_usf_plus = data['usf_plus']
-    
-    required_columns = [
-        'cnes', 'nome', 'perfil', 'distrito', 'complexidade',
-        'no_da_esf', 'turno_da_esf', 'horario_da_esf', 'medico_da_esf', 
-        'enfermeiro_esf', 'tecnico_esf', 'acs', 'no_esb', 'turno_esb', 
-        'horario_esb', 'cir._dentista', 'asb', 'recepcionista', 
-        'turno_do_recepcionista', 'horario_do_recepcionista', 'regulacao', 
-        'turno_do_prof._regulacao', 'horario_do_prof._regulacao', 'farmacia', 
-        'turno_do_prof._farmacia', 'horario_do_prof._farmacia'
-    ]
-    
-    missing_columns = [col for col in required_columns if col not in df_usf_plus.columns]
-    if missing_columns:
-        raise KeyError(f"Missing columns in 'usf_plus': {missing_columns}")
-
-    df_info_unidades = df_usf_plus[required_columns].rename(columns={
-        'cnes': 'cnes',
-        'no_da_esf': 'n_esf',
-        'turno_da_esf': 'turno_da_esf',
-        'horario_da_esf': 'horario_da_esf',
-        'medico_da_esf': 'medico_da_esf',
-        'enfermeiro_esf': 'enfermeiro_esf',
-        'tecnico_esf': 'tecnico_esf',
-        'acs': 'acs',
-        'no_esb': 'n_esb',
-        'turno_esb': 'turno_esb',
-        'horario_esb': 'horario_esb',
-        'cir._dentista': 'cir_dentista',
-        'asb': 'asb',
-        'recepcionista': 'recepcionista',
-        'turno_do_recepcionista': 'turno_do_recepcionista',
-        'horario_do_recepcionista': 'horario_do_recepcionista',
-        'regulacao': 'regulacao',
-        'turno_do_prof._regulacao': 'turno_do_prof_regulacao',
-        'horario_do_prof._regulacao': 'horario_do_prof_regulacao',
-        'farmacia': 'farmacia',
-        'turno_do_prof._farmacia': 'turno_do_prof_farmacia',
-        'horario_do_prof._farmacia': 'horario_do_prof_farmacia'
-    })
-
-    return df_info_unidades
-  
 def create_df_distritos(data):
 
     def int_to_roman(input):
@@ -284,6 +237,19 @@ def create_df_distritos(data):
     logging.info("Tabela df_distritos criada manualmente: %s", df_distritos)
 
     return df_distritos
+
+def create_login_senha_ds(data):
+    login_senha_ds = {
+        'login': ['SESAU', 'SESAU', 'SESAU', 'SESAU', 'SESAU', 'SESAU', 'SESAU', 'SESAU',
+                  'DS I', 'DS II', 'DS III', 'DS IV', 'DS V', 'DS VI', 'DS VII', 'DS VIII'],
+        'senha': [3216, 3216, 3216, 3216, 3216, 3216, 3216, 3216, 3097,
+                  3017, 3226, 3117, 3236, 3157, 3316, 3386],
+        'ds_romano': ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII',
+               'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII']
+    }
+
+    df_login_senha_ds = pd.DataFrame(login_senha_ds)
+    return df_login_senha_ds
 
 def main():
     """
