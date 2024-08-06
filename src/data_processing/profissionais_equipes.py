@@ -23,7 +23,6 @@ def read_profissionais_equipes():
     df_equipes_cnes = get_file_as_dataframes(url_equipes_cnes)
 
     # df_equipes é a nova nomenclatura apos normalizacao
-    #df_equipes = df_equipes_cnes.get('in')[equipes_cnes_columns] if df_equipes_cnes.get('in') is not None else None
     df_equipes_cnes = df_equipes_cnes['in']
     df_equipes_columns = ['CNES', 'SEQ_EQUIPE', 'DS_EQUIPE', 'NM_REFERENCIA', 'TURNO_ATEND', 'CRIACAO_EQUIPE', 'DT_DESATIVACAO', 
                             'ID_TP_EQUIPE', 'TP_EQUIPE', 'SG_EQUIPE' ]
@@ -60,12 +59,22 @@ def read_profissionais_equipes():
     df_usf_mais = remove_espacos_e_acentos(df_usf_mais)
     df_usf_mais = add_pk(df_usf_mais, 'equipes_usf_mais')
 
-    print(df_equipes)
+    # df_gerentes 
+    url_gerentes = '/Shared Documents/SESAU/BI_Indicadores_Estrategicos/CONTATOS_GERENTES_DE_UNIDADES_GGGD.xlsx'
+    df_gerentes = get_file_as_dataframes(url_gerentes, skiprows= 1)
+
+
+    gerentes_columns = ['DS', 'CNES', 'UNIDADE', 'GERENTE','CARGO', 'CPF', 'MATRÍCULA', 'CONTATO', 'E-MAIL']
+
+    df_gerentes = df_gerentes['Atenção Básica']
+    df_gerentes = df_gerentes[gerentes_columns]
+    df_gerentes = remove_espacos_e_acentos(df_gerentes)
+    df_gerentes = add_pk(df_gerentes, 'gerentes')
+
 
     return {
         'servidores': df_servidores,
         'equipes': df_equipes,
-        'equipes_usf_mais': df_usf_mais
+        'equipes_usf_mais': df_usf_mais,
+        'gerentes': df_gerentes
     }
-
-read_profissionais_equipes()

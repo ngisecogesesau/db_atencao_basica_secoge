@@ -8,7 +8,7 @@ import duckdb
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from src.database import create_engine_to_db, create_schemas
-from scripts_sql.transformacoes.profissionais_equipes_duckdb import create_servidores_table, create_equipes_table, create_tipo_equipe_table, update_equipes_table, update_servidores_table
+from scripts_sql.transformacoes.profissionais_equipes_duckdb import create_servidores_table, create_equipes_table, create_tipo_equipe_table, update_equipes_table, update_servidores_table, create_equipes_usf_mais_table, create_gerentes_table, update_gerentes_table, update_equipes_usf_mais_table
 from scripts_sql.transformacoes.unidades_duckdb import create_unidades_table, create_tipo_unidade_table, create_horarios_table, create_info_unidades_table, create_distritos_table, update_unidades_table
 from scripts_sql.transformacoes.asu_duckdb import create_asu_classificacao_table, create_asu_monitora_table
 from scripts_sql.transformacoes.agendamentos_duckdb import create_agendamentos_table, update_agendamentos_table
@@ -75,6 +75,14 @@ def process_data(engine, schemas):
     df_update_equipes = update_equipes_table(con)
     # Cria tabela tipo_equipe no DuckDb
     df_tipo_equipe = create_tipo_equipe_table(con)
+    # Cria tabela equipes_usf_mais 
+    df_equipes_usf_mais = create_equipes_usf_mais_table(con)
+    # Atualiza tabela equipes_usf_mais
+    df_update_equipes_usf_mais = update_equipes_usf_mais_table(con)
+    # Cria a tabela gerente no duckdb
+    df_gerentes = create_gerentes_table(con)
+    # Atualiza tabela gerentes no duckdb
+    df_update_gerentes = update_gerentes_table(con)
 
     # Tabelas schemas asu
     # Cria tabela asu_monitora
@@ -120,6 +128,21 @@ def process_data(engine, schemas):
 
         df_tipo_equipe.to_sql('tipo_equipe', engine, schema='profissionais_equipes', if_exists='replace', index=False)
         logger.info("Tabela 'tipo_equipe' salva no esquema 'profissionais_equipes' do banco de dados PostgreSQL com sucesso.")
+        
+        df_equipes_usf_mais.to_sql('equipes_usf_mais', engine, schema='profissionais_equipes', if_exists='replace', index=False)
+        logger.info("Tabela 'equipes_usf_mais' atualizada no esquema 'profissionais_equipes' do banco de dados PostgreSQL com sucesso.")
+        
+        df_update_equipes_usf_mais.to_sql('equipes_usf_mais', engine, schema='profissionais_equipes', if_exists='replace', index=False)
+        logger.info("Tabela 'equipes_usf_mais' atualizada no esquema 'profissionais_equipes' do banco de dados PostgreSQL com sucesso.")
+
+        df_tipo_equipe.to_sql('tipo_equipe', engine, schema='profissionais_equipes', if_exists='replace', index=False)
+        logger.info("Tabela 'tipo_equipe' salva no esquema 'profissionais_equipes' do banco de dados PostgreSQL com sucesso.")
+        
+        df_gerentes.to_sql('gerentes', engine, schema='profissionais_equipes', if_exists='replace', index=False)
+        logger.info("Tabela 'gerentes' salva no esquema 'profissionais_equipes' do banco de dados PostgreSQL com sucesso.")
+        
+        df_update_gerentes.to_sql('gerentes', engine, schema='profissionais_equipes', if_exists='replace', index=False)
+        logger.info("Tabela 'gerentes' atualizada no esquema 'profissionais_equipes' do banco de dados PostgreSQL com sucesso.")
         
         df_update_unidades.to_sql('unidades', engine, schema='unidades', if_exists='replace', index=False)
         logger.info("Tabela 'unidades' atualizada no esquema 'unidades' do banco de dados PostgreSQL com sucesso.")
