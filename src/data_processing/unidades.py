@@ -273,3 +273,16 @@ def create_login_senha_unidades(data):
     })
 
     return df_login_senha_unidades
+
+def main():
+    """
+    Main function for testing the script.
+    """
+    dfs = read_unidades()
+    for name, df in dfs.items():
+        logging.info("DataFrame '%s':", df)
+        logging.info("Columns: %s", list(df.columns))
+        logging.info("Head:\n%s", df.head())
+
+if __name__ == '__main__':
+    main()
