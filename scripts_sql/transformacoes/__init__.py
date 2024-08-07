@@ -5,7 +5,8 @@ from .profissionais_equipes_duckdb import (
 )
 from .unidades_duckdb import (
     create_unidades_table, create_tipo_unidade_table, create_horarios_table,
-    create_info_unidades_table, create_distritos_table, update_unidades_table
+    create_distritos_table, update_unidades_table, create_login_senha_ds_table,
+    create_login_senha_unidades_table
 )
 from .asu_duckdb import (
     create_asu_classificacao_table, create_asu_monitora_table,
@@ -23,9 +24,10 @@ def execute_transformations_and_save(con, engine):
         (create_unidades_table, 'unidades', 'unidades'),
         (create_tipo_unidade_table, 'tipoUnidade', 'unidades'),
         (create_horarios_table, 'horarios', 'unidades'),
-        (create_info_unidades_table, 'info_unidades', 'unidades'),
         (create_distritos_table, 'distritos', 'unidades'),
         (update_unidades_table, 'unidades', 'unidades'),
+        (create_login_senha_ds_table, 'login_senha_ds', 'unidades'),
+        (create_login_senha_unidades_table, 'login_senha_ds_unidades', 'unidades'),
 
         (create_servidores_table, 'servidores', 'profissionais_equipes'),
         (update_servidores_table, 'servidores', 'profissionais_equipes'),

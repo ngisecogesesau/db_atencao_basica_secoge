@@ -50,6 +50,10 @@ def process_unidades_data(dataframes):
         'planilha3': df_planilha3
     }
 
+def process_login_senha_unidades_data(dataframes):
+    df_login_senha_unidades = remove_espacos_e_acentos(dataframes['Login_senha_unidades'])
+    return df_login_senha_unidades
+
 def read_unidades():
     """
     Read, process, and model data from USF and Unidades files.
@@ -58,39 +62,50 @@ def read_unidades():
     """
     url_usf = "/Shared Documents/SESAU/BI_Indicadores_Estrategicos/ANALISE_PEAB_USF_29.02_DemandaBI.xlsx"
     url_unidades = "/Shared Documents/SESAU/BI_Indicadores_Estrategicos/Unidades.xlsx"
+    url_login_senha_unidades ="/Shared Documents/SESAU/BI_Indicadores_Estrategicos/Login_senha_unidades.xlsx"
 
     dataframes_usf = get_file_as_dataframes(url_usf)
     dataframes_unidades = get_file_as_dataframes(url_unidades)
-
+    dataframes_login_senha_unidades = get_file_as_dataframes(url_login_senha_unidades)
+    
     usf_data = process_usf_data(dataframes_usf)
     unidades_data = process_unidades_data(dataframes_unidades)
+    login_senha_unidades_data = process_login_senha_unidades_data(dataframes_login_senha_unidades)
 
-    data = {**usf_data, **unidades_data}
+    data = {**usf_data, **unidades_data, 'login_senha_unidades': login_senha_unidades_data}
 
     df_unidades = create_df_unidades(data)
     df_tipo_unidade = create_df_tipo_unidade(data)
     df_horarios = create_df_horarios(data)
     df_distritos = create_df_distritos(data)
-    df_login_senha = create_login_senha_ds(data)
+    df_login_senha_ds = create_login_senha_ds(data)
+    df_login_senha_unidades = create_login_senha_unidades(data)
+
 
     df_unidades = remove_espacos_e_acentos(df_unidades)
     df_tipo_unidade = remove_espacos_e_acentos(df_tipo_unidade)
     df_horarios = remove_espacos_e_acentos(df_horarios)
     df_distritos = remove_espacos_e_acentos(df_distritos)
-    df_login_senha = remove_espacos_e_acentos(df_login_senha)
+    df_login_senha_ds = remove_espacos_e_acentos(df_login_senha_ds)
+    df_login_senha_unidades = remove_espacos_e_acentos(df_login_senha_unidades)
+
 
     df_unidades = add_pk(df_unidades, 'unidades')
     df_tipo_unidade = add_pk(df_tipo_unidade, 'tipo_unidade')
     df_horarios = add_pk(df_horarios, 'horarios')
     df_distritos = add_pk(df_distritos, 'distritos')
-    df_login_senha_ds = add_pk(df_login_senha, 'login_senha')
+    df_login_senha_ds = add_pk(df_login_senha_ds, 'login_senha_ds')
+    df_login_senha_unidades = add_pk(df_login_senha_unidades, 'login_senha_unidades')
+
+
 
     return {
         'unidades': df_unidades,
         'tipo_unidade': df_tipo_unidade,
         'horarios': df_horarios,
         'distritos': df_distritos,
-        'login_senha_ds': df_login_senha_ds
+        'login_senha_ds': df_login_senha_ds,
+        'login_senha_unidades': df_login_senha_unidades
     }
 
 def create_df_unidades(data):
@@ -250,6 +265,26 @@ def create_login_senha_ds(data):
 
     df_login_senha_ds = pd.DataFrame(login_senha_ds)
     return df_login_senha_ds
+
+def create_login_senha_unidades(data):
+    if 'login_senha_unidades' not in data:
+        raise ValueError("'login_senha_unidades' not found in data")
+
+    df_login_senha_unidades = data['login_senha_unidades']
+    logging.info("Columns in 'login_senha_unidades': %s", df_login_senha_unidades.columns)
+
+    required_columns = ['login_us', 'senha', 'no_us']
+    missing_columns = [col for col in required_columns if col not in df_login_senha_unidades.columns]
+    if missing_columns:
+        raise KeyError(f"Missing columns in 'login_senha_unidades': {missing_columns}")
+
+    df_login_senha_unidades = df_login_senha_unidades[required_columns].rename(columns={
+        'login_us': 'login',
+        'senha': 'senha',
+        'no_us': 'no_us'
+    })
+
+    return df_login_senha_unidades
 
 def main():
     """

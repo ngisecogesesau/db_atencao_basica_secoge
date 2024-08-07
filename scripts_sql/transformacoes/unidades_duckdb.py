@@ -134,7 +134,7 @@ def update_unidades_table(con):
 
 def create_login_senha_ds_table(con):
     """
-    Create the 'login_senha' table in DuckDB and return it as a DataFrame.
+    Create the 'login_senha_ds' table in DuckDB and return it as a DataFrame.
     """
     con.execute("""
         CREATE TABLE login_senha_ds AS
@@ -150,6 +150,24 @@ def create_login_senha_ds_table(con):
 
     return df_login_senha_ds
 
+def create_login_senha_unidades_table(con):
+    """
+    Create the 'login_senha_unidades' table in DuckDB and return it as a DataFrame.
+    """
+    con.execute("""
+        CREATE TABLE login_senha_unidades AS
+        SELECT
+            *
+        FROM 
+            login_senha_unidades_temp;
+    """)
+    
+    df_login_senha_ds = con.execute("SELECT * FROM login_senha_unidades").fetchdf()
+    
+    logging.info("Tabela 'login_senha_unidades' criada com sucesso.")
+
+    return df_login_senha_ds
+
 if __name__ == '__main__':
     con = duckdb.connect(database=':memory:')
     data = read_unidades()
@@ -159,8 +177,5 @@ if __name__ == '__main__':
     df_distritos = create_distritos_table(con,data)
     df_update_unidades = update_unidades_table(con,data)
     df_login_senha_ds = create_login_senha_ds_table(con,data)
+    df_login_senha_unidades = create_login_senha_unidades_table(con,data)
     
-    logging.info("Table 'unidades' created successfully.")
-    logging.info("Table 'tipoUnidade' created successfully.")
-    logging.info("Table 'horarios' created successfully.")
-    logging.info("Table 'distritos' created successfully.")
