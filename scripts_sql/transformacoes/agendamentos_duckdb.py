@@ -1,13 +1,4 @@
-import duckdb
 import logging
-import sys
-import os
-
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-
-from src.data_processing.agendamentos import read_agendamentos
 
 def create_agendamentos_table(con):
     """
@@ -56,14 +47,3 @@ def update_agendamentos_table(con):
     logging.info("Tabela 'agendamentos' atualizada com sucesso.")
     
     return df_update_agendamentos
-
-if __name__ == '__main__':
-    con = duckdb.connect(database=':memory:')
-    data = read_agendamentos()
-    df_agendamentos = data['agendamentos']
-    df_agendamentos = create_agendamentos_table(con)
-    df_update_agendamentos = update_agendamentos_table(con)
-
-    logging.info("Table 'agendamentos' created successfully.")
-    logging.info("DataFrame 'agendamentos':\n%s", df_agendamentos)
-    

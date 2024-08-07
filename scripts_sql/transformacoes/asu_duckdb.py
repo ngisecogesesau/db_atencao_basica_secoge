@@ -1,8 +1,3 @@
-import duckdb
-from src.data_processing.asu import read_asu
-from src.data_processing.profissionais_equipes import read_profissionais_equipes
-from src.data_processing.unidades import read_unidades
-
 def create_asu_monitora_table(con):
 
     con.execute("""
@@ -111,18 +106,3 @@ def update_unidades_quipes_asu_relacionamento_unidades(con):
 
     df_update_unidades_equipes_asu = con.execute("SELECT * FROM unidades_equipes_asu").fetchdf()
     return df_update_unidades_equipes_asu
-
-if __name__ == '__main__':
-    con = duckdb.connect(database=':memory:')
-    data_asu = read_asu()
-    data_prof_equipes = read_profissionais_equipes()
-    data_unidades = read_unidades()
-    df_asu_monitora = create_asu_monitora_table(con, data_asu)
-    df_update_asu_monitora_table = update_asu_monitora_table(con, data_prof_equipes)
-    df_asu_classificacao = create_asu_classificacao_table(con, data_asu)
-    df_equipes_asu = create_equipes_asu_table(con, data_asu)
-    df_update_equipes_asu = update_equipes_asu_relacionamento_equipes(con, data_prof_equipes)
-    df_update_equipes_asu = update_equipes_asu_relacionamento_unidades(con, data_unidades)
-    df_unidades_equipes_asu = create_unidades_equipes_asu(con, data_asu)
-    df_update_unidades_equipes_asu = update_unidades_quipes_asu_relacionamento_unidades(con, data_unidades)
-    print('Tabelas asu criada com sucesso!')

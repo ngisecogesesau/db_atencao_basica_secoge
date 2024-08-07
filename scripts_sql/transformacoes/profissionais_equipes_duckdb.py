@@ -1,8 +1,3 @@
-
-import duckdb
-from src.data_processing.profissionais_equipes import read_profissionais_equipes
-from src.data_processing.unidades import read_unidades
-
 def create_servidores_table(con):
     """
     Create the 'servidores' table in DuckDB and return it as a DataFrame.
@@ -154,18 +149,4 @@ def update_gerentes_table(con):
     df_update_gerentes = con.execute("SELECT * FROM gerentes").fetchdf()
     return df_update_gerentes
 
-if __name__ == '__main__':
-    con = duckdb.connect(database=':memory:')
-    data_profissionais = read_profissionais_equipes()
-    data_unidades = read_unidades()
-    df_servidores = create_servidores_table(con, data_profissionais)
-    df_update_servidores = update_servidores_table(con, data_unidades)
-    df_equipes = create_equipes_table(con, data_profissionais)
-    df_update_equipes = update_equipes_table(con, data_unidades)
-    df_tipo_equipe = create_tipo_equipe_table(con, data_profissionais)
-    df_equipes_usf_mais = create_equipes_usf_mais_table(con, data_profissionais)
-    df_update_equipes_usf_mais = update_equipes_usf_mais_table(con,data_unidades)
-    df_gerentes = create_gerentes_table(con, data_profissionais)
-    df_update_gerentes = update_gerentes_table(con, data_unidades)
-    print("Tables created successfully.")
     
