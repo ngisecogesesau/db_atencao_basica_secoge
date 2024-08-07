@@ -1,22 +1,10 @@
-import os
-import sys
 import pandas as pd
 import logging
 import re
 
-current_dir = os.path.dirname(os.path.abspath(__file__))
-root_dir = os.path.dirname(os.path.dirname(current_dir))
-sys.path.append(root_dir)
-
 from src.utils.extract_sharepoint_df import get_file_as_dataframes
 from src.utils.excel_operations import remove_espacos_e_acentos
 from src.utils.add_primary_key import add_pk
-
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-
-current_dir = os.path.dirname(os.path.abspath(__file__))
-root_dir = os.path.dirname(os.path.dirname(current_dir))
-sys.path.append(root_dir)
 
 def remove_decimal_zero(df, columns):
     """
@@ -285,16 +273,3 @@ def create_login_senha_unidades(data):
     })
 
     return df_login_senha_unidades
-
-def main():
-    """
-    Main function for testing the script.
-    """
-    dfs = read_unidades()
-    for name, df in dfs.items():
-        logging.info("DataFrame '%s':", df)
-        logging.info("Columns: %s", list(df.columns))
-        logging.info("Head:\n%s", df.head())
-
-if __name__ == '__main__':
-    main()
