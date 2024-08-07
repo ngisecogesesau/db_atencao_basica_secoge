@@ -1,8 +1,9 @@
-import duckdb
 from src.data_processing.calendario import create_calendario
 
 def create_table(con):
-    # Criando a tabela no DuckDB
+    """
+    Create the 'calendario' table in DuckDB.
+    """
     con.execute("""
     CREATE TABLE calendario (
         id_calendario INTEGER PRIMARY KEY,
@@ -21,25 +22,25 @@ def create_table(con):
     """)
 
 def insert_data_calendario_table(con, df_calendario):
-    # Inserindo dados no DuckDB
+    """
+    Insert data into the 'calendario' table in DuckDB.
+    """
     con.append('calendario', df_calendario)
 
 def create_calendario_table(con):
-    # Criando a tabela
+    """
+    Create and populate the 'calendario' table in DuckDB and return it as a DataFrame.
+    """
+    # Create the table
     create_table(con)
     
-    # Gerando o DataFrame de calendário
+    # Generate the DataFrame for the calendar
     data_calendario = create_calendario()
-    df_calendario = data_calendario['calendario']  # Acessando o DataFrame retornado pela função create_calendario
+    df_calendario = data_calendario['calendario']  # Accessing the DataFrame returned by the function create_calendario
     
-    # Inserindo dados na tabela
+    # Insert data into the table
     insert_data_calendario_table(con, df_calendario)
     
-    # Recuperando dados inseridos para retorno
+    # Retrieve the inserted data to return
     df_calendario_duckdb = con.execute("SELECT * FROM calendario").fetchdf()
     return df_calendario_duckdb
-
-if __name__ == '__main__':
-    con = duckdb.connect(database=':memory:')
-    df_calendario_duckdb = create_calendario_table(con)
-    print(df_calendario_duckdb)
