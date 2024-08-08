@@ -1,15 +1,4 @@
-import duckdb
-import pandas as pd
-import os
-import sys
 import logging
-import re
-
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-
-from src.data_processing.unidades import read_unidades
 
 def create_unidades_table(con):
     """
@@ -23,7 +12,6 @@ def create_unidades_table(con):
             unidades_temp;
     """)
     
-
     df_unidades = con.execute("SELECT * FROM unidades").fetchdf()
 
     logging.info("Tabela 'unidades' criada com sucesso.")
@@ -84,33 +72,6 @@ def create_horarios_table(con):
     
     return df_horarios
 
-def create_info_unidades_table(con):
-    """
-    Create 'info_unidades' table in DuckDB using the processed DataFrame.
-    """
-    con.execute("""
-        CREATE TABLE info_unidades AS
-        SELECT
-            *
-        FROM 
-            info_unidades_temp;
-    """)
-    
-    con.execute("""
-        ALTER TABLE info_unidades ADD COLUMN fk_id_unidades INTEGER;
-        
-        UPDATE info_unidades
-        SET fk_id_unidades = unidades.id_unidades
-        FROM unidades
-        WHERE unidades.cnes = info_unidades.cnes;
-                """)
-    
-    df_info_unidades = con.execute("SELECT * FROM info_unidades").fetchdf()
-    
-    logging.info("Tabela 'info_unidades' criada com sucesso.")
-    
-    return df_info_unidades
-
 def create_distritos_table(con):
     """
     Create the 'distritos' table in DuckDB and return it as a DataFrame.
@@ -123,14 +84,6 @@ def create_distritos_table(con):
             distritos_temp;
     """)
     
-    con.execute("""
-        ALTER TABLE distritos ADD COLUMN fk_id_unidades INTEGER;
-        
-        UPDATE distritos
-        SET fk_id_unidades = unidades.id_unidades
-        FROM unidades
-        WHERE unidades.cnes = distritos.cnes;
-                """)
     df_distritos = con.execute("SELECT * FROM distritos").fetchdf()
     
     logging.info("Tabela 'distritos' criada com sucesso.")
@@ -138,8 +91,7 @@ def create_distritos_table(con):
     return df_distritos
 
 def update_unidades_table(con):
-    if 'tipoUnidade' in con.execute("SHOW TABLES").fetchall():
-        con.execute("""
+    con.execute("""
             ALTER TABLE unidades ADD COLUMN fk_id_tipo_unidade INTEGER;
             
             UPDATE unidades
@@ -152,25 +104,15 @@ def update_unidades_table(con):
             UPDATE unidades
             SET fk_id_horarios = horarios.id_horarios
             FROM horarios
-            WHERE unidades.horario = horarios.horario;  
-
-                    
-            ALTER TABLE unidades ADD COLUMN fk_id_info_unidades INTEGER;
-            
-            UPDATE unidades
-            SET fk_id_info_unidades = info_unidades.id_info_unidades
-            FROM info_unidades
-            WHERE unidades.cnes = info_unidades.cnes;     
+            WHERE unidades.horario = horarios.horario;     
                     
             ALTER TABLE unidades ADD COLUMN fk_id_distritos INTEGER;
             
             UPDATE unidades
             SET fk_id_distritos = distritos.id_distritos
             FROM distritos
-            WHERE unidades.cnes = distritos.cnes;   
+            WHERE unidades.distrito = sigla_distrito;   
     """)
-    else:
-        logging.warning("Tabela tipoUnidade não encontrada!")
 
     df_update_unidades = con.execute("SELECT * FROM unidades").fetchdf()
 
@@ -178,17 +120,39 @@ def update_unidades_table(con):
     
     return df_update_unidades
 
-if __name__ == '__main__':
-    con = duckdb.connect(database=':memory:')
-    data = read_unidades()
-    df_unidades = create_unidades_table(con, data)
-    df_tipo_unidade = create_tipo_unidade_table(con, data)
-    df_horarios = create_horarios_table(con, data)
-    df_tipo_unidade = create_info_unidades_table(con,data)
-    df_distritos = create_distritos_table(con,data)
-    df_update_unidades = update_unidades_table(con,data)
+def create_login_senha_ds_table(con):
+    """
+    Create the 'login_senha_ds' table in DuckDB and return it as a DataFrame.
+    """
+    con.execute("""
+        CREATE TABLE login_senha_ds AS
+        SELECT
+            *
+        FROM 
+            login_senha_ds_temp;
+    """)
     
-    logging.info("Table 'unidades' created successfully.")
-    logging.info("Table 'tipoUnidade' created successfully.")
-    logging.info("Table 'horarios' created successfully.")
-    logging.info("DataFrame 'horarios':\n%s", df_horarios)
+    df_login_senha_ds = con.execute("SELECT * FROM login_senha_ds").fetchdf()
+    
+    logging.info("Tabela 'login_senha_ds' criada com sucesso.")
+
+    return df_login_senha_ds
+
+def create_login_senha_unidades_table(con):
+    """
+    Create the 'login_senha_unidades' table in DuckDB and return it as a DataFrame.
+    """
+    con.execute("""
+        CREATE TABLE login_senha_unidades AS
+        SELECT
+            *
+        FROM 
+            login_senha_unidades_temp;
+    """)
+    
+    df_login_senha_ds = con.execute("SELECT * FROM login_senha_unidades").fetchdf()
+    
+    logging.info("Tabela 'login_senha_unidades' criada com sucesso.")
+
+    return df_login_senha_ds
+ 

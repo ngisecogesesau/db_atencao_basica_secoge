@@ -1,22 +1,10 @@
-import os
-import sys
 import pandas as pd
 import logging
 import re
 
-current_dir = os.path.dirname(os.path.abspath(__file__))
-root_dir = os.path.dirname(os.path.dirname(current_dir))
-sys.path.append(root_dir)
-
 from src.utils.extract_sharepoint_df import get_file_as_dataframes
 from src.utils.excel_operations import remove_espacos_e_acentos
 from src.utils.add_primary_key import add_pk
-
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-
-current_dir = os.path.dirname(os.path.abspath(__file__))
-root_dir = os.path.dirname(os.path.dirname(current_dir))
-sys.path.append(root_dir)
 
 def remove_decimal_zero(df, columns):
     """
@@ -50,6 +38,10 @@ def process_unidades_data(dataframes):
         'planilha3': df_planilha3
     }
 
+def process_login_senha_unidades_data(dataframes):
+    df_login_senha_unidades = remove_espacos_e_acentos(dataframes['Login_senha_unidades'])
+    return df_login_senha_unidades
+
 def read_unidades():
     """
     Read, process, and model data from USF and Unidades files.
@@ -58,39 +50,50 @@ def read_unidades():
     """
     url_usf = "/Shared Documents/SESAU/BI_Indicadores_Estrategicos/ANALISE_PEAB_USF_29.02_DemandaBI.xlsx"
     url_unidades = "/Shared Documents/SESAU/BI_Indicadores_Estrategicos/Unidades.xlsx"
+    url_login_senha_unidades ="/Shared Documents/SESAU/BI_Indicadores_Estrategicos/Login_senha_unidades.xlsx"
 
     dataframes_usf = get_file_as_dataframes(url_usf)
     dataframes_unidades = get_file_as_dataframes(url_unidades)
-
+    dataframes_login_senha_unidades = get_file_as_dataframes(url_login_senha_unidades)
+    
     usf_data = process_usf_data(dataframes_usf)
     unidades_data = process_unidades_data(dataframes_unidades)
+    login_senha_unidades_data = process_login_senha_unidades_data(dataframes_login_senha_unidades)
 
-    data = {**usf_data, **unidades_data}
+    data = {**usf_data, **unidades_data, 'login_senha_unidades': login_senha_unidades_data}
 
     df_unidades = create_df_unidades(data)
     df_tipo_unidade = create_df_tipo_unidade(data)
     df_horarios = create_df_horarios(data)
-    df_info_unidades = create_df_info_unidades(data)
     df_distritos = create_df_distritos(data)
+    df_login_senha_ds = create_login_senha_ds(data)
+    df_login_senha_unidades = create_login_senha_unidades(data)
+
 
     df_unidades = remove_espacos_e_acentos(df_unidades)
     df_tipo_unidade = remove_espacos_e_acentos(df_tipo_unidade)
     df_horarios = remove_espacos_e_acentos(df_horarios)
-    df_info_unidades = remove_espacos_e_acentos(df_info_unidades)
     df_distritos = remove_espacos_e_acentos(df_distritos)
+    df_login_senha_ds = remove_espacos_e_acentos(df_login_senha_ds)
+    df_login_senha_unidades = remove_espacos_e_acentos(df_login_senha_unidades)
+
 
     df_unidades = add_pk(df_unidades, 'unidades')
     df_tipo_unidade = add_pk(df_tipo_unidade, 'tipo_unidade')
     df_horarios = add_pk(df_horarios, 'horarios')
-    df_info_unidades = add_pk(df_info_unidades, 'info_unidades')
     df_distritos = add_pk(df_distritos, 'distritos')
+    df_login_senha_ds = add_pk(df_login_senha_ds, 'login_senha_ds')
+    df_login_senha_unidades = add_pk(df_login_senha_unidades, 'login_senha_unidades')
+
+
 
     return {
         'unidades': df_unidades,
         'tipo_unidade': df_tipo_unidade,
         'horarios': df_horarios,
-        'info_unidades': df_info_unidades,
-        'distritos': df_distritos
+        'distritos': df_distritos,
+        'login_senha_ds': df_login_senha_ds,
+        'login_senha_unidades': df_login_senha_unidades
     }
 
 def create_df_unidades(data):
@@ -207,74 +210,69 @@ def create_df_horarios(data):
 
     return df_horarios
 
-def create_df_info_unidades(data):
-    if 'usf_plus' not in data:
-        raise ValueError("'usf_plus' not found in data")
-    
-    df_usf_plus = data['usf_plus']
-    
-    required_columns = [
-        'cnes', 'cnes_padrao', 'nome', 'perfil', 'distrito', 'complexidade',
-        'no_da_esf', 'turno_da_esf', 'horario_da_esf', 'medico_da_esf', 
-        'enfermeiro_esf', 'tecnico_esf', 'acs', 'no_esb', 'turno_esb', 
-        'horario_esb', 'cir._dentista', 'asb', 'recepcionista', 
-        'turno_do_recepcionista', 'horario_do_recepcionista', 'regulacao', 
-        'turno_do_prof._regulacao', 'horario_do_prof._regulacao', 'farmacia', 
-        'turno_do_prof._farmacia', 'horario_do_prof._farmacia'
-    ]
-    
-    missing_columns = [col for col in required_columns if col not in df_usf_plus.columns]
-    if missing_columns:
-        raise KeyError(f"Missing columns in 'usf_plus': {missing_columns}")
-
-    df_info_unidades = df_usf_plus[required_columns].rename(columns={
-        'cnes': 'cnes',
-        'no_da_esf': 'n_esf',
-        'turno_da_esf': 'turno_da_esf',
-        'horario_da_esf': 'horario_da_esf',
-        'medico_da_esf': 'medico_da_esf',
-        'enfermeiro_esf': 'enfermeiro_esf',
-        'tecnico_esf': 'tecnico_esf',
-        'acs': 'acs',
-        'no_esb': 'n_esb',
-        'turno_esb': 'turno_esb',
-        'horario_esb': 'horario_esb',
-        'cir._dentista': 'cir_dentista',
-        'asb': 'asb',
-        'recepcionista': 'recepcionista',
-        'turno_do_recepcionista': 'turno_do_recepcionista',
-        'horario_do_recepcionista': 'horario_do_recepcionista',
-        'regulacao': 'regulacao',
-        'turno_do_prof._regulacao': 'turno_do_prof_regulacao',
-        'horario_do_prof._regulacao': 'horario_do_prof_regulacao',
-        'farmacia': 'farmacia',
-        'turno_do_prof._farmacia': 'turno_do_prof_farmacia',
-        'horario_do_prof._farmacia': 'horario_do_prof_farmacia'
-    })
-
-    return df_info_unidades
-
 def create_df_distritos(data):
-    if 'planilha1' not in data:
-        raise ValueError("'planilha1' not found in data")
-    
-    df_planilha1 = data['planilha1']
-    logging.info("Columns in 'planilha1': %s", df_planilha1.columns)
-    
-    required_columns = ['cnes_padrao', 'distrito']
-    missing_columns = [col for col in required_columns if col not in df_planilha1.columns]
-    if missing_columns:
-        raise KeyError(f"Missing columns in 'planilha1': {missing_columns}")
 
-    df_planilha1 = remove_decimal_zero(df_planilha1, ['cnes_padrao'])
+    def int_to_roman(input):
+        if not isinstance(input, int):
+            raise TypeError("expected integer, got %s" % type(input))
+        if not 0 < input < 4000:
+            raise ValueError("Argument must be between 1 and 3999")
+        int_to_roman_dict = [
+            (1000, "M"), (900, "CM"), (500, "D"), (400, "CD"),
+            (100, "C"), (90, "XC"), (50, "L"), (40, "XL"),
+            (10, "X"), (9, "IX"), (5, "V"), (4, "IV"),
+            (1, "I")
+        ]
+        result = []
+        for (integer, numeral) in int_to_roman_dict:
+            count = input // integer
+            result.append(numeral * count)
+            input -= integer * count
+        return "".join(result)
 
-    df_distritos = df_planilha1[['cnes_padrao', 'distrito']].drop_duplicates().rename(columns={'distrito': 'sigla_distrito','cnes_padrao':'cnes'})
+    distritos = {
+        'nome_distrito': [f"Distrito {int_to_roman(i)}" for i in range(1, 9)],
+        'sigla_distrito': [f"{int_to_roman(i)}" for i in range(1, 9)]
+    }
 
-    df_distritos['nome_distrito'] = df_distritos['sigla_distrito'].apply(lambda x: f"Distrito {x}")
+    df_distritos = pd.DataFrame(distritos)
 
-    df_distritos = df_distritos[['nome_distrito', 'sigla_distrito', 'cnes']]
+    logging.info("Tabela df_distritos criada manualmente: %s", df_distritos)
 
     return df_distritos
+
+def create_login_senha_ds(data):
+    login_senha_ds = {
+        'login': ['SESAU', 'SESAU', 'SESAU', 'SESAU', 'SESAU', 'SESAU', 'SESAU', 'SESAU',
+                  'DS I', 'DS II', 'DS III', 'DS IV', 'DS V', 'DS VI', 'DS VII', 'DS VIII'],
+        'senha': [3216, 3216, 3216, 3216, 3216, 3216, 3216, 3216, 3097,
+                  3017, 3226, 3117, 3236, 3157, 3316, 3386],
+        'ds_romano': ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII',
+               'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII']
+    }
+
+    df_login_senha_ds = pd.DataFrame(login_senha_ds)
+    return df_login_senha_ds
+
+def create_login_senha_unidades(data):
+    if 'login_senha_unidades' not in data:
+        raise ValueError("'login_senha_unidades' not found in data")
+
+    df_login_senha_unidades = data['login_senha_unidades']
+    logging.info("Columns in 'login_senha_unidades': %s", df_login_senha_unidades.columns)
+
+    required_columns = ['login_us', 'senha', 'no_us']
+    missing_columns = [col for col in required_columns if col not in df_login_senha_unidades.columns]
+    if missing_columns:
+        raise KeyError(f"Missing columns in 'login_senha_unidades': {missing_columns}")
+
+    df_login_senha_unidades = df_login_senha_unidades[required_columns].rename(columns={
+        'login_us': 'login',
+        'senha': 'senha',
+        'no_us': 'no_us'
+    })
+
+    return df_login_senha_unidades
 
 def main():
     """
