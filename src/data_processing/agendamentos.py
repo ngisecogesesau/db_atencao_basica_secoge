@@ -35,7 +35,7 @@ def read_agendamentos():
         
     df_agendamentos = df_agendamentos[required_columns]
     df_agendamentos = remove_espacos_e_acentos(df_agendamentos)
-    df_agendamentos = add_pk(df_agendamentos, 'equipes')
+    df_agendamentos = add_pk(df_agendamentos, 'agendamentos')
 
     return {
         'agendamentos': df_agendamentos,
