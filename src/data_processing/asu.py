@@ -17,7 +17,7 @@ def read_asu():
     df_asu_monitora = get_file_as_dataframes(url_asu_monitora)
 
     asu_monitora_columns = ['mes', 'ine', 'resposta', 'tipo_resposta', 'total_respostas']
-    df_asu_monitora = df_asu_monitora['in']    
+    df_asu_monitora = df_asu_monitora['faixas_asu']    
     df_asu_monitora = df_asu_monitora[asu_monitora_columns]
     df_asu_monitora = remove_espacos_e_acentos(df_asu_monitora)
     df_asu_monitora = add_pk(df_asu_monitora, 'asu_monitora')
