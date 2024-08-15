@@ -105,4 +105,8 @@ def update_unidades_quipes_asu_relacionamento_unidades(con):
     """)
 
     df_update_unidades_equipes_asu = con.execute("SELECT * FROM unidades_equipes_asu").fetchdf()
+<<<<<<< HEAD
     return df_update_unidades_equipes_asu
+=======
+    return df_update_unidades_equipes_asu
+>>>>>>> c296ea09b863e68466b5771cf7be9ecd2144dfd6

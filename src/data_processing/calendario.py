@@ -16,6 +16,10 @@ def create_calendario():
             meses_completos = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
             return meses_completos[mes-1]
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> c296ea09b863e68466b5771cf7be9ecd2144dfd6
         delta = end_date - start_date
         data = []
 
