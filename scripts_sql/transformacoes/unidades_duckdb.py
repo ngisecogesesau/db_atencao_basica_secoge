@@ -146,8 +146,4 @@ def create_login_senha_unidades_table(con):
     logging.info("Tabela 'login_senha_unidades' criada com sucesso.")
 
     return df_login_senha_ds
-<<<<<<< HEAD
  
-=======
- 
->>>>>>> c296ea09b863e68466b5771cf7be9ecd2144dfd6
