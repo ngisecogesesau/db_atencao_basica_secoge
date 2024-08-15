@@ -46,8 +46,4 @@ def update_agendamentos_table(con):
 
     logging.info("Tabela 'agendamentos' atualizada com sucesso.")
     
-<<<<<<< HEAD
     return df_update_agendamentos
-=======
-    return df_update_agendamentos
->>>>>>> c296ea09b863e68466b5771cf7be9ecd2144dfd6
