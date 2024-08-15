@@ -57,7 +57,7 @@ def read_profissionais_equipes():
 
     gerentes_columns = ['DS', 'CNES', 'UNIDADE', 'GERENTE','CARGO', 'CPF', 'MATRÍCULA', 'CONTATO', 'E-MAIL']
 
-    df_gerentes = df_gerentes['Atenção Básica']
+    df_gerentes = df_gerentes['atencao_basica']
     df_gerentes = df_gerentes[gerentes_columns]
     df_gerentes = remove_espacos_e_acentos(df_gerentes)
     df_gerentes = add_pk(df_gerentes, 'gerentes')
