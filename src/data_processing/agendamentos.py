@@ -1,11 +1,5 @@
-import os
-import sys
 import pandas as pd
 import logging
-
-current_dir = os.path.dirname(os.path.abspath(__file__))
-root_dir = os.path.dirname(os.path.dirname(current_dir))
-sys.path.append(root_dir)
 
 from src.utils.extract_sharepoint_df import get_file_as_dataframes
 from src.utils.excel_operations import remove_espacos_e_acentos
@@ -41,18 +35,8 @@ def read_agendamentos():
         
     df_agendamentos = df_agendamentos[required_columns]
     df_agendamentos = remove_espacos_e_acentos(df_agendamentos)
-    df_agendamentos = add_pk(df_agendamentos, 'equipes')
+    df_agendamentos = add_pk(df_agendamentos, 'agendamentos')
 
     return {
         'agendamentos': df_agendamentos,
     }
-
-def main():
-    """
-    Main function for testing the script.
-    """
-    df = read_agendamentos()
-    logging.info("DataFrame '%s':", df)
-
-if __name__ == '__main__':
-    main()

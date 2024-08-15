@@ -1,0 +1,284 @@
+<mxfile host="Electron" modified="2024-07-25T12:36:50.386Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.6.4 Chrome/124.0.6367.207 Electron/30.0.6 Safari/537.36" etag="JnUu7TpV6_0jhZagdk91" version="24.6.4" type="device">
+  <diagram name="Página-1" id="5TVHV0R-1KuY4iUAYInZ">
+    <mxGraphModel dx="3059" dy="2294" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="BSECcPK4Nis4ngSKChy8-1" value="schema unidades" style="text;strokeColor=none;fillColor=none;html=1;fontSize=24;fontStyle=1;verticalAlign=middle;align=center;" vertex="1" parent="1">
+          <mxGeometry x="-290" y="-225" width="160" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-2" value="&lt;div style=&quot;box-sizing:border-box;width:100%;background:#e4e4e4;padding:2px;&quot;&gt;&lt;b&gt;unidades&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;box-sizing:border-box;width:100%;background:#e4e4e4;padding:2px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;table style=&quot;width:100%;font-size:1em;&quot; cellpadding=&quot;2&quot; cellspacing=&quot;0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;span style=&quot;color: rgba(0, 0, 0, 0); font-family: monospace; font-size: 0px;&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22%26lt%3Bdiv%20style%3D%26quot%3Bbox-sizing%3Aborder-box%3Bwidth%3A100%25%3Bbackground%3A%23e4e4e4%3Bpadding%3A2px%3B%26quot%3B%26gt%3BUSF%2B%26lt%3B%2Fdiv%26gt%3B%26lt%3Bdiv%20style%3D%26quot%3Bbox-sizing%3Aborder-box%3Bwidth%3A100%25%3Bbackground%3A%23e4e4e4%3Bpadding%3A2px%3B%26quot%3B%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3B%2Fdiv%26gt%3B%26lt%3Btable%20style%3D%26quot%3Bwidth%3A100%25%3Bfont-size%3A1em%3B%26quot%3B%20cellpadding%3D%26quot%3B2%26quot%3B%20cellspacing%3D%26quot%3B0%26quot%3B%26gt%3B%26lt%3Btbody%26gt%3B%26lt%3Btr%26gt%3B%26lt%3Btd%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3B%2Ftd%26gt%3B%26lt%3Btd%26gt%3BCNES%26lt%3Bbr%26gt%3Bcnes_padrao%26lt%3Bbr%26gt%3Bnome%26lt%3Bbr%26gt%3Bperfil%26lt%3Bbr%26gt%3Bdistrito%26lt%3Bbr%26gt%3Bcomplexidade%26lt%3Bbr%26gt%3Bn_esf%26lt%3Bbr%26gt%3Bturno_esf%26lt%3Bbr%26gt%3Bhorario_esf%26lt%3Bbr%26gt%3Bqtd_medico_esf%26lt%3Bbr%26gt%3Bqtd_enfermeiro_esf%26lt%3Bbr%26gt%3Bqtd_tecnico_esf%26lt%3Bbr%26gt%3Bacs%26lt%3Bbr%26gt%3Bn_esb%26lt%3Bbr%26gt%3Bturno_esb%26lt%3Bbr%26gt%3Bhorario_esb%26lt%3Bbr%26gt%3Bcir_dentista%20(0%20ou%201)%26lt%3Bbr%26gt%3Basb%20(0%20ou%201)%26lt%3Bbr%26gt%3Brecepcionista%20(0%20ou%201)%26lt%3Bbr%26gt%3Bturno_recepcionista%26lt%3Bbr%26gt%3Bhorario_recepcionista%26lt%3Bbr%26gt%3Bregulacao%20(0%20ou%201)%26lt%3Bbr%26gt%3Bturno_prof_regulacao%26lt%3Bbr%26gt%3Bhorario_prof_regulacao%26lt%3Bbr%26gt%3Bfarmacia%20(0%20ou%201)%26lt%3Bbr%26gt%3Bturno_prof_farmacia%26lt%3Bbr%26gt%3Bhorario_prof_farmacia%26lt%3Bbr%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3B%2Ftd%26gt%3B%26lt%3B%2Ftr%26gt%3B%26lt%3Btr%26gt%3B%26lt%3Btd%26gt%3B%26lt%3B%2Ftd%26gt%3B%26lt%3Btd%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3B%2Ftd%26gt%3B%26lt%3B%2Ftr%26gt%3B%26lt%3Btr%26gt%3B%26lt%3Btd%26gt%3B%26lt%3B%2Ftd%26gt%3B%26lt%3Btd%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3B%2Ftd%26gt%3B%26lt%3B%2Ftr%26gt%3B%26lt%3B%2Ftbody%26gt%3B%26lt%3B%2Ftable%26gt%3B%22%20style%3D%22verticalAlign%3Dtop%3Balign%3Dleft%3Boverflow%3Dfill%3Bhtml%3D1%3Brounded%3D0%3Bshadow%3D0%3Bcomic%3D0%3BlabelBackgroundColor%3Dnone%3BstrokeWidth%3D1%3BfontFamily%3DVerdana%3BfontSize%3D12%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22-350%22%20y%3D%2290%22%20width%3D%22260%22%20height%3D%22450%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3EpkPKp&lt;/span&gt;&lt;span id=&quot;docs-internal-guid-9bf1a6af-7fff-64a5-996d-017bda13f4cf&quot;&gt;&lt;b&gt;PK&lt;/b&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp;id_unidades ID SERIAL&amp;nbsp;&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&amp;nbsp;cnes_padrao &lt;b&gt;VARCHAR(20)&amp;nbsp;&lt;/b&gt;&lt;br&gt;&lt;/span&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px; border: none; padding: 0px;&quot;&gt;&lt;span&gt;nome &lt;b&gt;VARCHAR(255)&lt;/b&gt;&lt;/span&gt;&lt;span&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/span&gt;&lt;span&gt;unidade &lt;b&gt;VARCHAR(100)&lt;br&gt;&lt;/b&gt;&lt;/span&gt;&lt;span&gt;cod_unidade &lt;b&gt;VARCHAR(50)&lt;br&gt;&lt;/b&gt;&lt;/span&gt;&lt;span&gt;x_long &lt;b&gt;DECIMAL(10, 6)&lt;br&gt;&lt;/b&gt;&lt;/span&gt;&lt;span&gt;y_lat &lt;b&gt;DECIMAL(10, 6)&lt;/b&gt;&lt;/span&gt;&lt;/blockquote&gt;&lt;b&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;/b&gt;&lt;b&gt;FK&amp;nbsp;&lt;/b&gt;fk_id_tipo_unidade&lt;b&gt;&lt;br&gt;&lt;/b&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;b&gt;FK&amp;nbsp;&lt;/b&gt;fk_id_horarios&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;b&gt;FK&amp;nbsp;&lt;/b&gt;fk_id_info_unidades&lt;br&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;b&gt;FK&amp;nbsp;&lt;/b&gt;fk_id_distritos&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12" vertex="1" parent="1">
+          <mxGeometry x="-730" y="-150" width="310" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-3" value="&lt;div style=&quot;box-sizing:border-box;width:100%;background:#e4e4e4;padding:2px;&quot;&gt;&lt;b&gt;tipoUnidade&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;box-sizing:border-box;width:100%;background:#e4e4e4;padding:2px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;table style=&quot;width:100%;font-size:1em;&quot; cellpadding=&quot;2&quot; cellspacing=&quot;0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;span style=&quot;color: rgba(0, 0, 0, 0); font-family: monospace; font-size: 0px;&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22%26lt%3Bdiv%20style%3D%26quot%3Bbox-sizing%3Aborder-box%3Bwidth%3A100%25%3Bbackground%3A%23e4e4e4%3Bpadding%3A2px%3B%26quot%3B%26gt%3BUSF%2B%26lt%3B%2Fdiv%26gt%3B%26lt%3Bdiv%20style%3D%26quot%3Bbox-sizing%3Aborder-box%3Bwidth%3A100%25%3Bbackground%3A%23e4e4e4%3Bpadding%3A2px%3B%26quot%3B%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3B%2Fdiv%26gt%3B%26lt%3Btable%20style%3D%26quot%3Bwidth%3A100%25%3Bfont-size%3A1em%3B%26quot%3B%20cellpadding%3D%26quot%3B2%26quot%3B%20cellspacing%3D%26quot%3B0%26quot%3B%26gt%3B%26lt%3Btbody%26gt%3B%26lt%3Btr%26gt%3B%26lt%3Btd%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3B%2Ftd%26gt%3B%26lt%3Btd%26gt%3BCNES%26lt%3Bbr%26gt%3Bcnes_padrao%26lt%3Bbr%26gt%3Bnome%26lt%3Bbr%26gt%3Bperfil%26lt%3Bbr%26gt%3Bdistrito%26lt%3Bbr%26gt%3Bcomplexidade%26lt%3Bbr%26gt%3Bn_esf%26lt%3Bbr%26gt%3Bturno_esf%26lt%3Bbr%26gt%3Bhorario_esf%26lt%3Bbr%26gt%3Bqtd_medico_esf%26lt%3Bbr%26gt%3Bqtd_enfermeiro_esf%26lt%3Bbr%26gt%3Bqtd_tecnico_esf%26lt%3Bbr%26gt%3Bacs%26lt%3Bbr%26gt%3Bn_esb%26lt%3Bbr%26gt%3Bturno_esb%26lt%3Bbr%26gt%3Bhorario_esb%26lt%3Bbr%26gt%3Bcir_dentista%20(0%20ou%201)%26lt%3Bbr%26gt%3Basb%20(0%20ou%201)%26lt%3Bbr%26gt%3Brecepcionista%20(0%20ou%201)%26lt%3Bbr%26gt%3Bturno_recepcionista%26lt%3Bbr%26gt%3Bhorario_recepcionista%26lt%3Bbr%26gt%3Bregulacao%20(0%20ou%201)%26lt%3Bbr%26gt%3Bturno_prof_regulacao%26lt%3Bbr%26gt%3Bhorario_prof_regulacao%26lt%3Bbr%26gt%3Bfarmacia%20(0%20ou%201)%26lt%3Bbr%26gt%3Bturno_prof_farmacia%26lt%3Bbr%26gt%3Bhorario_prof_farmacia%26lt%3Bbr%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3B%2Ftd%26gt%3B%26lt%3B%2Ftr%26gt%3B%26lt%3Btr%26gt%3B%26lt%3Btd%26gt%3B%26lt%3B%2Ftd%26gt%3B%26lt%3Btd%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3B%2Ftd%26gt%3B%26lt%3B%2Ftr%26gt%3B%26lt%3Btr%26gt%3B%26lt%3Btd%26gt%3B%26lt%3B%2Ftd%26gt%3B%26lt%3Btd%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3B%2Ftd%26gt%3B%26lt%3B%2Ftr%26gt%3B%26lt%3B%2Ftbody%26gt%3B%26lt%3B%2Ftable%26gt%3B%22%20style%3D%22verticalAlign%3Dtop%3Balign%3Dleft%3Boverflow%3Dfill%3Bhtml%3D1%3Brounded%3D0%3Bshadow%3D0%3Bcomic%3D0%3BlabelBackgroundColor%3Dnone%3BstrokeWidth%3D1%3BfontFamily%3DVerdana%3BfontSize%3D12%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22-350%22%20y%3D%2290%22%20width%3D%22260%22%20height%3D%22450%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3EpkPKp&lt;/span&gt;&lt;span id=&quot;docs-internal-guid-9bf1a6af-7fff-64a5-996d-017bda13f4cf&quot;&gt;&lt;b&gt;PK&lt;/b&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; id_tipo_unidade &lt;b&gt;SERIAL&lt;/b&gt;&amp;nbsp;&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&amp;nbsp; tipo_unidade&amp;nbsp;&lt;b&gt;VARCHAR(10)&amp;nbsp;&lt;/b&gt;&lt;br&gt;&lt;/span&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px; border: none; padding: 0px;&quot;&gt;descricao &lt;b&gt;VARCHAR(255)&lt;/b&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px; border: none; padding: 0px;&quot;&gt;&lt;b style=&quot;font-size: 1em; background-color: initial;&quot;&gt;FK&amp;nbsp;&lt;/b&gt;fk_id_unidades&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/blockquote&gt;&lt;span&gt;&lt;br&gt;&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12" vertex="1" parent="1">
+          <mxGeometry x="-250" y="-130" width="310" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-4" value="&lt;div style=&quot;box-sizing:border-box;width:100%;background:#e4e4e4;padding:2px;&quot;&gt;&lt;b&gt;horarios&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;box-sizing:border-box;width:100%;background:#e4e4e4;padding:2px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;b&gt;PK&lt;/b&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp;id_horarios SERIAL PRIMARY KEY&lt;div&gt;&lt;div&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px; border: none; padding: 0px;&quot;&gt;&lt;div&gt;&lt;div&gt;tipo_horario&amp;nbsp; VARCHAR(50) -- &quot;ATENDIMENTO&quot; &quot;RECEPCAO&quot;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;horario_inicio TIME&lt;/div&gt;&lt;/div&gt;&lt;div&gt;horario_fim TIME&lt;/div&gt;&lt;div&gt;&lt;b&gt;FK&amp;nbsp;&lt;/b&gt;fk_id_unidades&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/blockquote&gt;&lt;div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;table style=&quot;width:100%;font-size:1em;&quot; cellpadding=&quot;2&quot; cellspacing=&quot;0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;span id=&quot;docs-internal-guid-9bf1a6af-7fff-64a5-996d-017bda13f4cf&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12" vertex="1" parent="1">
+          <mxGeometry x="-720" y="140" width="420" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-5" value="&lt;div style=&quot;box-sizing:border-box;width:100%;background:#e4e4e4;padding:2px;&quot;&gt;&lt;b&gt;info_unidades&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;box-sizing:border-box;width:100%;background:#e4e4e4;padding:2px;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;b&gt;PK&amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;/b&gt;id_info_unidades&lt;b&gt; SERIAL&lt;/b&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&amp;nbsp; cnes_padrao &lt;b&gt;VARCHAR(20)&lt;/b&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px; border: none; padding: 0px;&quot;&gt;&lt;div&gt;qtd_recepcionista&lt;b&gt; INT&lt;/b&gt;&lt;/div&gt;&lt;div&gt;qtd_farmacia &lt;b&gt;INT&lt;/b&gt;&lt;/div&gt;&lt;div&gt;regulacao &lt;b&gt;BOOLEAN&lt;/b&gt;&lt;/div&gt;&lt;div&gt;acs &lt;b&gt;BOOLEAN&lt;/b&gt;&lt;/div&gt;&lt;div&gt;n_esb&lt;b&gt; INT&lt;/b&gt;&lt;/div&gt;&lt;div&gt;cir_dentista &lt;b&gt;BOOLEAN&lt;/b&gt;&lt;/div&gt;&lt;div&gt;asb &lt;b&gt;BOOLEAN&lt;/b&gt;&lt;/div&gt;&lt;div&gt;recepcionista &lt;b&gt;BOOLEAN&lt;/b&gt;&lt;/div&gt;&lt;/blockquote&gt;&lt;div&gt;&lt;b&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;&lt;/b&gt;&lt;b style=&quot;background-color: initial;&quot;&gt;FK&amp;nbsp;&lt;/b&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;fk_id_unidades&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;table style=&quot;width:100%;font-size:1em;&quot; cellpadding=&quot;2&quot; cellspacing=&quot;0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;span id=&quot;docs-internal-guid-9bf1a6af-7fff-64a5-996d-017bda13f4cf&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12" vertex="1" parent="1">
+          <mxGeometry x="-151" y="100" width="380" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-6" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-770" y="391" as="sourcePoint" />
+            <mxPoint x="430" y="-230" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-770" y="-230" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-7" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="430" y="390" as="sourcePoint" />
+            <mxPoint x="430" y="-230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-8" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-770" y="391" as="sourcePoint" />
+            <mxPoint x="430" y="391" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-9" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-770" y="-190" as="sourcePoint" />
+            <mxPoint x="430" y="-190" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-10" value="" style="endArrow=none;html=1;rounded=0;exitX=-0.01;exitY=0.446;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="BSECcPK4Nis4ngSKChy8-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-350" y="-20" as="sourcePoint" />
+            <mxPoint x="-370" y="-72" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-11" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-370" y="-10" as="sourcePoint" />
+            <mxPoint x="-370" y="-70" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-12" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-420" y="-10" as="sourcePoint" />
+            <mxPoint x="-370" y="-10" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-13" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-750" y="180" as="sourcePoint" />
+            <mxPoint x="-750" y="10" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-14" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-730" y="10" as="sourcePoint" />
+            <mxPoint x="-750" y="10" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-15" value="" style="endArrow=none;html=1;rounded=0;exitX=0.007;exitY=0.182;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="BSECcPK4Nis4ngSKChy8-4">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-730" y="180" as="sourcePoint" />
+            <mxPoint x="-750" y="180" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-16" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-240" y="140" as="sourcePoint" />
+            <mxPoint x="-151" y="140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-17" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-240" y="30" as="sourcePoint" />
+            <mxPoint x="-240" y="140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-18" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-420" y="30" as="sourcePoint" />
+            <mxPoint x="-240" y="30" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-19" value="&lt;div style=&quot;box-sizing:border-box;width:100%;background:#e4e4e4;padding:2px;&quot;&gt;&lt;b&gt;tab_distritos&lt;/b&gt;&lt;/div&gt;&lt;table style=&quot;width:100%;font-size:1em;&quot; cellpadding=&quot;2&quot; cellspacing=&quot;0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;br&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;PK&amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;/b&gt;id_distrito&lt;br&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px; border: none; padding: 0px;&quot;&gt;nome_distrito&lt;br&gt;sigla_distrito&lt;/blockquote&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12" vertex="1" parent="1">
+          <mxGeometry x="170" y="-150" width="180" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-20" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="120" y="-130" as="sourcePoint" />
+            <mxPoint x="120" y="-160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-21" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-390" y="-160" as="sourcePoint" />
+            <mxPoint x="120" y="-160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-22" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="120" y="-130" as="sourcePoint" />
+            <mxPoint x="170" y="-130" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-23" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-390" y="40" as="sourcePoint" />
+            <mxPoint x="-390" y="-160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-24" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-420" y="40" as="sourcePoint" />
+            <mxPoint x="-390" y="40" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-25" value="schema funcionarios_equipes" style="text;strokeColor=none;fillColor=none;html=1;fontSize=24;fontStyle=1;verticalAlign=middle;align=center;" vertex="1" parent="1">
+          <mxGeometry x="1313" y="-176" width="160" height="41" as="geometry" />
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-26" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="620" y="395" as="sourcePoint" />
+            <mxPoint x="620" y="-185" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-27" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="2092" y="395" as="sourcePoint" />
+            <mxPoint x="2091" y="-185" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-28" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="2092" y="395" as="sourcePoint" />
+            <mxPoint x="622" y="395" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-29" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="2092" y="-185" as="sourcePoint" />
+            <mxPoint x="621" y="-185" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-30" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="2092" y="-135" as="sourcePoint" />
+            <mxPoint x="621" y="-135" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-31" value="&lt;div style=&quot;box-sizing:border-box;width:100%;background:#e4e4e4;padding:2px;&quot;&gt;&lt;b&gt;servidor&lt;/b&gt;&lt;/div&gt;&lt;table style=&quot;width:100%;font-size:1em;&quot; cellpadding=&quot;2&quot; cellspacing=&quot;0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;br&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;PK&lt;/b&gt; id_servidor&lt;br&gt;nome_servidor&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;br&gt;&lt;/td&gt;&lt;td&gt;situacao_funcional (ATIVO)&lt;br&gt;perfil_cargo (ACS)&lt;br&gt;cod_und_lotacao&lt;br&gt;perfil_und_lotacao (tipo_unidade)&lt;br&gt;cnes_und_lotacao&lt;br&gt;setor&lt;br&gt;turno_trabalho&lt;br&gt;&lt;b&gt;FK&amp;nbsp;&lt;/b&gt;fk_id_unidades (fk para tabela unidade)&lt;br&gt;&lt;b&gt;FK&amp;nbsp;&lt;/b&gt;fk_id_distritos (fk para tabela tab_distritos&lt;br&gt;do schema unidades)&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12" vertex="1" parent="1">
+          <mxGeometry x="670" y="-115" width="270" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-32" value="&lt;div style=&quot;box-sizing:border-box;width:100%;background:#e4e4e4;padding:2px;&quot;&gt;&lt;b&gt;equipes&lt;/b&gt;&lt;/div&gt;&lt;b&gt;PK&lt;/b&gt; id_equipe_cnes&lt;table style=&quot;width:100%;font-size:1em;&quot; cellpadding=&quot;2&quot; cellspacing=&quot;0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;blockquote style=&quot;margin: 0px 0px 0px 40px; border: none; padding: 0px;&quot;&gt;seq_equipe&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0px 0px 0px 40px; border: none; padding: 0px;&quot;&gt;descricao_equipe&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0px 0px 0px 40px; border: none; padding: 0px;&quot;&gt;nome_equipe&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0px 0px 0px 40px; border: none; padding: 0px;&quot;&gt;turno&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0px 0px 0px 40px; border: none; padding: 0px;&quot;&gt;criacao_equipe&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0px 0px 0px 40px; border: none; padding: 0px;&quot;&gt;data_desativacao&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0px 0px 0px 40px; border: none; padding: 0px;&quot;&gt;sigla_equipe&lt;br&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0px 0px 0px 40px; border: none; padding: 0px;&quot;&gt;&lt;b&gt;FK&amp;nbsp;&lt;/b&gt;fk_id_tipo_equipe (fk para tabela TipoEquipe)&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0px 0px 0px 40px; border: none; padding: 0px;&quot;&gt;&lt;b&gt;FK&amp;nbsp;&lt;/b&gt;fk_id_unidades (fk para tabela unidade)&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0px 0px 0px 40px; border: none; padding: 0px;&quot;&gt;&lt;table style=&quot;font-size: 1em; width: 290.719px;&quot; cellpadding=&quot;2&quot; cellspacing=&quot;0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;blockquote style=&quot;margin: 0px 0px 0px 40px; border: none; padding: 0px;&quot;&gt;&lt;/blockquote&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0px 0px 0px 40px; border: none; padding: 0px;&quot;&gt;&lt;br&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0px 0px 0px 40px; border: none; padding: 0px;&quot;&gt;&lt;br&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0px 0px 0px 40px; border: none; padding: 0px;&quot;&gt;&lt;br&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0px 0px 0px 40px; border: none; padding: 0px;&quot;&gt;&lt;br&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0px 0px 0px 40px; border: none; padding: 0px;&quot;&gt;&lt;br&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0px 0px 0px 40px; border: none; padding: 0px;&quot;&gt;&lt;br&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0px 0px 0px 40px; border: none; padding: 0px;&quot;&gt;&lt;br&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0px 0px 0px 40px; border: none; padding: 0px;&quot;&gt;fk cnes_padrao (fk para tabela unidade)&lt;/blockquote&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12" vertex="1" parent="1">
+          <mxGeometry x="1040" y="125" width="390" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-33" value="&lt;div style=&quot;box-sizing:border-box;width:100%;background:#e4e4e4;padding:2px;&quot;&gt;&lt;b&gt;tipoEquipe&lt;/b&gt;&lt;/div&gt;&lt;b&gt;PK&amp;nbsp; &amp;nbsp; &amp;nbsp;&lt;/b&gt;id_tipo_equipe&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&amp;nbsp;tipo_equipe&lt;br&gt;&lt;div&gt;&lt;table style=&quot;width:100%;font-size:1em;&quot; cellpadding=&quot;2&quot; cellspacing=&quot;0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;/div&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12" vertex="1" parent="1">
+          <mxGeometry x="1420" y="-112" width="220" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-34" value="&lt;div style=&quot;box-sizing:border-box;width:100%;background:#e4e4e4;padding:2px;&quot;&gt;&lt;b&gt;gerente&lt;/b&gt;&lt;/div&gt;&lt;table style=&quot;width:100%;font-size:1em;&quot; cellpadding=&quot;2&quot; cellspacing=&quot;0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;PK&lt;/b&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp;id_gerente&lt;br&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px; border: none; padding: 0px;&quot;&gt;distrito&lt;br&gt;nome_unidade&lt;br&gt;nome_gerente&amp;nbsp;&lt;br&gt;cargo (gerente de unidade de saúde,&lt;br&gt;só tem esse registro)&lt;br&gt;cpf(tem ponto e traço)&lt;br&gt;contato (telefone)&lt;br&gt;email&lt;br&gt;&lt;b&gt;FK&amp;nbsp;&lt;/b&gt;fk_id_unidades (fk para tabela unidade)&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px; border: none; padding: 0px;&quot;&gt;&lt;b&gt;FK&amp;nbsp;&lt;/b&gt;fk_id_distritos (fk para tabela unidade)&lt;br&gt;&lt;span style=&quot;color: rgba(0, 0, 0, 0); font-family: monospace; font-size: 0px;&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22%26lt%3Bdiv%20style%3D%26quot%3Bbox-sizing%3Aborder-box%3Bwidth%3A100%25%3Bbackground%3A%23e4e4e4%3Bpadding%3A2px%3B%26quot%3B%26gt%3B%26lt%3Bb%26gt%3Bequipes_asu%26lt%3B%2Fb%26gt%3B%26lt%3B%2Fdiv%26gt%3B%26lt%3Btable%20style%3D%26quot%3Bwidth%3A100%25%3Bfont-size%3A1em%3B%26quot%3B%20cellpadding%3D%26quot%3B2%26quot%3B%20cellspacing%3D%26quot%3B0%26quot%3B%26gt%3B%26lt%3Btbody%26gt%3B%26lt%3Btr%26gt%3B%26lt%3Btd%26gt%3Bcnes%26lt%3Bbr%26gt%3Bseq_equipe%26lt%3Bbr%26gt%3Bds_equipe%26lt%3Bbr%26gt%3Bnome_referencia%20(nome%20da%20equipe)%26lt%3Bbr%26gt%3Bqtd_avaliacoes%26lt%3Bbr%26gt%3Basu_pontuacao%26lt%3Bbr%26gt%3Basu_zona%26lt%3Bbr%26gt%3Bcnes_nome%26lt%3Bbr%26gt%3Bano_quad%26lt%3Bbr%26gt%3Bunidade(%20de%20I%20a%20VIII%20em%20algorismos%26lt%3Bbr%26gt%3Bromanos)%26lt%3Bbr%26gt%3Bnumero_quadrimestre%26amp%3Bnbsp%3B%26lt%3B%2Ftd%26gt%3B%26lt%3Btd%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3B%2Ftd%26gt%3B%26lt%3B%2Ftr%26gt%3B%26lt%3Btr%26gt%3B%26lt%3Btd%26gt%3B%26lt%3B%2Ftd%26gt%3B%26lt%3Btd%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3B%2Ftd%26gt%3B%26lt%3B%2Ftr%26gt%3B%26lt%3Btr%26gt%3B%26lt%3Btd%26gt%3B%26lt%3B%2Ftd%26gt%3B%26lt%3Btd%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3B%2Ftd%26gt%3B%26lt%3B%2Ftr%26gt%3B%26lt%3B%2Ftbody%26gt%3B%26lt%3B%2Ftable%26gt%3B%22%20style%3D%22verticalAlign%3Dtop%3Balign%3Dleft%3Boverflow%3Dfill%3Bhtml%3D1%3Brounded%3D0%3Bshadow%3D0%3Bcomic%3D0%3BlabelBackgroundColor%3Dnone%3BstrokeWidth%3D1%3BfontFamily%3DVerdana%3BfontSize%3D12%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22-795%22%20y%3D%22-1620%22%20width%3D%22220%22%20height%3D%22230%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;&lt;/blockquote&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12" vertex="1" parent="1">
+          <mxGeometry x="1510" y="35" width="330" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-35" value="" style="endArrow=none;html=1;rounded=0;entryX=0.009;entryY=0.371;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="BSECcPK4Nis4ngSKChy8-33">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1000" y="265" as="sourcePoint" />
+            <mxPoint x="1390" y="5" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1000" y="-85" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-36" value="" style="endArrow=none;html=1;rounded=0;entryX=0.003;entryY=0.135;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1000" y="265" as="sourcePoint" />
+            <mxPoint x="1040.9899999999998" y="265.0500000000002" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-37" value="schema asu" style="text;strokeColor=none;fillColor=none;html=1;fontSize=24;fontStyle=1;verticalAlign=middle;align=center;" vertex="1" parent="1">
+          <mxGeometry x="403" y="529" width="160" height="41" as="geometry" />
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-38" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-290" y="1100" as="sourcePoint" />
+            <mxPoint x="-290" y="520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-39" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1182" y="1100" as="sourcePoint" />
+            <mxPoint x="1181" y="520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-40" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1182" y="1100" as="sourcePoint" />
+            <mxPoint x="-288" y="1100" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-41" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1182" y="520" as="sourcePoint" />
+            <mxPoint x="-289" y="520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-42" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1182" y="570" as="sourcePoint" />
+            <mxPoint x="-289" y="570" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-43" value="&lt;div style=&quot;box-sizing:border-box;width:100%;background:#e4e4e4;padding:2px;&quot;&gt;&lt;b&gt;asu_monitora&lt;/b&gt;&lt;/div&gt;&lt;table style=&quot;width:100%;font-size:1em;&quot; cellpadding=&quot;2&quot; cellspacing=&quot;0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;b&gt;PK &lt;/b&gt;id_asu_monitora&lt;br&gt;ine&lt;br&gt;pontuacao_final_total&lt;br&gt;qtd_avaliacoes&lt;br&gt;zona_satisfacao&lt;br&gt;&lt;b&gt;FK&lt;/b&gt;&amp;nbsp;fk_id_ano_quad (tabela`ano_quadrimestre` do schema`calendario`)&lt;br&gt;&lt;b&gt;FK &lt;/b&gt;fk_id_equipe_cnes (referencia &quot;equipes&quot; no schema &quot;funcionarios_equipes&quot;)&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12" vertex="1" parent="1">
+          <mxGeometry x="-275" y="590" width="505" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-44" value="&lt;div style=&quot;box-sizing:border-box;width:100%;background:#e4e4e4;padding:2px;&quot;&gt;&lt;b&gt;classificacao_asu&lt;/b&gt;&lt;/div&gt;&lt;b&gt;PK &lt;/b&gt;id_classificacao_asu&lt;div&gt;atributo (ex: zona de excelencia)&lt;div&gt;valor (ex: 181 ate 200 pontos = 100%)&lt;/div&gt;&lt;div&gt;numero&lt;/div&gt;&lt;div&gt;&lt;b&gt;FK&lt;/b&gt; fk_id_periodo (referencia tabela `periodo` do schema `calendario`&lt;br&gt;&lt;table style=&quot;width:100%;font-size:1em;&quot; cellpadding=&quot;2&quot; cellspacing=&quot;0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;/div&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12" vertex="1" parent="1">
+          <mxGeometry x="420" y="600" width="440" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-45" value="&lt;div style=&quot;box-sizing:border-box;width:100%;background:#e4e4e4;padding:2px;&quot;&gt;&lt;b&gt;equipes_asu&lt;/b&gt;&lt;/div&gt;&lt;table style=&quot;width:100%;font-size:1em;&quot; cellpadding=&quot;2&quot; cellspacing=&quot;0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;PK &lt;/b&gt;id_equipes_asu&lt;br&gt;ds_equipe (distrito equipe, sigla n romano)&lt;br&gt;nome_equipe&lt;br&gt;qtd_avaliacoes&lt;br&gt;asu_pontuacao&lt;br&gt;asu_zona_cnes_nome&lt;br&gt;&lt;br&gt;&lt;b&gt;numero_quad&lt;/b&gt;&lt;br&gt;&lt;b&gt;FK&amp;nbsp;&lt;/b&gt;fk_id_ano_quad (tabela`ano_quadrimestre` do schema`calendario`)&lt;br&gt;&lt;b&gt;FK&amp;nbsp;&lt;/b&gt;fk_id_unidade (tabela `unidades` no schema `unidades`)&lt;br&gt;&lt;b&gt;FK&amp;nbsp;&lt;/b&gt;fk_id_quipe_cnes (tabela `equipes` no schema `funcionarios_quipes)&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12" vertex="1" parent="1">
+          <mxGeometry x="-100" y="780" width="500" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-46" value="&lt;div style=&quot;box-sizing:border-box;width:100%;background:#e4e4e4;padding:2px;&quot;&gt;&lt;b&gt;unidades_equipes_asu&lt;/b&gt;&lt;/div&gt;PK id_unidades_equipes_asu&lt;div&gt;nome_cnes&lt;/div&gt;&lt;div&gt;critica&lt;/div&gt;&lt;div&gt;aperfeicoamento&lt;/div&gt;&lt;div&gt;qualdade&lt;/div&gt;&lt;div&gt;excelencia&lt;/div&gt;&lt;div&gt;sem_avaliacao&lt;/div&gt;&lt;div&gt;total&lt;/div&gt;&lt;div&gt;&lt;b&gt;FK&amp;nbsp;&lt;/b&gt;fk_id_ano_quad (tabela`ano_quadrimestre` do schema`calendario`)&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;FK&lt;/b&gt; fk_id_unidade (tabela `unidades` no schema `unidades`)&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;table style=&quot;width:100%;font-size:1em;&quot; cellpadding=&quot;2&quot; cellspacing=&quot;0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;br&gt;&lt;span style=&quot;color: rgba(0, 0, 0, 0); font-family: monospace; font-size: 0px;&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22%26lt%3Bdiv%20style%3D%26quot%3Bbox-sizing%3Aborder-box%3Bwidth%3A100%25%3Bbackground%3A%23e4e4e4%3Bpadding%3A2px%3B%26quot%3B%26gt%3B%26lt%3Bb%26gt%3Bequipes_asu%26lt%3B%2Fb%26gt%3B%26lt%3B%2Fdiv%26gt%3B%26lt%3Btable%20style%3D%26quot%3Bwidth%3A100%25%3Bfont-size%3A1em%3B%26quot%3B%20cellpadding%3D%26quot%3B2%26quot%3B%20cellspacing%3D%26quot%3B0%26quot%3B%26gt%3B%26lt%3Btbody%26gt%3B%26lt%3Btr%26gt%3B%26lt%3Btd%26gt%3Bcnes%26lt%3Bbr%26gt%3Bseq_equipe%26lt%3Bbr%26gt%3Bds_equipe%26lt%3Bbr%26gt%3Bnome_referencia%20(nome%20da%20equipe)%26lt%3Bbr%26gt%3Bqtd_avaliacoes%26lt%3Bbr%26gt%3Basu_pontuacao%26lt%3Bbr%26gt%3Basu_zona%26lt%3Bbr%26gt%3Bcnes_nome%26lt%3Bbr%26gt%3Bano_quad%26lt%3Bbr%26gt%3Bunidade(%20de%20I%20a%20VIII%20em%20algorismos%26lt%3Bbr%26gt%3Bromanos)%26lt%3Bbr%26gt%3Bnumero_quadrimestre%26amp%3Bnbsp%3B%26lt%3B%2Ftd%26gt%3B%26lt%3Btd%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3B%2Ftd%26gt%3B%26lt%3B%2Ftr%26gt%3B%26lt%3Btr%26gt%3B%26lt%3Btd%26gt%3B%26lt%3B%2Ftd%26gt%3B%26lt%3Btd%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3B%2Ftd%26gt%3B%26lt%3B%2Ftr%26gt%3B%26lt%3Btr%26gt%3B%26lt%3Btd%26gt%3B%26lt%3B%2Ftd%26gt%3B%26lt%3Btd%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3B%2Ftd%26gt%3B%26lt%3B%2Ftr%26gt%3B%26lt%3B%2Ftbody%26gt%3B%26lt%3B%2Ftable%26gt%3B%22%20style%3D%22verticalAlign%3Dtop%3Balign%3Dleft%3Boverflow%3Dfill%3Bhtml%3D1%3Brounded%3D0%3Bshadow%3D0%3Bcomic%3D0%3BlabelBackgroundColor%3Dnone%3BstrokeWidth%3D1%3BfontFamily%3DVerdana%3BfontSize%3D12%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22-795%22%20y%3D%22-1620%22%20width%3D%22220%22%20height%3D%22230%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12" vertex="1" parent="1">
+          <mxGeometry x="480" y="790" width="510" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-47" value="schema calendario" style="text;strokeColor=none;fillColor=none;html=1;fontSize=24;fontStyle=1;verticalAlign=middle;align=center;" vertex="1" parent="1">
+          <mxGeometry x="243" y="-951" width="160" height="41" as="geometry" />
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-48" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-450" y="-380" as="sourcePoint" />
+            <mxPoint x="-450" y="-960" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-49" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1022" y="-380" as="sourcePoint" />
+            <mxPoint x="1021" y="-960" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-50" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1022" y="-380" as="sourcePoint" />
+            <mxPoint x="-448" y="-380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-51" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1020" y="-960" as="sourcePoint" />
+            <mxPoint x="-449" y="-960" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-52" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1022" y="-910" as="sourcePoint" />
+            <mxPoint x="-449" y="-910" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-53" value="&lt;div style=&quot;box-sizing:border-box;width:100%;background:#e4e4e4;padding:2px;&quot;&gt;&lt;b&gt;ano_quadrimestre&lt;/b&gt;&lt;/div&gt;&lt;table style=&quot;width:100%;font-size:1em;&quot; cellpadding=&quot;2&quot; cellspacing=&quot;0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;PK &lt;/b&gt;id_ano_quad SERIAL&lt;br&gt;ano INT&lt;br&gt;quad INT (1,2 ou 3)&lt;br&gt;ano_quad VARCHAR(10) --EX: 2024.1&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12" vertex="1" parent="1">
+          <mxGeometry x="-330" y="-780" width="505" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="BSECcPK4Nis4ngSKChy8-54" value="&lt;div style=&quot;box-sizing:border-box;width:100%;background:#e4e4e4;padding:2px;&quot;&gt;&lt;b&gt;periodo&lt;/b&gt;&lt;/div&gt;&lt;table style=&quot;width:100%;font-size:1em;&quot; cellpadding=&quot;2&quot; cellspacing=&quot;0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;b&gt;PK &lt;/b&gt;id_periodo SERIAL&lt;br&gt;descricao VARCHAR(100)&lt;br&gt;data_inicio DATE&lt;br&gt;data_fim DATE&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;br&gt;&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=12" vertex="1" parent="1">
+          <mxGeometry x="280" y="-780" width="505" height="130" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -4,7 +4,6 @@ from src.utils.add_primary_key import add_pk
 
 def create_calendario():
     def process_calendario(start_date, end_date):
-        # Funções auxiliares para traduzir dia da semana e mês
         def traduzir_dia_semana(dia):
             dias = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado']
             return dias[dia.weekday()]
@@ -17,7 +16,6 @@ def create_calendario():
             meses_completos = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
             return meses_completos[mes-1]
 
-        # Função para criar calendário
         delta = end_date - start_date
         data = []
 
@@ -45,9 +43,9 @@ def create_calendario():
     
     start_date = datetime(2020, 1, 1)
     end_date = datetime(2025, 12, 31)
+    
     df_calendario = process_calendario(start_date, end_date)
     
-    # Adicionando a coluna id_calendario
     df_calendario = add_pk(df_calendario, 'calendario')
     
     return {'calendario': df_calendario}

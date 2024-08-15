@@ -1,10 +1,4 @@
-import os
-import sys
 import pandas as pd
-
-current_dir = os.path.dirname(os.path.abspath(__file__))
-root_dir = os.path.dirname(os.path.dirname(current_dir))
-sys.path.append(root_dir)
 
 from src.utils.extract_sharepoint_df import get_file_as_dataframes
 from src.utils.excel_operations import remove_espacos_e_acentos
@@ -20,20 +14,15 @@ def read_atendimentos():
 
     dataframes_atendimentos = get_file_as_dataframes(relative_url_atendimentos)
 
-    df_atendimentos = dataframes_atendimentos.get('Sheet1')
+    df_atendimentos = dataframes_atendimentos['Sheet1']
 
-    if df_atendimentos is not None:
-        
-        df_atendimentos = remove_espacos_e_acentos(df_atendimentos)
-        df_atendimentos = add_pk(df_atendimentos, 'atendimentos')
-    else:
-        print("Aba 'Sheet1' não encontrada no arquivo Excel.")
-        df_atendimentos = pd.DataFrame()
+    required_columns = ['dia', 'nu_ine', 'nu_cnes', 'no_cbo', 'no_profissional','ds_turno',
+                        'qt_atendimentos']
+    
+    df_atendimentos = df_atendimentos[required_columns]
+    df_atendimentos = remove_espacos_e_acentos(df_atendimentos)
+    df_atendimentos = add_pk(df_atendimentos, 'atendimentos')
 
     return {
         'atendimentos': df_atendimentos,
     }
-
-if __name__ == "__main__":
-    df = read_atendimentos()
-    print(df.head())

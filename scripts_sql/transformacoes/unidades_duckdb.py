@@ -1,15 +1,4 @@
-import duckdb
-import pandas as pd
-import os
-import sys
 import logging
-import re
-
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-
-from src.data_processing.unidades import read_unidades
 
 def create_unidades_table(con):
     """
@@ -23,7 +12,6 @@ def create_unidades_table(con):
             unidades_temp;
     """)
     
-
     df_unidades = con.execute("SELECT * FROM unidades").fetchdf()
 
     logging.info("Tabela 'unidades' criada com sucesso.")
@@ -32,28 +20,19 @@ def create_unidades_table(con):
 
 def create_tipo_unidade_table(con):
     """
-    Create the 'tipoUnidade' table in DuckDB and return it as a DataFrame.
+    Create the 'tipo_unidade' table in DuckDB and return it as a DataFrame.
     """
     con.execute("""
-        CREATE TABLE tipoUnidade AS
+        CREATE TABLE tab_tipo_unidade AS
         SELECT
             *
         FROM 
             tipo_unidade_temp;
     """)
     
-    con.execute("""
-        ALTER TABLE tipoUnidade ADD COLUMN fk_id_unidades INTEGER;
-        
-        UPDATE tipoUnidade
-        SET fk_id_unidades = unidades.id_unidades
-        FROM unidades
-        WHERE tipoUnidade.cnes = unidades.cnes;
-                """)
+    df_tipo_unidades = con.execute("SELECT * FROM tab_tipo_unidade").fetchdf()
     
-    df_tipo_unidades = con.execute("SELECT * FROM tipoUnidade").fetchdf()
-    
-    logging.info("Tabela 'tipoUnidade' criada com sucesso.")
+    logging.info("Tabela 'tab_tipo_unidade' criada com sucesso.")
     
     return df_tipo_unidades
 
@@ -107,9 +86,9 @@ def update_unidades_table(con):
             ALTER TABLE unidades ADD COLUMN fk_id_tipo_unidade INTEGER;
             
             UPDATE unidades
-            SET fk_id_tipo_unidade = tipoUnidade.id_tipo_unidade
-            FROM tipoUnidade
-            WHERE unidades.tipo_unidade = tipoUnidade.tipo_unidade;
+            SET fk_id_tipo_unidade = tab_tipo_unidade.id_tipo_unidade
+            FROM tab_tipo_unidade
+            WHERE unidades.tipo_unidade = tab_tipo_unidade.tipo_unidade;
                     
             ALTER TABLE unidades ADD COLUMN fk_id_horarios INTEGER;
             
@@ -167,15 +146,4 @@ def create_login_senha_unidades_table(con):
     logging.info("Tabela 'login_senha_unidades' criada com sucesso.")
 
     return df_login_senha_ds
-
-if __name__ == '__main__':
-    con = duckdb.connect(database=':memory:')
-    data = read_unidades()
-    df_unidades = create_unidades_table(con, data)
-    df_tipo_unidade = create_tipo_unidade_table(con, data)
-    df_horarios = create_horarios_table(con, data)
-    df_distritos = create_distritos_table(con,data)
-    df_update_unidades = update_unidades_table(con,data)
-    df_login_senha_ds = create_login_senha_ds_table(con,data)
-    df_login_senha_unidades = create_login_senha_unidades_table(con,data)
-    
+ 

@@ -1,11 +1,5 @@
-import os
-import sys
 import pandas as pd
 import logging
-
-current_dir = os.path.dirname(os.path.abspath(__file__))
-root_dir = os.path.dirname(os.path.dirname(current_dir))
-sys.path.append(root_dir)
 
 from src.utils.extract_sharepoint_df import get_file_as_dataframes
 from src.utils.excel_operations import remove_espacos_e_acentos
@@ -46,13 +40,3 @@ def read_ouvidoria():
     return {
         'ouvidoria': df_ouvidoria,
     }
-
-def main():
-    """
-    Main function for testing the script.
-    """
-    df = read_ouvidoria()
-    logging.info("DataFrame '%s':", df)
-
-if __name__ == '__main__':
-    main()

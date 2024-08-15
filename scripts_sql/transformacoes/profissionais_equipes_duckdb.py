@@ -1,8 +1,3 @@
-
-import duckdb
-from src.data_processing.profissionais_equipes import read_profissionais_equipes
-from src.data_processing.unidades import read_unidades
-
 def create_servidores_table(con):
     """
     Create the 'servidores' table in DuckDB and return it as a DataFrame.
@@ -27,7 +22,14 @@ def update_servidores_table(con):
         SET fk_id_unidades = unidades.id_unidades
         FROM unidades
         WHERE servidores.cnes_unidade_de_lotacao = unidades.cnes;
-""")
+                
+        ALTER TABLE servidores ADD COLUMN fk_id_distritos INTEGER;
+
+        UPDATE servidores
+        SET fk_id_distritos = distritos.id_distritos
+        FROM distritos
+        WHERE servidores.distrito = distritos.sigla_distrito;
+    """)
     
     df_update_servidores = con.execute("SELECT * FROM servidores").fetchdf()
     return df_update_servidores
@@ -58,7 +60,15 @@ def update_equipes_table(con):
         UPDATE equipes 
         SET fk_id_unidades = unidades.id_unidades
         FROM unidades
-        WHERE equipes.cnes = unidades.cnes
+        WHERE equipes.cnes = unidades.cnes;
+                
+        ALTER TABLE equipes ADD COLUMN fk_id_distritos INTEGER;
+
+        UPDATE equipes
+        SET fk_id_distritos = unidades.fk_id_distritos
+        FROM unidades
+        WHERE fk_id_unidades = id_unidades;
+
     """)
 
     df_update_equipes = con.execute("SELECT * FROM equipes").fetchdf()
@@ -117,7 +127,14 @@ def update_equipes_usf_mais_table(con):
         UPDATE equipes_usf_mais 
         SET fk_id_unidades = unidades.id_unidades
         FROM unidades
-        WHERE equipes_usf_mais.cnes = unidades.cnes
+        WHERE equipes_usf_mais.cnes = unidades.cnes;
+                
+        ALTER TABLE equipes_usf_mais ADD COLUMN fk_id_distritos INTEGER;
+                
+        UPDATE equipes_usf_mais 
+        SET fk_id_distritos = distritos.id_distritos
+        FROM distritos
+        WHERE equipes_usf_mais.distrito = distritos.sigla_distrito;
     """)
 
     df_update_equipes_usf_mais = con.execute("SELECT * FROM equipes_usf_mais").fetchdf()
@@ -148,24 +165,18 @@ def update_gerentes_table(con):
         UPDATE gerentes 
         SET fk_id_unidades = unidades.id_unidades
         FROM unidades
-        WHERE gerentes.cnes = unidades.cnes
+        WHERE gerentes.cnes = unidades.cnes;  
+
+        ALTER TABLE gerentes ADD COLUMN fk_id_distritos INTEGER;
+                
+        UPDATE gerentes 
+        SET fk_id_distritos = distritos.id_distritos
+        FROM distritos
+        WHERE gerentes.ds = distritos.id_distritos;        
+            
     """)
 
     df_update_gerentes = con.execute("SELECT * FROM gerentes").fetchdf()
     return df_update_gerentes
 
-if __name__ == '__main__':
-    con = duckdb.connect(database=':memory:')
-    data_profissionais = read_profissionais_equipes()
-    data_unidades = read_unidades()
-    df_servidores = create_servidores_table(con, data_profissionais)
-    df_update_servidores = update_servidores_table(con, data_unidades)
-    df_equipes = create_equipes_table(con, data_profissionais)
-    df_update_equipes = update_equipes_table(con, data_unidades)
-    df_tipo_equipe = create_tipo_equipe_table(con, data_profissionais)
-    df_equipes_usf_mais = create_equipes_usf_mais_table(con, data_profissionais)
-    df_update_equipes_usf_mais = update_equipes_usf_mais_table(con,data_unidades)
-    df_gerentes = create_gerentes_table(con, data_profissionais)
-    df_update_gerentes = update_gerentes_table(con, data_unidades)
-    print("Tables created successfully.")
     
