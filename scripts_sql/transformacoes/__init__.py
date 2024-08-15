@@ -22,7 +22,7 @@ from .ouvidoria_duckdb import create_ouvidoria_table
 def execute_transformations_and_save(con, engine):
     transformations = [
         (create_unidades_table, 'unidades', 'unidades'),
-        (create_tipo_unidade_table, 'tipoUnidade', 'unidades'),
+        (create_tipo_unidade_table, 'tab_tipo_unidade', 'unidades'),
         (create_horarios_table, 'horarios', 'unidades'),
         (create_distritos_table, 'distritos', 'unidades'),
         (update_unidades_table, 'unidades', 'unidades'),
