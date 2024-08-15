@@ -33,8 +33,4 @@ def create_calendario_table(con):
     insert_data_calendario_table(con, df_calendario)
     
     df_calendario_duckdb = con.execute("SELECT * FROM calendario").fetchdf()
-<<<<<<< HEAD
     return df_calendario_duckdb
-=======
-    return df_calendario_duckdb
->>>>>>> c296ea09b863e68466b5771cf7be9ecd2144dfd6

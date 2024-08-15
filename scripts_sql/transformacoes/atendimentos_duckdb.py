@@ -39,8 +39,4 @@ def update_atendimentos_table(con):
 
     logging.info("Tabela 'atendimentos' atualizada com sucesso.")
     
-<<<<<<< HEAD
     return df_update_unidades
-=======
-    return df_update_unidades
->>>>>>> c296ea09b863e68466b5771cf7be9ecd2144dfd6
