@@ -48,9 +48,9 @@ def read_unidades():
 
     :return: A dictionary with processed and modeled DataFrames for all sheets
     """
-    url_usf = "/Shared Documents/SESAU/BI_Indicadores_Estrategicos/ANALISE_PEAB_USF_29.02_DemandaBI.xlsx"
-    url_unidades = "/Shared Documents/SESAU/BI_Indicadores_Estrategicos/Unidades.xlsx"
-    url_login_senha_unidades ="/Shared Documents/SESAU/BI_Indicadores_Estrategicos/Login_senha_unidades.xlsx"
+    url_usf = "/Shared Documents/SESAU/NGI/unidades/ANALISE_PEAB_USF_29.02_DemandaBI.xlsx"
+    url_unidades = "/Shared Documents/SESAU/NGI/unidades/Unidades.xlsx"
+    url_login_senha_unidades ="/Shared Documents/SESAU/NGI/senhas/Login_senha_unidades.xlsx"
 
     dataframes_usf = get_file_as_dataframes(url_usf)
     dataframes_unidades = get_file_as_dataframes(url_unidades)

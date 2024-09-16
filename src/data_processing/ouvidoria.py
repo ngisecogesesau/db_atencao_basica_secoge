@@ -11,7 +11,7 @@ def read_ouvidoria():
 
     :return: Um DataFrame processado para 'ouvidoria'
     """
-    relative_url_agendamentos = "/Shared Documents/SESAU/BI_Indicadores_Estrategicos/Ouvidoria.xlsx"
+    relative_url_agendamentos = "/Shared Documents/SESAU/NGI/ouvidoria/Ouvidoria.xlsx"
 
     df_dict = get_file_as_dataframes(relative_url_agendamentos)
 

@@ -10,7 +10,7 @@ def read_profissionais_equipes():
     """
 
     # Tabela EQUIPES_CNES (nome original)
-    url_equipes_cnes = '/Shared Documents/SESAU/BI_Indicadores_Estrategicos/dados_estabelecimento_equipes_cnes_mar.xlsx'
+    url_equipes_cnes = '/Shared Documents/SESAU/NGI/unidades/dados_estabelecimento_equipes_cnes_mar.xlsx'
     df_equipes_cnes = get_file_as_dataframes(url_equipes_cnes)
 
     # df_equipes é a nova nomenclatura apos normalizacao
@@ -23,7 +23,7 @@ def read_profissionais_equipes():
     df_equipes = add_pk(df_equipes, 'equipes')
 
     # Tabela USF (nome original)
-    url_usf = "/Shared Documents/SESAU/BI_Indicadores_Estrategicos/USF.xlsx"
+    url_usf = "/Shared Documents/SESAU/NGI/unidades/USF.xlsx"
     df_usf = get_file_as_dataframes(url_usf)
 
     usf_columns = ['NOME DO SERVIDOR(A)', 'SITUAÇAO FUNCIONAL', 'PERFIL DO CARGO',  'CODIGO UNIDADE DE LOTAÇAO', 
@@ -37,7 +37,7 @@ def read_profissionais_equipes():
     df_servidores = add_pk(df_servidores, 'servidores')
 
     # Tabela USF + (nome_original)
-    url_usf_mais = "/Shared Documents/SESAU/BI_Indicadores_Estrategicos/ANALISE_PEAB_USF_29.02_DemandaBI.xlsx"
+    url_usf_mais = "/Shared Documents/SESAU/NGI/unidades/ANALISE_PEAB_USF_29.02_DemandaBI.xlsx"
     df_usf_mais = get_file_as_dataframes(url_usf_mais)
 
     usf_mais_columns = ['CNES', 'DISTRITO', 'Nº DA ESF', 'TURNO DA ESF', 'HORÁRIO DA ESF', 'MÉDICO DA ESF', 'ENFERMEIRO ESF', 
@@ -51,7 +51,7 @@ def read_profissionais_equipes():
     df_usf_mais = add_pk(df_usf_mais, 'equipes_usf_mais')
 
     # df_gerentes 
-    url_gerentes = '/Shared Documents/SESAU/BI_Indicadores_Estrategicos/CONTATOS_GERENTES_DE_UNIDADES_GGGD.xlsx'
+    url_gerentes = '/Shared Documents/SESAU/NGI/outros/CONTATOS_GERENTES_DE_UNIDADES_GGGD.xlsx'
     df_gerentes = get_file_as_dataframes(url_gerentes, skiprows= 1)
 
 
