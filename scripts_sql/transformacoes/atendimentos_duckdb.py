@@ -40,3 +40,18 @@ def update_atendimentos_table(con):
     logging.info("Tabela 'atendimentos' atualizada com sucesso.")
     
     return df_update_unidades
+
+def create_relacionamento_atendimentos_calendario(con):
+    con.execute("""
+        ALTER TABLE atendimentos ADD COLUMN fk_id_calendario INTEGER;
+                
+        UPDATE atendimentos
+        SET fk_id_calendario = calendario.id_calendario
+        FROM calendario
+        WHERE calendario.data_dma = atendimentos.dia;
+                
+    """)
+
+    df_rel_calendario_atendimentos = con.execute("SELECT * FROM atendimentos").fetchdf()
+
+    return df_rel_calendario_atendimentos

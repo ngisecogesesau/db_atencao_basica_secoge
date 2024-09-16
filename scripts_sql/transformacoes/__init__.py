@@ -15,12 +15,14 @@ from .asu_duckdb import (
     update_equipes_asu_relacionamento_unidades, update_unidades_quipes_asu_relacionamento_unidades
 )
 #from .agendamentos_duckdb import create_agendamentos_table, update_agendamentos_table
-from .atendimentos_duckdb import create_atendimentos_table, update_atendimentos_table
+from .atendimentos_duckdb import create_atendimentos_table, update_atendimentos_table, create_relacionamento_atendimentos_calendario
 from .calendario_duckdb import create_calendario_table
 from .ouvidoria_duckdb import create_ouvidoria_table
 
 def execute_transformations_and_save(con, engine):
     transformations = [
+        (create_calendario_table, 'calendario', 'calendario'),
+        
         (create_unidades_table, 'unidades', 'unidades'),
         (create_tipo_unidade_table, 'tab_tipo_unidade', 'unidades'),
         (create_horarios_table, 'horarios', 'unidades'),
@@ -53,8 +55,7 @@ def execute_transformations_and_save(con, engine):
 
         (create_atendimentos_table, 'atendimentos', 'atendimentos'),
         (update_atendimentos_table, 'atendimentos', 'atendimentos'),
-
-        (create_calendario_table, 'calendario', 'calendario'),
+        (create_relacionamento_atendimentos_calendario,  'atendimentos', 'atendimentos'),
 
         (create_ouvidoria_table, 'ouvidoria', 'ouvidoria'),
     ]
