@@ -16,10 +16,10 @@ def read_coletas():
     url_coletas_postos = '/Shared Documents/SESAU/NGI/sermac_coletas/COLETA POSTOS.xlsx'
     df_coletas_postos = get_file_as_dataframes(url_coletas_postos)
     df_coletas_postos = df_coletas_postos['COLETAS24_long']
-    df_coeltas_postos = remove_espacos_e_acentos(df_coeltas_postos)
-    df_coeltas_postos = add_pk(df_coeltas_postos, 'coletas_postos')
+    df_coletas_postos = remove_espacos_e_acentos(df_coletas_postos)
+    df_coletas_postos = add_pk(df_coletas_postos, 'coletas_postos')
 
     return {
-        'coletas_postos': df_coeltas_postos
+        'coletas_postos': df_coletas_postos
     }
 
