@@ -18,6 +18,7 @@ from .asu_duckdb import (
 from .atendimentos_duckdb import create_atendimentos_table, update_atendimentos_table, create_relacionamento_atendimentos_calendario
 from .calendario_duckdb import create_calendario_table
 from .ouvidoria_duckdb import create_ouvidoria_table
+from .coletas_duckdb import create_coletas_postos_table
 
 def execute_transformations_and_save(con, engine):
     transformations = [
@@ -57,7 +58,9 @@ def execute_transformations_and_save(con, engine):
         (update_atendimentos_table, 'atendimentos', 'atendimentos'),
         (create_relacionamento_atendimentos_calendario,  'atendimentos', 'atendimentos'),
 
-        (create_ouvidoria_table, 'ouvidoria', 'ouvidoria')
+        (create_ouvidoria_table, 'ouvidoria', 'ouvidoria'),
+
+        (create_coletas_postos_table, 'coletas_postos', 'coletas')
     ]
 
     for transformation_func, table_name, schema_name in transformations:
