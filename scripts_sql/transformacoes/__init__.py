@@ -57,7 +57,7 @@ def execute_transformations_and_save(con, engine):
         (update_atendimentos_table, 'atendimentos', 'atendimentos'),
         (create_relacionamento_atendimentos_calendario,  'atendimentos', 'atendimentos'),
 
-        (create_ouvidoria_table, 'ouvidoria', 'ouvidoria'),
+        (create_ouvidoria_table, 'ouvidoria', 'ouvidoria')
     ]
 
     for transformation_func, table_name, schema_name in transformations:
