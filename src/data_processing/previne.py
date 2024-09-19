@@ -11,6 +11,13 @@ def read_previne():
     df_serie_historica_previne = remove_espacos_e_acentos(df_serie_historica_previne)
     df_serie_historica_previne = add_pk(df_serie_historica_previne, 'serie_historica_previne')
 
+    url_resultado_indicadores_desempenho_consolidado_ms = '/Shared Documents/SESAU/NGI/previne/Resultado Indicadores_desempenho_consolidado_MS.xlsx'
+    df_resultado_indicadores_desempenho_consolidado_ms = get_file_as_dataframes(url_resultado_indicadores_desempenho_consolidado_ms)
+    df_resultado_indicadores_desempenho_consolidado_ms = df_resultado_indicadores_desempenho_consolidado_ms['Consolidado DS']
+    df_resultado_indicadores_desempenho_consolidado_ms = remove_espacos_e_acentos(df_resultado_indicadores_desempenho_consolidado_ms)
+    df_resultado_indicadores_desempenho_consolidado_ms = add_pk(df_resultado_indicadores_desempenho_consolidado_ms, 'resultado_indicadores_desempenho_consolidado_ms')
+
     return {
-        'serie_historica_previne': df_serie_historica_previne
+        'serie_historica_previne': df_serie_historica_previne,
+        'resultado_indicadores_desempenho_consolidado_ms': df_resultado_indicadores_desempenho_consolidado_ms
     }

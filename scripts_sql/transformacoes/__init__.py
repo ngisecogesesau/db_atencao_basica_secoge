@@ -19,7 +19,7 @@ from .atendimentos_duckdb import create_atendimentos_table, update_atendimentos_
 from .calendario_duckdb import create_calendario_table
 from .ouvidoria_duckdb import create_ouvidoria_table
 from .coletas_duckdb import create_coletas_postos_table
-from .previne_duckdb import create_serie_historica_previne
+from .previne_duckdb import create_serie_historica_previne, create_resultado_indicadores_desempenho_consolidado_ms
 
 def execute_transformations_and_save(con, engine):
     transformations = [
@@ -62,7 +62,8 @@ def execute_transformations_and_save(con, engine):
         (create_ouvidoria_table, 'ouvidoria', 'ouvidoria'),
 
         (create_coletas_postos_table, 'coletas_postos', 'coletas'),
-        (create_serie_historica_previne, 'serie_historica_previne', 'previne')
+        (create_serie_historica_previne, 'serie_historica_previne', 'previne'),
+        (create_resultado_indicadores_desempenho_consolidado_ms, 'resultado_indicadores_desempenho_consolidado_ms', 'previne')
     ]
 
     for transformation_func, table_name, schema_name in transformations:
