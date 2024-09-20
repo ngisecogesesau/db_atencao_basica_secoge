@@ -45,10 +45,10 @@ def process_data(engine, schemas):
 def main():
     config = {
         'db_name': 'db_atbasica',
-        'user': 'postgres',
+        'user': 'secoge',
         'password': 'secoge',
-        'host': 'localhost',
-        'port': 5432
+        'host': '172.30.1.37',
+        'port': 5252
     }
 
     create_schemas(**config)
