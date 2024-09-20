@@ -15,7 +15,7 @@ def read_profissionais_equipes():
 
     # df_equipes é a nova nomenclatura apos normalizacao
     df_equipes_cnes = df_equipes_cnes['in']
-    df_equipes_columns = ['CNES', 'SEQ_EQUIPE', 'DS_EQUIPE', 'NM_REFERENCIA', 'Turno', 'CRIACAO_EQUIPE', 'DT_DESATIVACAO', 
+    df_equipes_columns = ['CNES', 'SEQ_EQUIPE', 'DS_EQUIPE', 'NM_REFERENCIA', 'TURNO_ATEND', 'CRIACAO_EQUIPE', 'DT_DESATIVACAO', 
                             'ID_TP_EQUIPE', 'TP_EQUIPE', 'SG_EQUIPE' ]
     
     df_equipes = df_equipes_cnes[df_equipes_columns]
