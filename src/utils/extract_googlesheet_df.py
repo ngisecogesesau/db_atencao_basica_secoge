@@ -1,5 +1,4 @@
 import google.oauth2.credentials
-import googleapiclient.discovery as api
 import requests
 from dotenv import load_dotenv
 from os import getenv
@@ -30,13 +29,6 @@ def refresh_token(refresh_token, client_secret_file) -> str:
         return r.json()["access_token"]
     else:
         raise Exception("Error refreshing token: Request failed")
-
-
-# def get_google_sheet_info(spreadsheet_id: str) -> dict:
-#    """Retorna um dicionário contendo informações sobre a planilha do Google."""
-#    service = api.build("sheets", "v4", credentials=creds)
-#    return service.spreadsheets().get(spreadsheetId=spreadsheet_id).execute()
-
 
 def get_file_as_dataframes(spreadsheet_id: str, skiprows=0) -> dict:
     """ """
