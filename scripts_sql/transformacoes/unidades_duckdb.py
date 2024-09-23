@@ -74,6 +74,11 @@ def create_distritos_table(con):
         FROM 
             distritos_temp;
     """)
+
+    con.execute("""
+        ALTER TABLE distritos
+        ALTER COLUMN distrito_num_inteiro TYPE INTEGER USING distrito_num_inteiro::INTEGER;
+    """)
     
     df_distritos = con.execute("SELECT * FROM distritos").fetchdf()
     

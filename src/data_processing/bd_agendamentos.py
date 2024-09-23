@@ -18,8 +18,6 @@ def read_bd_agendamentos():
     df_bd_agendamentos = remove_espacos_e_acentos(df_bd_agendamentos)
     df_bd_agendamentos = add_pk(df_bd_agendamentos, 'bd_agendamentos')
 
-    df_bd_agendamentos['ds'] = df_bd_agendamentos['ds'].astype(int)
-
     return {
         'bd_agendamentos': df_bd_agendamentos
     }

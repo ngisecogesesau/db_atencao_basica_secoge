@@ -18,6 +18,12 @@ def create_bd_agendamentos_table(con):
     return df_bd_agendamentos
 
 def update_bd_agendamentos_table(con):
+
+    con.execute("""
+        ALTER TABLE bd_agendamentos
+        ALTER COLUMN ds TYPE INTEGER USING ds::INTEGER;
+    """)
+
     con.execute("""
             ALTER TABLE bd_agendamentos ADD COLUMN fk_id_unidades INTEGER;
             

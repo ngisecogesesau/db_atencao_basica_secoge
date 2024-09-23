@@ -239,7 +239,6 @@ def create_df_distritos(data):
     }
 
     df_distritos = pd.DataFrame(distritos)
-    df_distritos['distrito_num_inteiro'] = df_distritos['distrito_num_inteiro'].astype(int)
 
     logging.info("Tabela df_distritos criada manualmente: %s", df_distritos)
 
