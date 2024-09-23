@@ -49,7 +49,29 @@ def update_bd_agendamentos_table(con):
 
 
     df_update_bd_agendamentos = con.execute("SELECT * FROM bd_agendamentos").fetchdf()
-
-    logging.info("Tabela 'bd_agendamentos' atualizada com sucesso.")
     
     return df_update_bd_agendamentos
+
+def create_bd_agenda_configurada(con):
+    con.execute("""
+    CREATE TABLE bd_agenda_configurada AS
+    SELECT 
+        *
+    FROM
+        bd_agenda_configurada_temp
+    """)
+
+    df_bd_agenda_configurada = con.execute("SELECT * FROM bd_agenda_configurada").fetchdf()
+    return df_bd_agenda_configurada
+
+def create_interdicoes(con):
+    con.execute("""
+    CREATE TABLE interdicoes AS
+    SELECT 
+        *
+    FROM
+        interdicoes_temp
+    """)
+
+    df_interdicoes = con.execute("SELECT * FROM interdicoes_temp").fetchdf()
+    return df_interdicoes

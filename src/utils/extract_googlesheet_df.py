@@ -30,7 +30,7 @@ def refresh_token(refresh_token, client_secret_file) -> str:
     else:
         raise Exception("Error refreshing token: Request failed")
 
-def get_file_as_dataframes(spreadsheet_id: str, skiprows=0) -> dict:
+def get_file_as_dataframes_google(spreadsheet_id: str, skiprows=0) -> dict:
     """ """
     # Autenticação
     access_token = refresh_token(
