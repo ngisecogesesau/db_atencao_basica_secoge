@@ -229,7 +229,6 @@ def create_df_distritos(data):
             input -= integer * count
         return "".join(result)
 
-    # Lista de números inteiros para os distritos
     numeros_distritos = list(range(1, 9))
 
     distritos = {
