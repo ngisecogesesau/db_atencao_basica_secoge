@@ -11,9 +11,9 @@ def read_bd_agendamentos():
 
     :return: Um DataFrame processado para 'agendamentos'
     """
-    relative_url_bd_agendamentos = '1q1pMYDn_KOWtur-zGL4VuvIsCkL6MnBMujUEOPkIyLw'
+    relative_url_agendamentos = '1q1pMYDn_KOWtur-zGL4VuvIsCkL6MnBMujUEOPkIyLw'
         
-    df_bd_agendamentos = get_file_as_dataframes(relative_url_bd_agendamentos)
+    df_bd_agendamentos = get_file_as_dataframes(relative_url_agendamentos)
     df_bd_agendamentos = df_bd_agendamentos['BD - Agendamentos']
     df_bd_agendamentos = remove_espacos_e_acentos(df_bd_agendamentos)
     df_bd_agendamentos = add_pk(df_bd_agendamentos, 'bd_agendamentos')
