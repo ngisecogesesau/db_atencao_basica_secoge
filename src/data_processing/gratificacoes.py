@@ -22,3 +22,4 @@ def read_gratificacoes():
     return {
         'gratificacoes_unidades': df_gratificacoes_unidades
     }
+
