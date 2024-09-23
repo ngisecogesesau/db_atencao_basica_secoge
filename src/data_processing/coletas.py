@@ -26,13 +26,12 @@ def read_coletas():
 
     url_dados_qualidade_coleta_laboratorio_clinica = "1ACFkz-Wqt4B1v2u8-UvwBE1OpdQN4OU8t9i6APG2ZaM"
     df_dados_qualidade_coleta_laboratorio_clinica = get_file_as_dataframes_google(url_dados_qualidade_coleta_laboratorio_clinica)
-    if df_dados_qualidade_coleta_laboratorio_clinica:
-        df_dados_qualidade_coleta_laboratorio_clinica = df_dados_qualidade_coleta_laboratorio_clinica['Página1']
-        df_dados_qualidade_coleta_laboratorio_clinica = remove_espacos_e_acentos(df_dados_qualidade_coleta_laboratorio_clinica)
-        df_dados_qualidade_coleta_laboratorio_clinica = add_pk(df_dados_qualidade_coleta_laboratorio_clinica, 'dados_qualidade_coleta_laboratorio_clinica')
-        print(df_dados_qualidade_coleta_laboratorio_clinica)
-    else:
-        logger.error("Falha ao obter os dados da planilha.")
+
+    df_dados_qualidade_coleta_laboratorio_clinica = df_dados_qualidade_coleta_laboratorio_clinica['Página1']
+    df_dados_qualidade_coleta_laboratorio_clinica = remove_espacos_e_acentos(df_dados_qualidade_coleta_laboratorio_clinica)
+    df_dados_qualidade_coleta_laboratorio_clinica = add_pk(df_dados_qualidade_coleta_laboratorio_clinica, 'dados_qualidade_coleta_laboratorio_clinica')
+    print(df_dados_qualidade_coleta_laboratorio_clinica)
+ 
 
     return {
         'coletas_postos': df_coletas_postos,
