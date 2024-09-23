@@ -7,7 +7,7 @@
 
 #Ignore pyache
 
- **/__pycache__/
+**/__pycache__/
 
 # Ignore secret files
 google_client_secret.json
