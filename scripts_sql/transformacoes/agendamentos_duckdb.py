@@ -1,49 +1,49 @@
-# import logging
+import logging
 
-# def create_agendamentos_table(con):
-#     """
-#     Create the 'agendamentos' table in DuckDB and return it as a DataFrame.
-#     """
+def create_bd_agendamentos_table(con):
+    """
+    Create the 'bd_agendamentos' table in DuckDB and return it as a DataFrame.
+    """
 
-#     con.execute("""
-#         CREATE TABLE agendamentos AS
-#         SELECT
-#             *
-#         FROM 
-#             agendamentos_temp;
-#     """)
+    con.execute("""
+        CREATE TABLE bd_agendamentos AS
+        SELECT
+            *
+        FROM 
+            bd_agendamentos_temp;
+    """)
 
-#     df_agendamentos = con.execute("SELECT * FROM agendamentos").fetchdf()
+    df_bd_agendamentos = con.execute("SELECT * FROM bd_agendamentos").fetchdf()
 
-#     return df_agendamentos
+    return df_bd_agendamentos
 
-# def update_agendamentos_table(con):
-#     con.execute("""
-#             ALTER TABLE agendamentos ADD COLUMN fk_id_unidades INTEGER;
+def update_bd_agendamentos_table(con):
+    con.execute("""
+            ALTER TABLE bd_agendamentos ADD COLUMN fk_id_unidades INTEGER;
             
-#             UPDATE agendamentos
-#             SET fk_id_unidades = unidades.id_unidades
-#             FROM unidades
-#             WHERE unidades.cnes = agendamentos.nu_cnes;
+            UPDATE bd_agendamentos
+            SET fk_id_unidades = unidades.id_unidades
+            FROM unidades
+            WHERE unidades.cnes = bd_agendamentos.nu_cnes;
                     
-#             ALTER TABLE agendamentos ADD COLUMN fk_id_equipes INTEGER;
+            ALTER TABLE bd_agendamentos ADD COLUMN fk_id_equipes INTEGER;
             
-#             UPDATE agendamentos
-#             SET fk_id_equipes = equipes.id_equipes
-#             FROM equipes
-#             WHERE agendamentos.nu_ine = equipes.seq_equipe; 
+            UPDATE bd_agendamentos
+            SET fk_id_equipes = equipes.id_equipes
+            FROM equipes
+            WHERE bd_agendamentos.nu_ine = equipes.seq_equipe; 
 
-#             ALTER TABLE agendamentos ADD COLUMN fk_id_distritos INTEGER;
+            ALTER TABLE bd_agendamentos ADD COLUMN fk_id_distritos INTEGER;
 
-#             UPDATE agendamentos
-#             SET fk_id_distritos = distritos.id_distritos
-#             FROM distritos
-#             WHERE agendamentos.ds = distritos.sigla_distrito;
-#         """)
+            UPDATE bd_agendamentos
+            SET fk_id_distritos = distritos.id_distritos
+            FROM distritos
+            WHERE bd_agendamentos.ds = distritos.distrito_num_inteiro;
+        """)
 
 
-#     df_update_agendamentos = con.execute("SELECT * FROM agendamentos").fetchdf()
+    df_update_bd_agendamentos = con.execute("SELECT * FROM bd_agendamentos").fetchdf()
 
-#     logging.info("Tabela 'agendamentos' atualizada com sucesso.")
+    logging.info("Tabela 'bd_agendamentos' atualizada com sucesso.")
     
-#     return df_update_agendamentos
+    return df_update_bd_agendamentos

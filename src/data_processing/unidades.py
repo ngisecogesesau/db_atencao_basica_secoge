@@ -211,7 +211,6 @@ def create_df_horarios(data):
     return df_horarios
 
 def create_df_distritos(data):
-
     def int_to_roman(input):
         if not isinstance(input, int):
             raise TypeError("expected integer, got %s" % type(input))
@@ -230,12 +229,17 @@ def create_df_distritos(data):
             input -= integer * count
         return "".join(result)
 
+    # Lista de números inteiros para os distritos
+    numeros_distritos = list(range(1, 9))
+
     distritos = {
-        'nome_distrito': [f"Distrito {int_to_roman(i)}" for i in range(1, 9)],
-        'sigla_distrito': [f"{int_to_roman(i)}" for i in range(1, 9)]
+        'nome_distrito': [f"Distrito {int_to_roman(i)}" for i in numeros_distritos],
+        'sigla_distrito': [f"{int_to_roman(i)}" for i in numeros_distritos],
+        'distrito_num_inteiro': numeros_distritos  
     }
 
     df_distritos = pd.DataFrame(distritos)
+    df_distritos['distrito_num_inteiro'] = df_distritos['distrito_num_inteiro'].astype(int)
 
     logging.info("Tabela df_distritos criada manualmente: %s", df_distritos)
 

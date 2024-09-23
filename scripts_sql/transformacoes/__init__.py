@@ -14,13 +14,14 @@ from .asu_duckdb import (
     update_asu_monitora_table, update_equipes_asu_relacionamento_equipes,
     update_equipes_asu_relacionamento_unidades, update_unidades_quipes_asu_relacionamento_unidades
 )
-#from .agendamentos_duckdb import create_agendamentos_table, update_agendamentos_table
+from .agendamentos_duckdb import create_bd_agendamentos_table, update_bd_agendamentos_table
 from .atendimentos_duckdb import create_atendimentos_table, update_atendimentos_table, create_relacionamento_atendimentos_calendario
 from .calendario_duckdb import create_calendario_table
 from .ouvidoria_duckdb import create_ouvidoria_table
 from .coletas_duckdb import create_coletas_postos_table
 from .previne_duckdb import create_serie_historica_previne, create_resultado_indicadores_desempenho_consolidado_ms
 from .sevs_duckdb import create_areas_cobertas_psa_table
+from .gratificacoes_duckdb import create_gratificacoes_unidades
 
 def execute_transformations_and_save(con, engine):
     transformations = [
@@ -53,8 +54,8 @@ def execute_transformations_and_save(con, engine):
         (create_unidades_equipes_asu, 'unidades_equipes_asu', 'asu'),
         (update_unidades_quipes_asu_relacionamento_unidades, 'unidades_equipes_asu', 'asu'),
 
-        #(create_agendamentos_table, 'agendamentos', 'agendamentos'),
-        #(update_agendamentos_table, 'agendamentos', 'agendamentos'),
+        (create_bd_agendamentos_table, 'bd_agendamentos', 'agendamentos'),
+        (update_bd_agendamentos_table, 'bd_agendamentos', 'agendamentos'),
 
         (create_atendimentos_table, 'atendimentos', 'atendimentos'),
         (update_atendimentos_table, 'atendimentos', 'atendimentos'),
@@ -65,7 +66,8 @@ def execute_transformations_and_save(con, engine):
         (create_coletas_postos_table, 'coletas_postos', 'coletas'),
         (create_serie_historica_previne, 'serie_historica_previne', 'previne'),
         (create_resultado_indicadores_desempenho_consolidado_ms, 'resultado_indicadores_desempenho_consolidado_ms', 'previne'),
-        (create_areas_cobertas_psa_table, 'areas_cobertas_psa', 'sevs')
+        (create_areas_cobertas_psa_table, 'areas_cobertas_psa', 'sevs'),
+        (create_gratificacoes_unidades, 'gratificacoes_unidades', 'gratificacoes')
     ]
 
     for transformation_func, table_name, schema_name in transformations:
