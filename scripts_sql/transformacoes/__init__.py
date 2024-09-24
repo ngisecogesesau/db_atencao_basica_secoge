@@ -70,7 +70,7 @@ def execute_transformations_and_save(con, engine):
         (create_ouvidoria_table, 'ouvidoria', 'ouvidoria'),
 
         (create_coletas_postos_table, 'coletas_postos', 'coletas'),
-        #(create_dados_qualidade_coleta_laboratorio_clinica, 'dados_qualidade_coleta_laboratorio_clinica', 'coletas'),
+        (create_dados_qualidade_coleta_laboratorio_clinica, 'dados_qualidade_coleta_laboratorio_clinica', 'coletas'),
         (create_serie_historica_previne, 'serie_historica_previne', 'previne'),
         (create_resultado_indicadores_desempenho_consolidado_ms, 'resultado_indicadores_desempenho_consolidado_ms', 'previne'),
         (create_areas_cobertas_psa_table, 'areas_cobertas_psa', 'sevs_asace'),

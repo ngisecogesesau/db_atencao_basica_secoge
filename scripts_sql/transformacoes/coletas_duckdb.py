@@ -13,8 +13,9 @@ def create_coletas_postos_table(con):
 def create_dados_qualidade_coleta_laboratorio_clinica(con):
     con.execute("""
     CREATE TABLE dados_qualidade_coleta_laboratorio_clinica AS
-    FROM
+    SELECT
         *
+    FROM
         dados_qualidade_coleta_laboratorio_clinica_temp
     """)
 
