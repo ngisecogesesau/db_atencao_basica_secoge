@@ -11,7 +11,12 @@ def create_schemas(db_name, user, password, host='localhost', port=5432):
                 "CREATE SCHEMA IF NOT EXISTS agendamentos",
                 "CREATE SCHEMA IF NOT EXISTS atendimentos",
                 "CREATE SCHEMA IF NOT EXISTS calendario",
-                "CREATE SCHEMA IF NOT EXISTS  ouvidoria"
+                "CREATE SCHEMA IF NOT EXISTS ouvidoria",
+                "CREATE SCHEMA IF NOT EXISTS coletas",
+                "CREATE SCHEMA IF NOT EXISTS previne",
+                "CREATE SCHEMA IF NOT EXISTS sevs",
+                "CREATE SCHEMA IF NOT EXISTS gratificacoes"
+
                 ]
     try:
         with psycopg2.connect(dbname=db_name, user=user, password=password, host=host, port=port) as conn:

@@ -10,7 +10,7 @@ def read_atendimentos():
 
     :return: Um DataFrame processado para 'atendimentos'
     """
-    relative_url_atendimentos = "/Shared Documents/SESAU/BI_Indicadores_Estrategicos/Atendimentos.xlsx"
+    relative_url_atendimentos = "/Shared Documents/SESAU/NGI/atendimentos/Atendimentos.xlsx"
 
     dataframes_atendimentos = get_file_as_dataframes(relative_url_atendimentos)
 

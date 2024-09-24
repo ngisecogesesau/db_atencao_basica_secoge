@@ -47,12 +47,14 @@ def get_file_content(ctx, relative_url):
         logger.error(f"Error getting file content: {e}")
         return None
 
-def get_file_as_dataframes(relative_url, skiprows=0):
+def get_file_as_dataframes(relative_url, sheet_name=None, skiprows=0):
     """
-    Get a file from SharePoint as multiple pandas DataFrames, one for each sheet.
+    Obtém um arquivo do SharePoint como múltiplos DataFrames do pandas, um para cada planilha.
 
-    :param relative_url: The relative URL of the file in SharePoint
-    :return: A dictionary where keys are sheet names and values are DataFrames
+    :param relative_url: A URL relativa do arquivo no SharePoint
+    :param sheet_name: Nome ou lista de nomes de planilhas para ler (padrão None lê todas as planilhas)
+    :param skiprows: Número de linhas a pular no início
+    :return: Um dicionário onde as chaves são nomes de planilhas e os valores são DataFrames
     """
     site_url = os.getenv('SHAREPOINT_SITE_URL')
     username = os.getenv('SHAREPOINT_USERNAME')
@@ -67,11 +69,16 @@ def get_file_as_dataframes(relative_url, skiprows=0):
         return None
 
     try:
-        dataframes = pd.read_excel(file_content, sheet_name=None, skiprows=skiprows)
-        logger.info(f"Sheets available: {list(dataframes.keys())}")
-        return dataframes
+        dataframes = pd.read_excel(file_content, sheet_name=sheet_name, skiprows=skiprows)
+        if isinstance(dataframes, dict):
+            logger.info(f"Planilhas disponíveis: {list(dataframes.keys())}")
+            return dataframes
+        else:
+            sheet_key = sheet_name if sheet_name else 'Sheet1'
+            logger.info(f"Planilha lida: {sheet_key}")
+            return {sheet_key: dataframes}
     except Exception as e:
-        logger.error(f"Error converting content to DataFrames: {e}")
+        logger.error(f"Erro ao converter conteúdo para DataFrames: {e}")
         return None
 
 def log_dataframes_info(dataframes):

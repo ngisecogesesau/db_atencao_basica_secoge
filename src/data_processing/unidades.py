@@ -48,9 +48,9 @@ def read_unidades():
 
     :return: A dictionary with processed and modeled DataFrames for all sheets
     """
-    url_usf = "/Shared Documents/SESAU/BI_Indicadores_Estrategicos/ANALISE_PEAB_USF_29.02_DemandaBI.xlsx"
-    url_unidades = "/Shared Documents/SESAU/BI_Indicadores_Estrategicos/Unidades.xlsx"
-    url_login_senha_unidades ="/Shared Documents/SESAU/BI_Indicadores_Estrategicos/Login_senha_unidades.xlsx"
+    url_usf = "/Shared Documents/SESAU/NGI/unidades/ANALISE_PEAB_USF_29.02_DemandaBI.xlsx"
+    url_unidades = "/Shared Documents/SESAU/NGI/unidades/Unidades.xlsx"
+    url_login_senha_unidades ="/Shared Documents/SESAU/NGI/senhas/Login_senha_unidades.xlsx"
 
     dataframes_usf = get_file_as_dataframes(url_usf)
     dataframes_unidades = get_file_as_dataframes(url_unidades)
@@ -211,7 +211,6 @@ def create_df_horarios(data):
     return df_horarios
 
 def create_df_distritos(data):
-
     def int_to_roman(input):
         if not isinstance(input, int):
             raise TypeError("expected integer, got %s" % type(input))
@@ -230,9 +229,12 @@ def create_df_distritos(data):
             input -= integer * count
         return "".join(result)
 
+    numeros_distritos = list(range(1, 9))
+
     distritos = {
-        'nome_distrito': [f"Distrito {int_to_roman(i)}" for i in range(1, 9)],
-        'sigla_distrito': [f"{int_to_roman(i)}" for i in range(1, 9)]
+        'nome_distrito': [f"Distrito {int_to_roman(i)}" for i in numeros_distritos],
+        'sigla_distrito': [f"{int_to_roman(i)}" for i in numeros_distritos],
+        'distrito_num_inteiro': numeros_distritos  
     }
 
     df_distritos = pd.DataFrame(distritos)
