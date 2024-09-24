@@ -3,7 +3,6 @@ from turtle import down
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseDownload
 from google.oauth2.credentials import Credentials
-from google_oauth_flow import SCOPES
 import requests
 from dotenv import load_dotenv
 from os import getenv
@@ -14,6 +13,7 @@ import logging
 load_dotenv()
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+SCOPES = ["https://www.googleapis.com/auth/drive.readonly"]  # Todo fix
 
 
 def authenticate(refresh_token, client_secret_file) -> str:
