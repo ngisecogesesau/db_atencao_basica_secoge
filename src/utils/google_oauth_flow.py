@@ -7,14 +7,17 @@ executado novamente para gerar um novo token.
 
 from dotenv import load_dotenv
 from google_auth_oauthlib.flow import InstalledAppFlow
-from os import getenv
+from os import getenv, name
 
-load_dotenv()
+SCOPES = ["https://www.googleapis.com/auth/drive.readonly"]
 
-flow = InstalledAppFlow.from_client_secrets_file(
-    getenv("PATH_TO_CLIENT_SECRET"),
-    "https://www.googleapis.com/auth/spreadsheets.readonly",
-)
-auth_uri = flow.authorization_url()
-flow.run_local_server()
-print("Refresh token:", flow.credentials.refresh_token, sep="\n")
+if __name__ == "__main__":
+    load_dotenv()
+
+    flow = InstalledAppFlow.from_client_secrets_file(
+        getenv("PATH_TO_CLIENT_SECRET"),
+        SCOPES,
+    )
+    auth_uri = flow.authorization_url()
+    flow.run_local_server()
+    print("Refresh token:", flow.credentials.refresh_token, sep="\n")
