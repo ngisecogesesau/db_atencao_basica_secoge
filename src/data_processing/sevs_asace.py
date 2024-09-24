@@ -10,7 +10,7 @@ from src.utils.extract_sharepoint_df import get_file_as_dataframes
 from src.utils.add_primary_key import add_pk
 from src.utils.excel_operations import remove_espacos_e_acentos
 
-def read_sevs():
+def read_sevs_asace():
 
     url_sevs_areas_cobertas_psa = '/Shared Documents/SESAU/NGI/sevs_asace/Áreas descobertas PSA.xlsx'
     df_areas_cobertas_psa = get_file_as_dataframes(url_sevs_areas_cobertas_psa, sheet_name='Planilha1',skiprows=1)

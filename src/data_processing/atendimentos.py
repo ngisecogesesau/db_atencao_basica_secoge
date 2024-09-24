@@ -15,11 +15,7 @@ def read_atendimentos():
     dataframes_atendimentos = get_file_as_dataframes(relative_url_atendimentos)
 
     df_atendimentos = dataframes_atendimentos['Sheet1']
-
-    required_columns = ['dia', 'nu_ine', 'nu_cnes', 'no_cbo', 'no_profissional','ds_turno',
-                        'qt_atendimentos']
     
-    df_atendimentos = df_atendimentos[required_columns]
     df_atendimentos = remove_espacos_e_acentos(df_atendimentos)
     df_atendimentos = add_pk(df_atendimentos, 'atendimentos')
 
