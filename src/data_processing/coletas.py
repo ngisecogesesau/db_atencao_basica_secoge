@@ -30,7 +30,6 @@ def read_coletas():
     df_dados_qualidade_coleta_laboratorio_clinica = df_dados_qualidade_coleta_laboratorio_clinica['Página1']
     df_dados_qualidade_coleta_laboratorio_clinica = remove_espacos_e_acentos(df_dados_qualidade_coleta_laboratorio_clinica)
     df_dados_qualidade_coleta_laboratorio_clinica = add_pk(df_dados_qualidade_coleta_laboratorio_clinica, 'dados_qualidade_coleta_laboratorio_clinica')
-    print(df_dados_qualidade_coleta_laboratorio_clinica)
  
 
     return {

@@ -24,7 +24,13 @@ from .ouvidoria_duckdb import create_ouvidoria_table
 from .coletas_duckdb import create_coletas_postos_table, create_dados_qualidade_coleta_laboratorio_clinica
 from .previne_duckdb import create_serie_historica_previne, create_resultado_indicadores_desempenho_consolidado_ms
 from .sevs_asace_duckdb import create_areas_cobertas_psa_table
-from .sevs_criancas_risco_duckdb import create_criancas_risco_elegiveis
+from .sevs_criancas_risco_duckdb import (
+    create_criancas_risco_elegiveis,
+    create_criancas_acompanhadas,
+    create_criancas_atendimentos,
+    create_criancas_percentual_acompanhadas,
+    create_criancas_percentual_distribuidas
+)
 from .gratificacoes_duckdb import create_gratificacoes_unidades
 
 def execute_transformations_and_save(con, engine):
@@ -73,8 +79,14 @@ def execute_transformations_and_save(con, engine):
         (create_dados_qualidade_coleta_laboratorio_clinica, 'dados_qualidade_coleta_laboratorio_clinica', 'coletas'),
         (create_serie_historica_previne, 'serie_historica_previne', 'previne'),
         (create_resultado_indicadores_desempenho_consolidado_ms, 'resultado_indicadores_desempenho_consolidado_ms', 'previne'),
+
         (create_areas_cobertas_psa_table, 'areas_cobertas_psa', 'sevs_asace'),
         (create_criancas_risco_elegiveis, 'criancas_risco_elegiveis', 'sevs_criancas_risco'),
+        (create_criancas_acompanhadas, 'criancas_acompanhadas', 'sevs_criancas_risco'),
+        (create_criancas_atendimentos, 'criancas_atendimentos', 'sevs_criancas_risco'),
+        (create_criancas_percentual_acompanhadas, 'criancas_percentual_acompanhadas', 'sevs_criancas_risco'),
+        (create_criancas_percentual_distribuidas, 'criancas_percentual_distribuidas', 'sevs_criancas_risco'),
+
         (create_gratificacoes_unidades, 'gratificacoes_unidades', 'gratificacoes')
     ]
 
