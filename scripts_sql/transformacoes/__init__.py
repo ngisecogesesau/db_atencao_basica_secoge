@@ -31,6 +31,8 @@ from .sevs_criancas_risco_duckdb import (
     create_criancas_percentual_acompanhadas,
     create_criancas_percentual_distribuidas
 )
+from .sevs_tuberculose_duckdb import create_sevs_tuberculose
+from .sevs_licenca_sanitaria_duckdb import create_sevs_processos_licenciamentos_sanitarios_julho
 from .gratificacoes_duckdb import create_gratificacoes_unidades
 
 def execute_transformations_and_save(con, engine):
@@ -86,6 +88,10 @@ def execute_transformations_and_save(con, engine):
         (create_criancas_atendimentos, 'criancas_atendimentos', 'sevs_criancas_risco'),
         (create_criancas_percentual_acompanhadas, 'criancas_percentual_acompanhadas', 'sevs_criancas_risco'),
         (create_criancas_percentual_distribuidas, 'criancas_percentual_distribuidas', 'sevs_criancas_risco'),
+
+        (create_sevs_tuberculose, 'sevs_tuberculose', 'sevs_tuberculose'),
+
+        (create_sevs_processos_licenciamentos_sanitarios_julho, 'sevs_processos_licenciamentos_sanitarios_julho', 'sevs_licenca_sanitaria'),
 
         (create_gratificacoes_unidades, 'gratificacoes_unidades', 'gratificacoes')
     ]
