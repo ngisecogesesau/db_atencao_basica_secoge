@@ -26,21 +26,20 @@ A estrutura de pastas do projeto é organizada conforme descrito abaixo:
   
 - **`scripts_sql/transformacoes`**: Scripts que contêm as transformações específicas para cada tabela, utilizando DuckDB como ambiente intermediário.
 
-- **`tests`**: Testes automatizados para garantir o funcionamento do pipeline.
-
 ## Tecnologias Utilizadas
 
 - **Python**: Linguagem de programação utilizada para implementar o pipeline ETL.
 - **PostgreSQL**: Banco de dados utilizado para armazenar os dados transformados.
 - **DuckDB**: Utilizado para manipulação intermediária dos dados durante as transformações.
 - **Poetry**: Gerenciador de dependências e ambientes para Python.
+- **pyenv**: Utilizado para gerenciar diferentes versões do Python.
 - **Google Sheets API** e **SharePoint API**: APIs utilizadas para extração de dados de fontes online.
 
 ## Pré-requisitos
 
 Antes de executar o projeto, certifique-se de que você tem os seguintes itens instalados:
 
-- **Python 3.12** ou superior
+- **Python 3.12** ou superior (gerenciado via **pyenv**)
 - **PostgreSQL**
 - **Poetry**
 
